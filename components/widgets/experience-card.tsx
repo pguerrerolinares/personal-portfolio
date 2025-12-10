@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Briefcase, Code, Calendar } from "lucide-react";
 import type { Experience } from "@/lib/constants/portfolio-data";
 
@@ -33,6 +33,7 @@ function formatDate(dateStr: string, locale: string): string {
 
 export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
   const t = useTranslations("common");
+  const locale = useLocale();
   const Icon = typeIcons[experience.type];
 
   return (
@@ -75,8 +76,8 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
           <Calendar className="w-4 h-4" />
           <span>
-            {formatDate(experience.startDate, "en")} —{" "}
-            {experience.endDate ? formatDate(experience.endDate, "en") : t("present")}
+            {formatDate(experience.startDate, locale)} —{" "}
+            {experience.endDate ? formatDate(experience.endDate, locale) : t("present")}
           </span>
         </div>
 

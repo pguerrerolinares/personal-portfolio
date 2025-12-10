@@ -62,21 +62,9 @@
       "title": "Let's Connect",
       "description": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.",
       "email": "Email",
-      "location": "Location",
-      "social": "Find me on"
+      "location": "Location"
     },
-    "form": {
-      "name": "Name",
-      "namePlaceholder": "Your name",
-      "email": "Email",
-      "emailPlaceholder": "your@email.com",
-      "message": "Message",
-      "messagePlaceholder": "Tell me about your project or idea...",
-      "submit": "Send Message",
-      "sending": "Sending...",
-      "success": "Message sent successfully! I'll get back to you soon.",
-      "error": "Failed to send message. Please try again or email me directly."
-    }
+    "cta": "Feel free to reach out through any of these channels!"
   },
   "common": {
     "loading": "Loading...",

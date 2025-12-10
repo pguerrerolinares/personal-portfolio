@@ -12,9 +12,68 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+const baseUrl = 'https://paulgl.dev';
+
 export const metadata: Metadata = {
-  title: 'Paul Guerrero Linares',
-  description: 'Portfolio profesional',
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: 'Paul Guerrero Linares - Software Engineer',
+    template: '%s | Paul Guerrero Linares',
+  },
+  description:
+    'Software Engineer specializing in full-stack development, AI/ML pipelines, and cloud-native architectures. Expert in Angular, React, Java, Python, and modern DevOps practices.',
+  keywords: [
+    'Software Engineer',
+    'Full Stack Developer',
+    'AI/ML',
+    'Angular',
+    'React',
+    'Java',
+    'Python',
+    'TypeScript',
+    'Cloud Native',
+    'DevOps',
+    'OCR',
+    'Computer Vision',
+  ],
+  authors: [{ name: 'Paul Guerrero Linares' }],
+  creator: 'Paul Guerrero Linares',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    alternateLocale: 'es_ES',
+    url: baseUrl,
+    siteName: 'Paul Guerrero Linares',
+    title: 'Paul Guerrero Linares - Software Engineer',
+    description:
+      'Software Engineer specializing in full-stack development, AI/ML pipelines, and cloud-native architectures.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Paul Guerrero Linares - Software Engineer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Paul Guerrero Linares - Software Engineer',
+    description:
+      'Software Engineer specializing in full-stack development, AI/ML pipelines, and cloud-native architectures.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({

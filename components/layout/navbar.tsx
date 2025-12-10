@@ -17,88 +17,98 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
-      <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-        <a href="#" className="text-lg font-semibold">
-          PGL
-        </a>
+    <>
+      {/* Skip link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-foreground focus:text-background focus:rounded-lg focus:outline-none"
+      >
+        Skip to main content
+      </a>
+      <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
+        <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6" aria-label="Main navigation">
+          <a href="#" className="text-lg font-semibold" aria-label="Go to homepage">
+            PGL
+          </a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden items-center gap-1 md:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.key}
-              href={item.href}
-              className="rounded-full px-4 py-2 text-sm transition-colors hover:bg-foreground/10"
-            >
-              {t(item.key)}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-1">
-          <LanguageSwitcher />
-          <ThemeToggle />
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-foreground/10 md:hidden"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="4" x2="20" y1="12" y2="12" />
-                <line x1="4" x2="20" y1="6" y2="6" />
-                <line x1="4" x2="20" y1="18" y2="18" />
-              </svg>
-            )}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Navigation */}
-      {isOpen && (
-        <div className="border-t border-border/50 bg-background/95 backdrop-blur-md md:hidden">
-          <div className="flex flex-col px-6 py-4">
+          {/* Desktop Navigation */}
+          <div className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => (
               <a
                 key={item.key}
                 href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="py-3 text-sm transition-colors hover:text-muted"
+                className="rounded-full px-4 py-2 text-sm transition-colors hover:bg-foreground/10"
               >
                 {t(item.key)}
               </a>
             ))}
           </div>
-        </div>
-      )}
-    </header>
+
+          <div className="flex items-center gap-1">
+            <LanguageSwitcher />
+            <ThemeToggle />
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-foreground/10 md:hidden"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="4" x2="20" y1="12" y2="12" />
+                  <line x1="4" x2="20" y1="6" y2="6" />
+                  <line x1="4" x2="20" y1="18" y2="18" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="border-t border-border/50 bg-background/95 backdrop-blur-md md:hidden">
+            <div className="flex flex-col px-6 py-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.key}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="py-3 text-sm transition-colors hover:text-muted"
+                >
+                  {t(item.key)}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </header>
+    </>
   );
 }
+

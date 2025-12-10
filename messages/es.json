@@ -62,21 +62,9 @@
       "title": "Conectemos",
       "description": "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tu visión.",
       "email": "Email",
-      "location": "Ubicación",
-      "social": "Encuéntrame en"
+      "location": "Ubicación"
     },
-    "form": {
-      "name": "Nombre",
-      "namePlaceholder": "Tu nombre",
-      "email": "Email",
-      "emailPlaceholder": "tu@email.com",
-      "message": "Mensaje",
-      "messagePlaceholder": "Cuéntame sobre tu proyecto o idea...",
-      "submit": "Enviar Mensaje",
-      "sending": "Enviando...",
-      "success": "¡Mensaje enviado con éxito! Te responderé pronto.",
-      "error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo o escríbeme directamente."
-    }
+    "cta": "¡No dudes en contactarme a través de cualquiera de estos canales!"
   },
   "common": {
     "loading": "Cargando...",

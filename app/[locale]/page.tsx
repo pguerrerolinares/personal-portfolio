@@ -16,7 +16,7 @@ export default async function HomePage({ params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <main>
+    <main id="main-content">
       <Hero />
       <About />
       <Projects />
