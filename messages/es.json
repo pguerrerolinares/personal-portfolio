@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "title": "Paul Guerrero Linares - Ingeniero de Software",
+    "description": "Portfolio profesional de Paul Guerrero Linares - Ingeniero de Software especializado en desarrollo full-stack, pipelines de IA/ML y arquitecturas cloud-native."
+  },
+  "nav": {
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "experience": "Experiencia",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Paul Guerrero",
+    "role": "Ingeniero de Software",
+    "description": "Construyendo soluciones robustas en la intersección del desarrollo full-stack, pipelines de IA/ML y arquitecturas cloud-native.",
+    "cta": {
+      "projects": "Ver Proyectos",
+      "contact": "Contactar"
+    }
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "subtitle": "Ingeniero por pasión, solucionador de problemas por naturaleza",
+    "bio": {
+      "p1": "Ingeniero informático con una base sólida en desarrollo backend y frontend, evolucionado hacia un perfil híbrido poco común: alguien que programa, entiende arquitectura, domina pipelines complejos y opera en entornos con requisitos de seguridad estrictos.",
+      "p2": "Destaco por diseñar y mantener pipelines de alto nivel, especialmente en OCR, visión por computadora y modelos de lenguaje multimodales. Construyendo soluciones con docTR, PaddleOCR, LayoutLMv3 y Qwen3-VL, desplegándolas en Kubernetes on-prem cumpliendo requisitos de seguridad muy altos.",
+      "p3": "Más allá del código, entiendo Scrum desde dentro, participo en refinamientos, escribo historias de usuario claras, gestiono deuda técnica y anticipo riesgos del sprint. El objetivo no es solo que el software funcione, sino que el equipo funcione."
+    },
+    "stats": {
+      "years": "Años de Experiencia",
+      "technologies": "Tecnologías",
+      "focus": "Especialización"
+    },
+    "skills": {
+      "title": "Habilidades Técnicas",
+      "more": "+ Herramientas, metodologías y más en mi sección de experiencia"
+    }
+  },
+  "projects": {
+    "title": "Proyectos",
+    "subtitle": "Una selección de proyectos en los que he trabajado, desde pipelines de IA hasta aplicaciones full-stack.",
+    "featured": "Proyectos Destacados",
+    "other": "Otros Proyectos",
+    "cta": {
+      "text": "¿Quieres ver más?",
+      "button": "Ver Perfil de GitHub"
+    }
+  },
+  "experience": {
+    "title": "Experiencia",
+    "subtitle": "Mi trayectoria profesional en ingeniería de software, desde soluciones IoT hasta sistemas potenciados por IA.",
+    "cta": {
+      "text": "¿Quieres el panorama completo?",
+      "button": "Descargar CV"
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes un proyecto en mente o quieres discutir oportunidades? Me encantaría saber de ti.",
+    "info": {
+      "title": "Conectemos",
+      "description": "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tu visión.",
+      "email": "Email",
+      "location": "Ubicación",
+      "social": "Encuéntrame en"
+    },
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "email": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntame sobre tu proyecto o idea...",
+      "submit": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado con éxito! Te responderé pronto.",
+      "error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo o escríbeme directamente."
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "backToTop": "Volver arriba",
+    "present": "Actualidad",
+    "viewMore": "Ver Más",
+    "viewLess": "Ver Menos"
+  }
+}

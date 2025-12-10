@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI
+CLAUDE.md
+
+# User config
+.prettierrc
+
+# bun
+bun.lockb

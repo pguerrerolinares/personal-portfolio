@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "title": "Paul Guerrero Linares - Software Engineer",
+    "description": "Professional portfolio of Paul Guerrero Linares - Software Engineer specializing in full-stack development, AI/ML pipelines, and cloud-native architectures."
+  },
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Paul Guerrero",
+    "role": "Software Engineer",
+    "description": "Building robust solutions at the intersection of full-stack development, AI/ML pipelines, and cloud-native architectures.",
+    "cta": {
+      "projects": "View Projects",
+      "contact": "Get in Touch"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Engineer by passion, problem solver by nature",
+    "bio": {
+      "p1": "Computer engineer with a solid foundation in backend and frontend development, evolved into a rare hybrid profile: someone who codes, understands architecture, masters complex pipelines, and operates in strict security environments.",
+      "p2": "Notable for designing and maintaining high-level pipelines, especially in OCR, computer vision, and multimodal language models. Building solutions with docTR, PaddleOCR, LayoutLMv3, and Qwen3-VL, deploying them in on-prem Kubernetes while meeting strict security requirements.",
+      "p3": "Beyond coding, I understand Scrum from the inside, participate in refinements, write clear user stories, manage technical debt, and anticipate sprint risks. The goal is not just working software, but a working team."
+    },
+    "stats": {
+      "years": "Years Experience",
+      "technologies": "Technologies",
+      "focus": "Specialization"
+    },
+    "skills": {
+      "title": "Technical Skills",
+      "more": "+ Tools, methodologies, and more in my experience section"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "A selection of projects I've worked on, from AI pipelines to full-stack applications.",
+    "featured": "Featured Projects",
+    "other": "Other Projects",
+    "cta": {
+      "text": "Want to see more?",
+      "button": "View GitHub Profile"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "My professional journey through software engineering, from IoT solutions to AI-powered systems.",
+    "cta": {
+      "text": "Want the full picture?",
+      "button": "Download Resume"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Have a project in mind or want to discuss opportunities? I'd love to hear from you.",
+    "info": {
+      "title": "Let's Connect",
+      "description": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.",
+      "email": "Email",
+      "location": "Location",
+      "social": "Find me on"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project or idea...",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully! I'll get back to you soon.",
+      "error": "Failed to send message. Please try again or email me directly."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "backToTop": "Back to top",
+    "present": "Present",
+    "viewMore": "View More",
+    "viewLess": "View Less"
+  }
+}
