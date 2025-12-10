@@ -4,33 +4,33 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { ContactCard } from "@/components/widgets";
-import { Mail, Github, Linkedin, MapPin } from "lucide-react";
+import { MailIcon, GithubIcon, LinkedinIcon, MapPinIcon } from "@/components/ui/icon";
 
 export function Contact() {
   const t = useTranslations("contact");
 
   const contactItems = [
     {
-      icon: Mail,
+      icon: MailIcon,
       label: t("info.email"),
       value: personalInfo.email,
       href: `mailto:${personalInfo.email}`,
       external: false,
     },
     {
-      icon: MapPin,
+      icon: MapPinIcon,
       label: t("info.location"),
       value: personalInfo.location,
     },
     {
-      icon: Github,
+      icon: GithubIcon,
       label: "GitHub",
       value: "@pguerrerolinares",
       href: personalInfo.social.github,
       external: true,
     },
     {
-      icon: Linkedin,
+      icon: LinkedinIcon,
       label: "LinkedIn",
       value: "Paul Guerrero Linares",
       href: personalInfo.social.linkedin,

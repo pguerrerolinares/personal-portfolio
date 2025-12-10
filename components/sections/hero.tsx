@@ -4,7 +4,8 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { personalInfo } from "@/lib/constants/portfolio-data";
-import { Github, Linkedin, ArrowDown } from "lucide-react";
+import { AnimatedBackground } from "@/components/ui/animated-background";
+import { GithubIcon, LinkedinIcon, ArrowDownIcon } from "@/components/ui/icon";
 
 const container = {
   hidden: { opacity: 0 },
@@ -34,11 +35,8 @@ export function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-accent/5 rounded-full blur-3xl" />
-      </div>
+      {/* Animated Background */}
+      <AnimatedBackground />
 
       <motion.div
         variants={container}
@@ -109,7 +107,7 @@ export function Hero() {
             className="text-muted-foreground hover:text-foreground transition-colors"
             aria-label="GitHub"
           >
-            <Github className="w-6 h-6" />
+            <GithubIcon size={24} />
           </a>
           <a
             href={personalInfo.social.linkedin}
@@ -118,7 +116,7 @@ export function Hero() {
             className="text-muted-foreground hover:text-foreground transition-colors"
             aria-label="LinkedIn"
           >
-            <Linkedin className="w-6 h-6" />
+            <LinkedinIcon size={24} />
           </a>
         </motion.div>
       </motion.div>
@@ -134,7 +132,7 @@ export function Hero() {
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ArrowDown className="w-6 h-6 text-muted-foreground" />
+          <ArrowDownIcon size={24} className="text-muted-foreground" />
         </motion.div>
       </motion.div>
     </section>

@@ -1,19 +1,19 @@
 import { type SVGProps } from "react";
 
-// Simple Icons - SVG wrapper for technology/brand icons
-// Using inline SVG paths from https://simpleicons.org/
+// Icon component - SVG wrapper for icons
+// Includes Simple Icons (tech/brand) and custom UI icons
 
 export interface IconProps extends SVGProps<SVGSVGElement> {
     size?: number | string;
 }
 
 // Base icon wrapper
-function createIcon(path: string, title: string) {
+function createIcon(path: string, title: string, viewBox = "0 0 24 24") {
     return function Icon({ size = 24, className = "", ...props }: IconProps) {
         return (
             <svg
                 role="img"
-                viewBox="0 0 24 24"
+                viewBox={viewBox}
                 width={size}
                 height={size}
                 fill="currentColor"
@@ -28,7 +28,37 @@ function createIcon(path: string, title: string) {
     };
 }
 
-// Technology Icons (from Simple Icons)
+// Stroke-based icon wrapper (for UI icons)
+function createStrokeIcon(paths: string[], title: string) {
+    return function Icon({ size = 24, className = "", ...props }: IconProps) {
+        return (
+            <svg
+                role="img"
+                viewBox="0 0 24 24"
+                width={size}
+                height={size}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={className}
+                aria-label={title}
+                {...props}
+            >
+                <title>{title}</title>
+                {paths.map((d, i) => (
+                    <path key={i} d={d} />
+                ))}
+            </svg>
+        );
+    };
+}
+
+// ============================================
+// SIMPLE ICONS - Technology & Brand Icons
+// ============================================
+
 export const TypeScriptIcon = createIcon(
     "M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z",
     "TypeScript"
@@ -47,11 +77,6 @@ export const NextjsIcon = createIcon(
 export const PythonIcon = createIcon(
     "M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z",
     "Python"
-);
-
-export const JavaIcon = createIcon(
-    "M8.851 18.56s-.917.534.653.714c1.902.218 2.874.187 4.969-.211 0 0 .552.346 1.321.646-4.699 2.013-10.633-.118-6.943-1.149M8.276 15.933s-1.028.761.542.924c2.032.209 3.636.227 6.413-.308 0 0 .384.389.987.602-5.679 1.661-12.007.13-7.942-1.218M13.116 11.475c1.158 1.333-.304 2.533-.304 2.533s2.939-1.518 1.589-3.418c-1.261-1.772-2.228-2.652 3.007-5.688 0-.001-8.216 2.051-4.292 6.573M19.33 20.504s.679.559-.747.991c-2.712.822-11.288 1.069-13.669.033-.856-.373.75-.89 1.254-.998.527-.114.828-.093.828-.093-.953-.671-6.156 1.317-2.643 1.887 9.58 1.553 17.462-.7 14.977-1.82M9.292 13.21s-4.362 1.036-1.544 1.412c1.189.159 3.561.123 5.77-.062 1.806-.152 3.618-.477 3.618-.477s-.637.272-1.098.587c-4.429 1.165-12.986.623-10.522-.568 2.082-1.006 3.776-.892 3.776-.892M17.116 17.584c4.503-2.34 2.421-4.589.968-4.285-.355.074-.515.138-.515.138s.132-.207.385-.297c2.875-1.011 5.086 2.981-.928 4.562 0-.001.07-.062.09-.118M14.401 0s2.494 2.494-2.365 6.33c-3.896 3.077-.888 4.832-.001 6.836-2.274-2.053-3.943-3.858-2.824-5.539 1.644-2.469 6.197-3.665 5.19-7.627M9.734 23.924c4.322.277 10.959-.153 11.116-2.198 0 0-.302.775-3.572 1.391-3.688.694-8.239.613-10.937.168 0-.001.553.457 3.393.639",
-    "Java"
 );
 
 export const DockerIcon = createIcon(
@@ -74,30 +99,150 @@ export const AWSIcon = createIcon(
     "AWS"
 );
 
-// Generic icon for unknown technologies
-export const CodeIcon = createIcon(
-    "M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z",
+// ============================================
+// SIMPLE ICONS - Social & Brand Icons
+// ============================================
+
+export const GithubIcon = createIcon(
+    "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12",
+    "GitHub"
+);
+
+export const LinkedinIcon = createIcon(
+    "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z",
+    "LinkedIn"
+);
+
+// ============================================
+// UI ICONS - Custom stroke-based icons
+// ============================================
+
+export const ArrowDownIcon = createStrokeIcon(
+    ["M12 5v14", "m19 12-7 7-7-7"],
+    "Arrow Down"
+);
+
+export const ArrowLeftIcon = createStrokeIcon(
+    ["m12 19-7-7 7-7", "M19 12H5"],
+    "Arrow Left"
+);
+
+export const ArrowRightIcon = createStrokeIcon(
+    ["m12 5 7 7-7 7", "M5 12h14"],
+    "Arrow Right"
+);
+
+export const ExternalLinkIcon = createStrokeIcon(
+    ["M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", "M15 3h6v6", "m10 14 11-11"],
+    "External Link"
+);
+
+export const MailIcon = createStrokeIcon(
+    ["M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z", "m22 6-10 7L2 6"],
+    "Mail"
+);
+
+export const MapPinIcon = createStrokeIcon(
+    ["M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z", "M12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"],
+    "Map Pin"
+);
+
+export const HomeIcon = createStrokeIcon(
+    ["m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z", "M9 22V12h6v10"],
+    "Home"
+);
+
+export const CalendarIcon = createStrokeIcon(
+    ["M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z", "M16 2v4", "M8 2v4", "M3 10h18"],
+    "Calendar"
+);
+
+export const BriefcaseIcon = createStrokeIcon(
+    ["M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z", "M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"],
+    "Briefcase"
+);
+
+export const CodeIcon = createStrokeIcon(
+    ["m16 18 6-6-6-6", "m8 6-6 6 6 6"],
     "Code"
 );
 
-// Icon mapping for dynamic usage
+export const Building2Icon = createStrokeIcon(
+    ["M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z", "M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2", "M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2", "M10 6h4", "M10 10h4", "M10 14h4", "M10 18h4"],
+    "Building"
+);
+
+export const FileDownIcon = createStrokeIcon(
+    ["M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z", "M14 2v6h6", "M12 18v-6", "m9 15 3 3 3-3"],
+    "File Download"
+);
+
+export const GlobeIcon = createStrokeIcon(
+    ["M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z", "M2 12h20", "M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"],
+    "Globe"
+);
+
+export const SmartphoneIcon = createStrokeIcon(
+    ["M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z", "M12 18h.01"],
+    "Smartphone"
+);
+
+export const BrainIcon = createStrokeIcon(
+    ["M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z", "M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z", "M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4", "M17.599 6.5a3 3 0 0 0 .399-1.375", "M6.003 5.125A3 3 0 0 0 6.401 6.5", "M3.477 10.896a4 4 0 0 1 .585-.396", "M19.938 10.5a4 4 0 0 1 .585.396", "M6 18a4 4 0 0 1-1.967-.516", "M19.967 17.484A4 4 0 0 1 18 18"],
+    "Brain"
+);
+
+export const BotIcon = createStrokeIcon(
+    ["M12 8V4H8", "M8 8H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-3", "M10 14h4", "M9 18v2", "M15 18v2"],
+    "Bot"
+);
+
+export const FolderIcon = createStrokeIcon(
+    ["M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"],
+    "Folder"
+);
+
+// ============================================
+// Icon mappings for dynamic usage
+// ============================================
+
 export const icons = {
+    // Tech icons
     typescript: TypeScriptIcon,
     react: ReactIcon,
     nextjs: NextjsIcon,
     python: PythonIcon,
-    java: JavaIcon,
     docker: DockerIcon,
     kubernetes: KubernetesIcon,
     git: GitIcon,
     aws: AWSIcon,
+    // Social
+    github: GithubIcon,
+    linkedin: LinkedinIcon,
+    // UI
+    arrowdown: ArrowDownIcon,
+    arrowleft: ArrowLeftIcon,
+    arrowright: ArrowRightIcon,
+    externallink: ExternalLinkIcon,
+    mail: MailIcon,
+    mappin: MapPinIcon,
+    home: HomeIcon,
+    calendar: CalendarIcon,
+    briefcase: BriefcaseIcon,
     code: CodeIcon,
+    building: Building2Icon,
+    filedown: FileDownIcon,
+    globe: GlobeIcon,
+    smartphone: SmartphoneIcon,
+    brain: BrainIcon,
+    bot: BotIcon,
+    folder: FolderIcon,
 } as const;
 
 export type IconName = keyof typeof icons;
 
 // Dynamic icon component
 export function Icon({ name, ...props }: IconProps & { name: IconName | string }) {
-    const IconComponent = icons[name.toLowerCase() as IconName] || CodeIcon;
+    const IconComponent = icons[name.toLowerCase().replace(/[^a-z]/g, "") as IconName] || CodeIcon;
     return <IconComponent {...props} />;
 }

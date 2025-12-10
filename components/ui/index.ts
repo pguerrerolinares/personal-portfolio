@@ -5,3 +5,4 @@ export { SectionHeader } from "./section-header";
 export { Skeleton, CardSkeleton, SectionSkeleton } from "./skeleton";
 export { Icon, icons } from "./icon";
 export type { IconName, IconProps } from "./icon";
+export { AnimatedBackground } from "./animated-background";

@@ -1,22 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
+import type { IconProps } from "@/components/ui/icon";
 
 interface ContactCardProps {
-    icon: LucideIcon;
+    icon: React.ComponentType<IconProps>;
     label: string;
     value: string;
     href?: string;
     external?: boolean;
     index?: number;
 }
-
-const typeColors = {
-    primary: "bg-accent/20 text-accent border-accent/30",
-    secondary: "bg-blue-500/20 text-blue-500 border-blue-500/30",
-    tertiary: "bg-purple-500/20 text-purple-500 border-purple-500/30",
-};
 
 export function ContactCard({
     icon: Icon,
@@ -44,7 +38,7 @@ export function ContactCard({
             <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-5 hover:border-foreground/20 hover:bg-foreground/[0.04] transition-all duration-300">
                 <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                        <Icon className="w-5 h-5 text-accent" />
+                        <Icon size={20} className="text-accent" />
                     </div>
                     <div className="flex-1 min-w-0">
                         <p className="text-sm text-muted-foreground">{label}</p>

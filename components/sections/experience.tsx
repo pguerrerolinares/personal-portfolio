@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { experiences } from "@/lib/constants/portfolio-data";
 import { ExperienceCard } from "@/components/widgets";
-import { FileDown } from "lucide-react";
+import { FileDownIcon } from "@/components/ui/icon";
 
 export function Experience() {
   const t = useTranslations("experience");
@@ -53,7 +53,7 @@ export function Experience() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-medium rounded-lg hover:opacity-90 transition-opacity"
           >
-            <FileDown className="w-5 h-5" />
+            <FileDownIcon size={20} />
             {t("cta.button")}
           </a>
         </motion.div>
