@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import styles from './animated-background.module.scss';
 
 interface Particle {
     id: number;
@@ -16,7 +17,6 @@ export function AnimatedBackground() {
     const [particles, setParticles] = useState<Particle[]>([]);
 
     useEffect(() => {
-        // Generate random particles on mount
         const generateParticles = () => {
             const newParticles: Particle[] = [];
             for (let i = 0; i < 50; i++) {
@@ -36,7 +36,7 @@ export function AnimatedBackground() {
     }, []);
 
     return (
-        <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className={styles.background}>
             {/* Gradient orbs */}
             <motion.div
                 animate={{
@@ -49,7 +49,7 @@ export function AnimatedBackground() {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-accent/10 rounded-full blur-3xl"
+                className={`${styles.orb} ${styles.orb1}`}
             />
             <motion.div
                 animate={{
@@ -62,7 +62,7 @@ export function AnimatedBackground() {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-accent/5 rounded-full blur-3xl"
+                className={`${styles.orb} ${styles.orb2}`}
             />
 
             {/* Third orb for depth */}
@@ -77,14 +77,14 @@ export function AnimatedBackground() {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 bg-purple-500/5 rounded-full blur-3xl"
+                className={`${styles.orb} ${styles.orb3}`}
             />
 
             {/* Floating particles */}
             {particles.map((particle) => (
                 <motion.div
                     key={particle.id}
-                    className="absolute rounded-full bg-accent/20"
+                    className={styles.particle}
                     style={{
                         left: `${particle.x}%`,
                         top: `${particle.y}%`,
@@ -105,16 +105,7 @@ export function AnimatedBackground() {
             ))}
 
             {/* Grid pattern overlay */}
-            <div
-                className="absolute inset-0 opacity-[0.02]"
-                style={{
-                    backgroundImage: `
-            linear-gradient(to right, currentColor 1px, transparent 1px),
-            linear-gradient(to bottom, currentColor 1px, transparent 1px)
-          `,
-                    backgroundSize: "60px 60px",
-                }}
-            />
+            <div className={styles.grid} />
         </div>
     );
 }

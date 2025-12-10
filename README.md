@@ -1,21 +1,21 @@
 # Portfolio Personal - Paul Guerrero Linares
 
-Portfolio profesional con diseño minimalista estilo Apple, desarrollado con Next.js 16, TypeScript, Bun y Tailwind CSS.
+Portfolio personal, desarrollado con Next.js 16, TypeScript, Bun y SCSS.
 
 ## 🚀 Características
 
-- **Diseño Apple-like**: Interfaz minimalista y profesional con mucho espacio en blanco
-- **Bilingüe**: Soporte completo para Español (es_ES) e Inglés (en_US) con toggle
+- **Diseño minimalista**: Interfaz minimalista y profesional con mucho espacio en blanco
+- **Bilingüe**: Soporte para Español (es_ES) e Inglés (en_US) con toggle
 - **Dark/Light Mode**: Tema oscuro y claro con toggle y detección automática
-- **Responsive**: Mobile-first, completamente adaptable a todos los dispositivos
+- **Responsive**: Mobile-first, adaptado a todos los dispositivos
 - **Animaciones suaves**: Transiciones y micro-interacciones con Framer Motion
 - **Optimizado**: Performance optimizado con Next.js 16 y Turbopack
 - **TypeScript**: Código type-safe con TypeScript estricto
-- **Preparado para WebSocket**: Arquitectura lista para tablero en tiempo real
+- **SCSS Design System**: Sistema de estilos con SCSS
 
 ## 📋 Requisitos
 
-- **[Bun](https://bun.sh/)** >= 1.0.0 (**REQUERIDO** - este proyecto usa Bun como package manager)
+- **[Bun](https://bun.sh/)** >= 1.0.0 (REQUERIDO - este proyecto usa Bun como package manager)
 - Node.js >= 18.0.0
 
 ## 🛠️ Instalación
@@ -23,7 +23,7 @@ Portfolio profesional con diseño minimalista estilo Apple, desarrollado con Nex
 ```bash
 # Clonar el repositorio
 git clone <repository-url>
-cd portfolio
+cd portfolio-personal
 
 # Instalar dependencias con Bun (REQUERIDO)
 bun install
@@ -48,11 +48,9 @@ bun start
 
 # Linting
 bun lint
-# O: npm run lint
 
 # Formatear código
 bun format
-# O: npm run format
 ```
 
 El servidor de desarrollo estará disponible en [http://localhost:3000](http://localhost:3000)
@@ -60,45 +58,71 @@ El servidor de desarrollo estará disponible en [http://localhost:3000](http://l
 ## 📁 Estructura del Proyecto
 
 ```
-portfolio/
+portfolio-personal/
 ├── app/
-│   ├── [locale]/           # Rutas internacionalizadas
-│   │   ├── layout.tsx      # Layout principal con providers
-│   │   ├── page.tsx        # Home page
-│   │   └── globals.css     # Estilos globales
-│   └── api/
-│       └── contact/        # API endpoint contacto
+│   ├── layout.tsx              # Root layout (fonts, metadata)
+│   ├── [locale]/               # Rutas internacionalizadas
+│   │   ├── layout.tsx          # Layout con navbar/footer
+│   │   ├── layout.module.scss  # Estilos del layout (colocados)
+│   │   ├── page.tsx            # Home page
+│   │   ├── not-found.tsx       # Página 404
+│   │   └── not-found.module.scss
+│   ├── sitemap.ts              # SEO sitemap
+│   └── robots.ts               # SEO robots.txt
+│
 ├── components/
-│   ├── layout/             # Componentes de layout (Navbar, Footer)
-│   ├── sections/           # Secciones del portfolio
-│   ├── widgets/            # Widgets reutilizables
-│   └── ui/                 # Componentes UI base
-├── lib/
-│   ├── hooks/              # Custom React hooks
-│   ├── utils/              # Utilidades
-│   └── constants/          # Datos estáticos
-├── messages/               # Archivos de traducción (es.json, en.json)
-├── public/                 # Assets estáticos
-└── types/                  # TypeScript types
+│   ├── layout/                 # Componentes de layout
+│   │   ├── navbar.tsx
+│   │   ├── navbar.module.scss
+│   │   └── ...
+│   ├── sections/               # Secciones (organizadas por carpeta)
+│   │   ├── hero/
+│   │   │   ├── hero.tsx
+│   │   │   └── hero.module.scss
+│   │   ├── about/
+│   │   │   ├── about.tsx
+│   │   │   └── about.module.scss
+│   │   └── ...
+│   ├── widgets/                # Widgets reutilizables
+│   │   ├── project-card.tsx
+│   │   ├── project-card.module.scss
+│   │   └── ...
+│   └── ui/                     # Componentes UI base
+│       ├── icon.tsx            # Sistema de iconos (Simple Icons)
+│       ├── theme-toggle.tsx
+│       └── ...
+│
+├── styles/                     # Design System SCSS Global
+│   ├── globals.scss            # Estilos base + CSS variables
+│   ├── _variables.scss         # Design tokens (colores, spacing, etc.)
+│   ├── _mixins.scss            # Mixins reutilizables
+│   ├── _typography.scss        # Estilos de tipografía
+│   └── _animations.scss        # Keyframes y animaciones
+│
+├── lib/constants/              # Datos del portfolio
+├── messages/                   # Archivos de traducción (es.json, en.json)
+├── i18n/                       # Configuración de internacionalización
+└── public/                     # Assets estáticos
 ```
 
 ## 🎨 Stack Tecnológico
 
-- **Framework**: Next.js 15 (App Router)
+- **Framework**: Next.js 16 (App Router + Turbopack)
 - **Lenguaje**: TypeScript 5
-- **Estilos**: Tailwind CSS 4
+- **Estilos**: SCSS + CSS Modules
 - **Animaciones**: Framer Motion
 - **Internacionalización**: next-intl
 - **Tema**: next-themes
+- **Iconos**: Custom Icon System (Simple Icons SVG paths)
 - **Runtime**: Bun
 
 ## 🌐 Secciones
 
-1. **Hero**: Introducción con nombre, rol y CTAs
-2. **About**: Sobre mí con tecnologías principales
-3. **Projects**: Proyectos destacados y link a GitHub
-4. **Experience**: Experiencia profesional
-5. **Contact**: Formulario de contacto
+1. **Hero**: Introducción con nombre, rol, CTAs y fondo animado
+2. **About**: Sobre mí con skills categorizados
+3. **Projects**: Proyectos con tarjetas gradient y categorías
+4. **Experience**: Timeline de experiencia profesional
+5. **Contact**: Información de contacto con timeline cards
 
 ## 🔧 Personalización
 
@@ -109,6 +133,7 @@ Los datos del portfolio se centralizan en [`lib/constants/portfolio-data.ts`](li
 - Información personal
 - Skills y tecnologías
 - Experiencia laboral
+- Proyectos
 - Links a redes sociales
 
 ### Traducciones
@@ -119,35 +144,16 @@ Edita los archivos de traducción en [`messages/`](messages/):
 
 ### Estilos
 
-El sistema de diseño se configura en [`tailwind.config.ts`](tailwind.config.ts):
-- Colores del tema
-- Tipografía
-- Espaciado
-- Animaciones
+El sistema de diseño utiliza SCSS Modules y Variables CSS.
+- **Tokens globales**: `styles/_variables.scss`
+- **Componentes**: Estilos colocados junto a cada componente (`.module.scss`)
 
-### CV
+### Iconos
 
-Coloca tu CV en PDF en [`public/cv/`](public/cv/) y actualiza el link en portfolio-data.ts
-
-### Imágenes
-
-Añade tu foto de perfil y screenshots en [`public/images/`](public/images/)
-
-## 🔮 Futuras Integraciones
-
-El proyecto está preparado para integrar un tablero en tiempo real con WebSocket sin necesidad de refactorizar:
-
-- Hook `useRealtimeData` preparado en `lib/hooks/`
-- Componente placeholder en `components/widgets/RealTimeBoardPlaceholder.tsx`
-- Documentación incluida en comentarios
-
-## 📝 Licencia
-
-Privado - © 2025 Paul Guerrero Linares
+El sistema de iconos usa SVG paths de Simple Icons. Para añadir nuevos iconos, edita [`components/ui/icon.tsx`](components/ui/icon.tsx).
 
 ## 👤 Autor
 
 **Paul Guerrero Linares**
 - GitHub: [@pguerrerolinares](https://github.com/pguerrerolinares)
 - LinkedIn: [Paul Guerrero Linares](https://www.linkedin.com/in/paul-guerrero-linares-584759134)
-

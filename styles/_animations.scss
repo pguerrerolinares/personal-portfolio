@@ -1,0 +1,164 @@
+// ===========================================
+// ANIMATIONS - Keyframes & Animation Mixins
+// ===========================================
+
+@use 'variables' as *;
+
+// Keyframes
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+// Animation mixins
+@mixin animate-fade-in($duration: $transition-slow, $delay: 0ms) {
+    animation: fade-in $duration $ease-out $delay both;
+}
+
+@mixin animate-fade-in-up($duration: $transition-slow, $delay: 0ms) {
+    animation: fade-in-up $duration $ease-out $delay both;
+}
+
+@mixin animate-fade-in-left($duration: $transition-normal, $delay: 0ms) {
+    animation: fade-in-left $duration $ease-out $delay both;
+}
+
+@mixin animate-scale-in($duration: $transition-normal, $delay: 0ms) {
+    animation: scale-in $duration $ease-out $delay both;
+}
+
+@mixin animate-bounce {
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+@mixin animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@mixin animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@mixin animate-float($duration: 20s) {
+    animation: float $duration ease-in-out infinite;
+}
+
+// Stagger children animations
+@mixin stagger-children($base-delay: 100ms) {
+    @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+            animation-delay: $base-delay * $i;
+        }
+    }
+}

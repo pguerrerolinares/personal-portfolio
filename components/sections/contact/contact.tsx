@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { ContactCard } from "@/components/widgets";
 import { MailIcon, GithubIcon, LinkedinIcon, MapPinIcon } from "@/components/ui/icon";
+import styles from './contact.module.scss';
 
 export function Contact() {
   const t = useTranslations("contact");
@@ -39,21 +40,19 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-foreground/[0.02]">
-      <div className="max-w-4xl mx-auto">
+    <section id="contact" className={styles.section}>
+      <div className={styles.container}>
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className={styles.header}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t("title")}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full mt-4" />
+          <h2 className={styles.title}>{t("title")}</h2>
+          <p className={styles.subtitle}>{t("subtitle")}</p>
+          <div className={styles.accent} />
         </motion.div>
 
         {/* Contact info with timeline */}
@@ -62,15 +61,13 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-md mx-auto"
+          className={styles.contactContainer}
         >
-          <div className="text-center mb-8">
-            <h3 className="text-xl font-semibold mb-2">{t("info.title")}</h3>
-            <p className="text-muted-foreground text-sm">{t("info.description")}</p>
-          </div>
+          <h3 className={styles.infoTitle}>{t("info.title")}</h3>
+          <p className={styles.infoDescription}>{t("info.description")}</p>
 
           {/* Timeline of contact methods */}
-          <div className="relative">
+          <div className={styles.timeline}>
             {contactItems.map((item, index) => (
               <ContactCard
                 key={item.label}
@@ -90,7 +87,7 @@ export function Contact() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-center text-muted-foreground text-sm mt-8"
+            className={styles.cta}
           >
             {t("cta")}
           </motion.p>

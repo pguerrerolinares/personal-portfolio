@@ -1,0 +1,23 @@
+@use '../../styles/variables' as v;
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.25rem;
+    padding: 0 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--foreground);
+    transition: background 200ms ease;
+
+    &:hover {
+        background: rgba(var(--foreground-rgb), 0.05);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}

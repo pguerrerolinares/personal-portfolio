@@ -1,0 +1,6 @@
+@use '../../styles/variables' as v;
+
+.pageContainer {
+    min-height: 100vh;
+    padding-top: 4rem; // navbar height
+}

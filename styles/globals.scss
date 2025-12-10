@@ -1,0 +1,146 @@
+// ===========================================
+// GLOBALS - Main Stylesheet Entry Point
+// ===========================================
+
+@use 'variables' as v;
+@use 'animations';
+
+// CSS Custom Properties (for runtime theming)
+:root {
+    // Colors
+    --background: #{v.$background-light};
+    --foreground: #{v.$foreground-light};
+    --muted: #{v.$muted-light};
+    --muted-foreground: #{v.$muted-light};
+    --border: #{v.$border-light};
+    --accent: #{v.$accent-light};
+    --accent-foreground: #{v.$accent-foreground};
+
+    // RGB versions for rgba() usage
+    --background-rgb: 255, 255, 255;
+    --foreground-rgb: 10, 10, 10;
+    --accent-rgb: 37, 99, 235;
+}
+
+.dark {
+    --background: #{v.$background-dark};
+    --foreground: #{v.$foreground-dark};
+    --muted: #{v.$muted-dark};
+    --muted-foreground: #{v.$muted-dark};
+    --border: #{v.$border-dark};
+    --accent: #{v.$accent-dark};
+
+    --background-rgb: 10, 10, 10;
+    --foreground-rgb: 250, 250, 250;
+    --accent-rgb: 59, 130, 246;
+}
+
+// Base reset & styles
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    // Use the CSS variable set by Next.js font, with system font fallback
+    font-family: var(--font-geist-sans, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+    font-size: v.$text-base;
+    line-height: v.$leading-normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Ensure code/pre elements use mono font
+code,
+pre,
+kbd,
+samp {
+    font-family: var(--font-geist-mono, ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace);
+}
+
+// Default border color
+* {
+    border-color: var(--border);
+}
+
+// Links
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+// Buttons reset
+button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    color: inherit;
+}
+
+// Images
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+// Lists
+ul,
+ol {
+    list-style: none;
+}
+
+// Selection
+::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+}
+
+// Scrollbar styling
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(var(--foreground-rgb), 0.2);
+    border-radius: v.$radius-full;
+
+    &:hover {
+        background: rgba(var(--foreground-rgb), 0.3);
+    }
+}
+
+// Focus styles
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

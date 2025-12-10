@@ -1,0 +1,21 @@
+@use '../../styles/variables' as v;
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    color: var(--foreground);
+    transition: background 200ms ease;
+
+    &:hover {
+        background: rgba(var(--foreground-rgb), 0.05);
+    }
+}
+
+.icon {
+    width: 1.125rem;
+    height: 1.125rem;
+}

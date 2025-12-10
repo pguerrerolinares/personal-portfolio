@@ -1,0 +1,100 @@
+@use '../../styles/variables' as v;
+
+.container {
+    position: relative;
+    padding-left: v.$spacing-8;
+    padding-bottom: v.$spacing-8;
+
+    &:last-child {
+        padding-bottom: 0;
+    }
+}
+
+.timelineLine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(var(--foreground-rgb), 0.1);
+}
+
+.timelineDot {
+    position: absolute;
+    left: 0;
+    top: v.$spacing-1;
+    width: 0.5rem;
+    height: 0.5rem;
+    transform: translateX(-50%);
+    border-radius: v.$radius-full;
+    background: var(--accent);
+    transition: transform v.$transition-normal v.$ease-default;
+
+    .container:hover & {
+        transform: translateX(-50%) scale(1.25);
+    }
+}
+
+.card {
+    background: rgba(var(--foreground-rgb), 0.02);
+    border: 1px solid rgba(var(--foreground-rgb), 0.1);
+    border-radius: v.$radius-xl;
+    padding: v.$spacing-5;
+    transition: all v.$transition-normal v.$ease-default;
+
+    &:hover {
+        border-color: rgba(var(--foreground-rgb), 0.2);
+        background: rgba(var(--foreground-rgb), 0.04);
+    }
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-4;
+}
+
+.iconWrapper {
+    width: 3rem;
+    height: 3rem;
+    border-radius: v.$radius-lg;
+    background: rgba(var(--accent-rgb), 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color v.$transition-normal v.$ease-default;
+
+    .container:hover & {
+        background: rgba(var(--accent-rgb), 0.2);
+    }
+}
+
+.icon {
+    color: var(--accent);
+}
+
+.info {
+    flex: 1;
+    min-width: 0;
+}
+
+.label {
+    font-size: v.$text-sm;
+    color: var(--muted);
+}
+
+.value {
+    font-weight: v.$font-medium;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color v.$transition-normal v.$ease-default;
+
+    .container:hover & {
+        color: var(--accent);
+    }
+}
+
+.link {
+    display: block;
+}

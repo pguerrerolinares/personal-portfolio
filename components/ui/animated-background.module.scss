@@ -1,0 +1,55 @@
+@use '../../styles/variables' as v;
+
+.background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: v.$radius-full;
+    filter: blur(48px);
+}
+
+.orb1 {
+    top: 25%;
+    left: -25%;
+    width: 50%;
+    height: 50%;
+    background: rgba(var(--accent-rgb), 0.1);
+}
+
+.orb2 {
+    bottom: 25%;
+    right: -25%;
+    width: 50%;
+    height: 50%;
+    background: rgba(var(--accent-rgb), 0.05);
+}
+
+.orb3 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 33%;
+    height: 33%;
+    background: rgba(168, 85, 247, 0.05);
+}
+
+.particle {
+    position: absolute;
+    border-radius: v.$radius-full;
+    background: rgba(var(--accent-rgb), 0.2);
+}
+
+.grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.02;
+    background-image:
+        linear-gradient(to right, currentColor 1px, transparent 1px),
+        linear-gradient(to bottom, currentColor 1px, transparent 1px);
+    background-size: 60px 60px;
+}

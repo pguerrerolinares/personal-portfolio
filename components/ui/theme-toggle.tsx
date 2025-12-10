@@ -2,6 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import styles from './theme-toggle.module.scss';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -12,20 +13,19 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="h-9 w-9" />;
+    return <div className={styles.button} />;
   }
 
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-foreground/10"
+      className={styles.button}
       aria-label="Toggle theme"
     >
       {theme === 'dark' ? (
         <svg
+          className={styles.icon}
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -45,9 +45,8 @@ export function ThemeToggle() {
         </svg>
       ) : (
         <svg
+          className={styles.icon}
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

@@ -2,21 +2,35 @@
 
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
-import { useTransition } from 'react';
+import { useTransition, useEffect, useRef } from 'react';
+import styles from './language-switcher.module.scss';
 
 export function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
+  const scrollPositionRef = useRef(0);
+
+  // Restore scroll position after navigation
+  useEffect(() => {
+    if (scrollPositionRef.current > 0) {
+      window.scrollTo(0, scrollPositionRef.current);
+      scrollPositionRef.current = 0;
+    }
+  }, [pathname]);
 
   const switchLocale = (newLocale: string) => {
+    // Save current scroll position
+    scrollPositionRef.current = window.scrollY;
+
     const segments = pathname.split('/');
     segments[1] = newLocale;
     const newPath = segments.join('/');
 
+    // Use replace with scroll: false to prevent auto-scrolling
     startTransition(() => {
-      router.replace(newPath);
+      router.replace(newPath, { scroll: false });
     });
   };
 
@@ -24,7 +38,7 @@ export function LanguageSwitcher() {
     <button
       onClick={() => switchLocale(locale === 'es' ? 'en' : 'es')}
       disabled={isPending}
-      className="flex h-9 items-center justify-center rounded-full px-3 text-sm font-medium transition-colors hover:bg-foreground/10 disabled:opacity-50"
+      className={styles.button}
       aria-label="Switch language"
     >
       {locale === 'es' ? 'EN' : 'ES'}

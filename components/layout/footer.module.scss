@@ -1,0 +1,83 @@
+@use '../../styles/variables' as v;
+
+.footer {
+    border-top: 1px solid var(--border);
+    padding: v.$spacing-8 v.$spacing-4;
+
+    @media (min-width: v.$breakpoint-sm) {
+        padding-left: v.$spacing-6;
+        padding-right: v.$spacing-6;
+    }
+
+    @media (min-width: v.$breakpoint-lg) {
+        padding-left: v.$spacing-8;
+        padding-right: v.$spacing-8;
+    }
+}
+
+.container {
+    max-width: v.$container-lg;
+    margin: 0 auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$spacing-6;
+
+    @media (min-width: v.$breakpoint-md) {
+        flex-direction: row;
+    }
+}
+
+.copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: v.$spacing-2;
+    text-align: center;
+
+    @media (min-width: v.$breakpoint-md) {
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
+.name {
+    font-weight: v.$font-semibold;
+}
+
+.year {
+    font-size: v.$text-sm;
+    color: var(--muted);
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-6;
+}
+
+.socialLink {
+    color: var(--muted);
+    transition: color v.$transition-normal v.$ease-default;
+
+    &:hover {
+        color: var(--foreground);
+    }
+}
+
+.backToTop {
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-2;
+    font-size: v.$text-sm;
+    color: var(--muted);
+    transition: color v.$transition-normal v.$ease-default;
+
+    &:hover {
+        color: var(--foreground);
+    }
+}

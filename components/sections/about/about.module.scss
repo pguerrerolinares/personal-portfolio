@@ -1,0 +1,130 @@
+@use '../../../styles/variables' as v;
+
+.section {
+    padding: v.$spacing-20 v.$spacing-4;
+
+    @media (min-width: v.$breakpoint-sm) {
+        padding-left: v.$spacing-6;
+        padding-right: v.$spacing-6;
+    }
+
+    @media (min-width: v.$breakpoint-lg) {
+        padding-left: v.$spacing-8;
+        padding-right: v.$spacing-8;
+    }
+}
+
+.container {
+    max-width: v.$container-lg;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: v.$spacing-16;
+}
+
+.title {
+    font-size: v.$text-3xl;
+    font-weight: v.$font-bold;
+    margin-bottom: v.$spacing-4;
+
+    @media (min-width: v.$breakpoint-sm) {
+        font-size: v.$text-4xl;
+    }
+}
+
+.subtitle {
+    color: var(--muted);
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+.accent {
+    width: 5rem;
+    height: 0.25rem;
+    background: var(--accent);
+    margin: v.$spacing-4 auto 0;
+    border-radius: v.$radius-full;
+}
+
+.content {
+    display: grid;
+    gap: v.$spacing-12;
+
+    @media (min-width: v.$breakpoint-lg) {
+        grid-template-columns: 1fr 1fr;
+        gap: v.$spacing-16;
+    }
+}
+
+.bio {
+    h3 {
+        font-size: v.$text-xl;
+        font-weight: v.$font-semibold;
+        margin-bottom: v.$spacing-4;
+    }
+
+    p {
+        color: var(--muted);
+        line-height: v.$leading-relaxed;
+        white-space: pre-line;
+    }
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: v.$spacing-4;
+    margin-top: v.$spacing-8;
+    padding-top: v.$spacing-8;
+    border-top: 1px solid rgba(var(--foreground-rgb), 0.05);
+}
+
+.stat {
+    text-align: center;
+}
+
+.statValue {
+    font-size: v.$text-2xl;
+    font-weight: v.$font-bold;
+    color: var(--accent);
+
+    @media (min-width: v.$breakpoint-sm) {
+        font-size: v.$text-3xl;
+    }
+}
+
+.statLabel {
+    font-size: v.$text-sm;
+    color: var(--muted);
+}
+
+.skills {
+    h3 {
+        font-size: v.$text-xl;
+        font-weight: v.$font-semibold;
+        margin-bottom: v.$spacing-6;
+    }
+}
+
+.skillCategory {
+    margin-bottom: v.$spacing-6;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.categoryTitle {
+    font-size: v.$text-sm;
+    font-weight: v.$font-medium;
+    color: var(--muted);
+    margin-bottom: v.$spacing-3;
+}
+
+.skillList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$spacing-2;
+}

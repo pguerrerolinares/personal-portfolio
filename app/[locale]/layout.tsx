@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import { Providers } from '@/components/providers';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
+import styles from './layout.module.scss';
 
 type Props = {
   children: React.ReactNode;
@@ -29,7 +30,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider messages={messages}>
       <Providers>
         <Navbar />
-        <div className="min-h-screen pt-16">{children}</div>
+        <div className={styles.pageContainer}>{children}</div>
         <Footer />
       </Providers>
     </NextIntlClientProvider>

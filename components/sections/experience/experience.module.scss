@@ -1,0 +1,79 @@
+@use '../../../styles/variables' as v;
+
+.section {
+    padding: v.$spacing-20 v.$spacing-4;
+
+    @media (min-width: v.$breakpoint-sm) {
+        padding-left: v.$spacing-6;
+        padding-right: v.$spacing-6;
+    }
+
+    @media (min-width: v.$breakpoint-lg) {
+        padding-left: v.$spacing-8;
+        padding-right: v.$spacing-8;
+    }
+}
+
+.container {
+    max-width: v.$container-lg;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: v.$spacing-16;
+}
+
+.title {
+    font-size: v.$text-3xl;
+    font-weight: v.$font-bold;
+    margin-bottom: v.$spacing-4;
+
+    @media (min-width: v.$breakpoint-sm) {
+        font-size: v.$text-4xl;
+    }
+}
+
+.subtitle {
+    color: var(--muted);
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+.accent {
+    width: 5rem;
+    height: 0.25rem;
+    background: var(--accent);
+    margin: v.$spacing-4 auto 0;
+    border-radius: v.$radius-full;
+}
+
+.timeline {
+    position: relative;
+}
+
+.cta {
+    text-align: center;
+    margin-top: v.$spacing-12;
+}
+
+.ctaText {
+    color: var(--muted);
+    margin-bottom: v.$spacing-4;
+}
+
+.ctaLink {
+    display: inline-flex;
+    align-items: center;
+    gap: v.$spacing-2;
+    padding: v.$spacing-3 v.$spacing-6;
+    background: var(--foreground);
+    color: var(--background);
+    font-weight: v.$font-medium;
+    border-radius: v.$radius-lg;
+    transition: opacity v.$transition-normal v.$ease-default;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}

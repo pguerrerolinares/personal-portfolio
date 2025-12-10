@@ -5,30 +5,29 @@ import { motion } from "framer-motion";
 import { experiences } from "@/lib/constants/portfolio-data";
 import { ExperienceCard } from "@/components/widgets";
 import { FileDownIcon } from "@/components/ui/icon";
+import styles from './experience.module.scss';
 
 export function Experience() {
   const t = useTranslations("experience");
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className={styles.section}>
+      <div className={styles.container}>
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className={styles.header}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t("title")}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full mt-4" />
+          <h2 className={styles.title}>{t("title")}</h2>
+          <p className={styles.subtitle}>{t("subtitle")}</p>
+          <div className={styles.accent} />
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative">
+        <div className={styles.timeline}>
           {experiences.map((experience, index) => (
             <ExperienceCard
               key={experience.id}
@@ -44,14 +43,14 @@ export function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-12"
+          className={styles.cta}
         >
-          <p className="text-muted-foreground mb-4">{t("cta.text")}</p>
+          <p className={styles.ctaText}>{t("cta.text")}</p>
           <a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-medium rounded-lg hover:opacity-90 transition-opacity"
+            className={styles.ctaLink}
           >
             <FileDownIcon size={20} />
             {t("cta.button")}

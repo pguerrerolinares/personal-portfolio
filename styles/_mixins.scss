@@ -1,0 +1,234 @@
+// ===========================================
+// MIXINS - Reusable Patterns
+// ===========================================
+
+@use 'variables' as *;
+
+// Responsive Breakpoints
+@mixin sm {
+    @media (min-width: $breakpoint-sm) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width: $breakpoint-md) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (min-width: $breakpoint-lg) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (min-width: $breakpoint-xl) {
+        @content;
+    }
+}
+
+@mixin xxl {
+    @media (min-width: $breakpoint-2xl) {
+        @content;
+    }
+}
+
+// Flexbox
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// Grid
+@mixin grid($cols: 1, $gap: $spacing-6) {
+    display: grid;
+    grid-template-columns: repeat($cols, 1fr);
+    gap: $gap;
+}
+
+// Transitions
+@mixin transition($properties: all, $duration: $transition-normal, $ease: $ease-default) {
+    transition: $properties $duration $ease;
+}
+
+@mixin transition-colors {
+    transition: color $transition-normal $ease-default,
+        background-color $transition-normal $ease-default,
+        border-color $transition-normal $ease-default;
+}
+
+@mixin transition-opacity {
+    transition: opacity $transition-normal $ease-default;
+}
+
+@mixin transition-transform {
+    transition: transform $transition-normal $ease-default;
+}
+
+@mixin transition-all {
+    transition: all $transition-normal $ease-default;
+}
+
+// Truncate text
+@mixin truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 2) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+// Glassmorphism
+@mixin glass($opacity: 0.8) {
+    background: rgba(var(--background-rgb), $opacity);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+// Card styles
+@mixin card-base {
+    background: rgba(var(--foreground-rgb), 0.02);
+    border: 1px solid rgba(var(--foreground-rgb), 0.1);
+    border-radius: $radius-xl;
+    @include transition-all;
+
+    &:hover {
+        border-color: rgba(var(--foreground-rgb), 0.2);
+        background: rgba(var(--foreground-rgb), 0.04);
+    }
+}
+
+// Button base
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+    padding: $spacing-3 $spacing-6;
+    font-weight: $font-medium;
+    border-radius: $radius-lg;
+    @include transition-all;
+    cursor: pointer;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+@mixin button-primary {
+    @include button-base;
+    background: var(--foreground);
+    color: var(--background);
+
+    &:hover:not(:disabled) {
+        opacity: 0.9;
+    }
+}
+
+@mixin button-outline {
+    @include button-base;
+    background: transparent;
+    border: 1px solid rgba(var(--foreground-rgb), 0.2);
+
+    &:hover:not(:disabled) {
+        background: rgba(var(--foreground-rgb), 0.05);
+    }
+}
+
+// Section
+@mixin section {
+    padding: $spacing-20 $spacing-4;
+
+    @include sm {
+        padding-left: $spacing-6;
+        padding-right: $spacing-6;
+    }
+
+    @include lg {
+        padding-left: $spacing-8;
+        padding-right: $spacing-8;
+    }
+}
+
+// Container
+@mixin container($max-width: $container-lg) {
+    max-width: $max-width;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Hide visually but keep for screen readers
+@mixin sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+// Focus visible
+@mixin focus-visible {
+    &:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+}
+
+// Hover opacity
+@mixin hover-opacity($value: 0.9) {
+    @include transition-opacity;
+
+    &:hover {
+        opacity: $value;
+    }
+}
+
+// Absolute center
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// Z-index layer
+@mixin layer($z: $z-fixed) {
+    position: relative;
+    z-index: $z;
+}
