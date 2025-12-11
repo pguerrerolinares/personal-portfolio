@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { IconProps } from "@/components/ui/icon";
 import styles from './contact-card.module.scss';
 
@@ -22,7 +22,7 @@ export function ContactCard({
     index = 0,
 }: ContactCardProps) {
     const content = (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -43,7 +43,7 @@ export function ContactCard({
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </m.div>
     );
 
     if (href) {

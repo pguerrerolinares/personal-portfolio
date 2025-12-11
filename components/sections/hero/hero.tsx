@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { AnimatedBackground } from "@/components/ui/animated-background";
@@ -35,38 +35,38 @@ export function Hero() {
     <section id="hero" className={styles.hero}>
       <AnimatedBackground />
 
-      <motion.div
+      <m.div
         variants={container}
         initial="hidden"
         animate="show"
         className={styles.content}
       >
-        <motion.p variants={item} className={styles.greeting}>
+        <m.p variants={item} className={styles.greeting}>
           {t("greeting")}
-        </motion.p>
+        </m.p>
 
-        <motion.h1 variants={item} className={styles.name}>
+        <m.h1 variants={item} className={styles.name}>
           {t("name")}
-        </motion.h1>
+        </m.h1>
 
-        <motion.h2 variants={item} className={styles.role}>
+        <m.h2 variants={item} className={styles.role}>
           {t("role")}
-        </motion.h2>
+        </m.h2>
 
-        <motion.p variants={item} className={styles.description}>
+        <m.p variants={item} className={styles.description}>
           {t("description")}
-        </motion.p>
+        </m.p>
 
-        <motion.div variants={item} className={styles.ctaContainer}>
+        <m.div variants={item} className={styles.ctaContainer}>
           <Link href="#projects" className={styles.ctaPrimary}>
             {t("cta.projects")}
           </Link>
           <Link href="#contact" className={styles.ctaSecondary}>
             {t("cta.contact")}
           </Link>
-        </motion.div>
+        </m.div>
 
-        <motion.div variants={item} className={styles.socialLinks}>
+        <m.div variants={item} className={styles.socialLinks}>
           <a
             href={personalInfo.social.github}
             target="_blank"
@@ -85,22 +85,22 @@ export function Hero() {
           >
             <LinkedinIcon size={24} />
           </a>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.5 }}
         className={styles.scrollIndicator}
       >
-        <motion.div
+        <m.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
           <ArrowDownIcon size={24} />
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

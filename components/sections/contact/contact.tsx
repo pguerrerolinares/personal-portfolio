@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { ContactCard } from "@/components/widgets";
 import { MailIcon, GithubIcon, LinkedinIcon, MapPinIcon } from "@/components/ui/icon";
@@ -43,7 +43,7 @@ export function Contact() {
     <section id="contact" className={styles.section}>
       <div className={styles.container}>
         {/* Section header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -53,10 +53,10 @@ export function Contact() {
           <h2 className={styles.title}>{t("title")}</h2>
           <p className={styles.subtitle}>{t("subtitle")}</p>
           <div className={styles.accent} />
-        </motion.div>
+        </m.div>
 
         {/* Contact info with timeline */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -82,7 +82,7 @@ export function Contact() {
           </div>
 
           {/* CTA */}
-          <motion.p
+          <m.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -90,8 +90,8 @@ export function Contact() {
             className={styles.cta}
           >
             {t("cta")}
-          </motion.p>
-        </motion.div>
+          </m.p>
+        </m.div>
       </div>
     </section>
   );

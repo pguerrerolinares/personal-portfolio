@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ExternalLinkIcon, GithubIcon, GlobeIcon, SmartphoneIcon, BrainIcon, BotIcon, FolderIcon } from "@/components/ui/icon";
 import type { Project } from "@/lib/constants/portfolio-data";
 import styles from './project-card.module.scss';
@@ -22,7 +22,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const CategoryIcon = categoryIcons[project.category];
 
   return (
-    <motion.article
+    <m.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -32,12 +32,12 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       {/* Image/Gradient Header */}
       <div className={`${styles.imageHeader} ${styles[project.category]}`}>
         <div className={styles.pattern} />
-        <motion.div
+        <m.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           className={`${styles.categoryIcon} ${styles[project.category]}`}
         >
           <CategoryIcon size={48} />
-        </motion.div>
+        </m.div>
         <div className={styles.hoverOverlay} />
       </div>
 
@@ -86,6 +86,6 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           )}
         </div>
       </div>
-    </motion.article>
+    </m.article>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { m, type HTMLMotionProps } from "framer-motion";
 
 interface CardProps extends Omit<HTMLMotionProps<"div">, "children"> {
     children: ReactNode;
@@ -27,7 +27,7 @@ export function Card({
     ...props
 }: CardProps) {
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -36,6 +36,6 @@ export function Card({
             {...props}
         >
             {children}
-        </motion.div>
+        </m.div>
     );
 }

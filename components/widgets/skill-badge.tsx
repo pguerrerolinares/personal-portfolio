@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { Skill } from "@/lib/constants/portfolio-data";
 import styles from './skill-badge.module.scss';
 
@@ -11,7 +11,7 @@ interface SkillBadgeProps {
 
 export function SkillBadge({ skill, index = 0 }: SkillBadgeProps) {
   return (
-    <motion.span
+    <m.span
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
@@ -19,6 +19,6 @@ export function SkillBadge({ skill, index = 0 }: SkillBadgeProps) {
       className={`${styles.badge} ${styles[skill.level]}`}
     >
       {skill.name}
-    </motion.span>
+    </m.span>
   );
 }

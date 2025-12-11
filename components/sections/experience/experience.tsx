@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { experiences } from "@/lib/constants/portfolio-data";
 import { ExperienceCard } from "@/components/widgets";
 import { FileDownIcon } from "@/components/ui/icon";
@@ -14,7 +14,7 @@ export function Experience() {
     <section id="experience" className={styles.section}>
       <div className={styles.container}>
         {/* Section header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -24,7 +24,7 @@ export function Experience() {
           <h2 className={styles.title}>{t("title")}</h2>
           <p className={styles.subtitle}>{t("subtitle")}</p>
           <div className={styles.accent} />
-        </motion.div>
+        </m.div>
 
         {/* Timeline */}
         <div className={styles.timeline}>
@@ -38,7 +38,7 @@ export function Experience() {
         </div>
 
         {/* Download resume CTA */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -55,7 +55,7 @@ export function Experience() {
             <FileDownIcon size={20} />
             {t("cta.button")}
           </a>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

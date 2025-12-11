@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   skills,
   skillCategories,
@@ -50,7 +50,7 @@ export function About() {
     <section id="about" className={styles.section}>
       <div className={styles.container}>
         {/* Section header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -59,25 +59,25 @@ export function About() {
         >
           <h2 className={styles.title}>{t("title")}</h2>
           <div className={styles.accent} />
-        </motion.div>
+        </m.div>
 
         <div className={styles.content}>
           {/* Bio section */}
-          <motion.div
+          <m.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             className={styles.bio}
           >
-            <motion.h3 variants={item}>{t("subtitle")}</motion.h3>
+            <m.h3 variants={item}>{t("subtitle")}</m.h3>
 
-            <motion.p variants={item}>{t("bio.p1")}</motion.p>
-            <motion.p variants={item}>{t("bio.p2")}</motion.p>
-            <motion.p variants={item}>{t("bio.p3")}</motion.p>
+            <m.p variants={item}>{t("bio.p1")}</m.p>
+            <m.p variants={item}>{t("bio.p2")}</m.p>
+            <m.p variants={item}>{t("bio.p3")}</m.p>
 
             {/* Quick stats */}
-            <motion.div variants={item} className={styles.stats}>
+            <m.div variants={item} className={styles.stats}>
               <div className={styles.stat}>
                 <div className={styles.statValue}>4+</div>
                 <div className={styles.statLabel}>{t("stats.years")}</div>
@@ -90,11 +90,11 @@ export function About() {
                 <div className={styles.statValue}>AI/ML</div>
                 <div className={styles.statLabel}>{t("stats.focus")}</div>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* Skills section */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -117,7 +117,7 @@ export function About() {
             ))}
 
             <p className={styles.statLabel}>{t("skills.more")}</p>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

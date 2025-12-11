@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { HomeIcon, ArrowLeftIcon } from "@/components/ui/icon";
 import styles from './not-found.module.scss';
@@ -14,43 +14,43 @@ export default function NotFound() {
                 <div className={styles.orb2} />
             </div>
 
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 className={styles.content}
             >
                 {/* 404 Number */}
-                <motion.div
+                <m.div
                     initial={{ scale: 0.8 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className={styles.number}
                 >
                     <span className={styles.numberText}>404</span>
-                </motion.div>
+                </m.div>
 
                 {/* Message */}
-                <motion.h1
+                <m.h1
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className={styles.title}
                 >
                     Page Not Found
-                </motion.h1>
+                </m.h1>
 
-                <motion.p
+                <m.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className={styles.message}
                 >
                     The page you&apos;re looking for doesn&apos;t exist or has been moved.
-                </motion.p>
+                </m.p>
 
                 {/* Actions */}
-                <motion.div
+                <m.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
@@ -67,18 +67,18 @@ export default function NotFound() {
                         <ArrowLeftIcon size={16} />
                         Go Back
                     </button>
-                </motion.div>
+                </m.div>
 
                 {/* Decorative element */}
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className={styles.accent}
                 >
                     <div className={styles.accentLine} />
-                </motion.div>
-            </motion.div>
+                </m.div>
+            </m.div>
         </div>
     );
 }

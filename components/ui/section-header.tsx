@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { type ReactNode } from "react";
 
 interface SectionHeaderProps {
@@ -19,7 +19,7 @@ export function SectionHeader({
     showAccent = true,
 }: SectionHeaderProps) {
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -36,6 +36,6 @@ export function SectionHeader({
                 <div className={`w-20 h-1 bg-accent rounded-full mt-4 ${centered ? "mx-auto" : ""}`} />
             )}
             {children}
-        </motion.div>
+        </m.div>
     );
 }

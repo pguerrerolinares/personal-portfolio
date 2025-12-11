@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useEffect, useState } from "react";
 import styles from './animated-background.module.scss';
 
@@ -38,7 +38,7 @@ export function AnimatedBackground() {
     return (
         <div className={styles.background}>
             {/* Gradient orbs */}
-            <motion.div
+            <m.div
                 animate={{
                     x: [0, 30, 0],
                     y: [0, -20, 0],
@@ -51,7 +51,7 @@ export function AnimatedBackground() {
                 }}
                 className={`${styles.orb} ${styles.orb1}`}
             />
-            <motion.div
+            <m.div
                 animate={{
                     x: [0, -20, 0],
                     y: [0, 30, 0],
@@ -66,7 +66,7 @@ export function AnimatedBackground() {
             />
 
             {/* Third orb for depth */}
-            <motion.div
+            <m.div
                 animate={{
                     x: [0, 40, 0],
                     y: [0, -30, 0],
@@ -82,7 +82,7 @@ export function AnimatedBackground() {
 
             {/* Floating particles */}
             {particles.map((particle) => (
-                <motion.div
+                <m.div
                     key={particle.id}
                     className={styles.particle}
                     style={{

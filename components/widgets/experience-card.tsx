@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { BriefcaseIcon, CodeIcon, CalendarIcon, Building2Icon } from "@/components/ui/icon";
 import type { Experience } from "@/lib/constants/portfolio-data";
@@ -45,7 +45,7 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
   const initials = getCompanyInitials(experience.company);
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
@@ -53,7 +53,7 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
       className={styles.container}
     >
       <div className={styles.timelineLine} />
-      <motion.div
+      <m.div
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
@@ -117,6 +117,6 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
           </div>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
