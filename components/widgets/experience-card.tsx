@@ -39,10 +39,17 @@ function getCompanyInitials(company: string): string {
 }
 
 export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
-  const t = useTranslations("common");
+  const tCommon = useTranslations("common");
+  const tExperience = useTranslations("experience.items");
   const locale = useLocale();
   const Icon = typeIcons[experience.type];
-  const initials = getCompanyInitials(experience.company);
+
+  const company = tExperience(`${experience.id}.company`);
+  const role = tExperience(`${experience.id}.role`);
+  const description = tExperience(`${experience.id}.description`);
+  const highlights = tExperience.raw(`${experience.id}.highlights`) as string[];
+
+  const initials = getCompanyInitials(company);
 
   return (
     <m.div
@@ -61,7 +68,7 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
         className={styles.timelineDot}
       />
 
-      <div className={styles.card} tabIndex={0} role="article" aria-label={`Experience: ${experience.role} at ${experience.company}`}>
+      <div className={styles.card} tabIndex={0} role="article" aria-label={`Experience: ${role} at ${company}`}>
         <div className={`${styles.cardHeader} ${styles[experience.type]}`}>
           <div className={styles.logo}>
             {experience.type === "personal" ? (
@@ -72,17 +79,13 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
           </div>
 
           <div className={styles.headerContent}>
-            <h3 className={styles.role}>{experience.role}</h3>
-            <p className={styles.company}>{experience.company}</p>
+            <h3 className={styles.role}>{role}</h3>
+            <p className={styles.company}>{company}</p>
           </div>
 
           <span className={`${styles.typeBadge} ${styles[experience.type]}`}>
             <Icon size={12} />
-            {experience.type === "fulltime"
-              ? "Full-time"
-              : experience.type === "freelance"
-                ? "Freelance"
-                : "Personal"}
+            {tCommon(`experienceTypes.${experience.type}`)}
           </span>
         </div>
 
@@ -91,15 +94,15 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
             <CalendarIcon size={16} />
             <span>
               {formatDate(experience.startDate, locale)} —{" "}
-              {experience.endDate ? formatDate(experience.endDate, locale) : t("present")}
+              {experience.endDate ? formatDate(experience.endDate, locale) : tCommon("present")}
             </span>
           </div>
 
-          <p className={styles.description}>{experience.description}</p>
+          <p className={styles.description}>{description}</p>
 
-          {experience.highlights.length > 0 && (
+          {highlights.length > 0 && (
             <ul className={styles.highlights}>
-              {experience.highlights.map((highlight, i) => (
+              {highlights.map((highlight, i) => (
                 <li key={i} className={styles.highlight}>
                   <span className={styles.highlightBullet}>•</span>
                   <span>{highlight}</span>

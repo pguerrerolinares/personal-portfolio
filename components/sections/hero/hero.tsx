@@ -32,7 +32,7 @@ const item = {
 
 export function Hero() {
   const t = useTranslations("hero");
-  const magneticProps = useMagnetic(0.3);
+  const magneticProps = useMagnetic(0.1);
 
   return (
     <section id="hero" className={styles.hero} aria-label="Introduction">

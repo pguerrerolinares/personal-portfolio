@@ -1,6 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { ExternalLinkIcon, GithubIcon, GlobeIcon, SmartphoneIcon, BrainIcon, BotIcon, FolderIcon } from "@/components/ui/icon";
 import { Badge } from "@/components/ui/badge";
 import type { Project } from "@/lib/constants/portfolio-data";
@@ -20,7 +21,11 @@ const categoryIcons = {
 };
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+  const t = useTranslations("projects.items");
   const CategoryIcon = categoryIcons[project.category];
+
+  const title = t(`${project.id}.title`);
+  const description = t(`${project.id}.description`);
 
   return (
     <m.article
@@ -31,7 +36,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       className={styles.card}
       tabIndex={0}
       role="article"
-      aria-label={`Project: ${project.title}`}
+      aria-label={`Project: ${title}`}
     >
       {/* Image/Gradient Header */}
       <div className={`${styles.imageHeader} ${styles[project.category]}`}>
@@ -48,7 +53,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       {/* Content */}
       <div className={styles.content}>
         <div className={styles.header}>
-          <h3 className={styles.title}>{project.title}</h3>
+          <h3 className={styles.title}>{title}</h3>
           <div className={styles.links}>
             {project.githubUrl && (
               <a
@@ -56,7 +61,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.link}
-                aria-label={`View ${project.title} on GitHub`}
+                aria-label={`View ${title} on GitHub`}
               >
                 <GithubIcon size={16} />
               </a>
@@ -67,7 +72,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.link}
-                aria-label={`View ${project.title} live`}
+                aria-label={`View ${title} live`}
               >
                 <ExternalLinkIcon size={16} />
               </a>
@@ -75,7 +80,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           </div>
         </div>
 
-        <p className={styles.description}>{project.description}</p>
+        <p className={styles.description}>{description}</p>
 
         <div className={styles.technologies}>
           {project.technologies.slice(0, 4).map((tech) => (

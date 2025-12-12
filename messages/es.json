@@ -45,6 +45,25 @@
     "cta": {
       "text": "¿Quieres ver más?",
       "button": "Ver Perfil de GitHub"
+    },
+    "items": {
+      "ocr-pipeline": {
+        "title": "Pipeline de Procesamiento Inteligente de Documentos",
+        "description": "Pipeline de OCR y comprensión de documentos de extremo a extremo utilizando modelos de visión-lenguaje de última generación.",
+        "longDescription": "Un pipeline completo para extraer datos estructurados de documentos usando docTR, PaddleOCR, LayoutLMv3 y Qwen3-VL. Desplegado en Kubernetes con soporte GPU y cumplimiento estricto de seguridad."
+      },
+      "finnk-onboarding": {
+        "title": "Onboarding Digital Bancario",
+        "description": "Flujos críticos de onboarding digital para la plataforma de inversión Finnk con validación de documentos y verificación OTP."
+      },
+      "iot-dashboard": {
+        "title": "Dashboard de Monitorización IoT",
+        "description": "Dashboard de monitorización en tiempo real para dispositivos IoT con integración AWS y gestión de device shadow."
+      },
+      "automation-toolkit": {
+        "title": "Kit de Herramientas de Scraping y Automatización",
+        "description": "Colección de herramientas Python para web scraping, automatización de tareas y utilidades de procesamiento de datos."
+      }
     }
   },
   "experience": {
@@ -53,6 +72,39 @@
     "cta": {
       "text": "¿Quieres el panorama completo?",
       "button": "Descargar CV"
+    },
+    "items": {
+      "finnk": {
+        "company": "Kutxabank Investment – Finnk",
+        "role": "Ingeniero de Software (Frontend & Backend)",
+        "description": "Desarrollo de funcionalidades clave dentro del ecosistema Finnk, combinando frontend (Angular, Ionic/Capacitor, Angular Material, librerías de gráficos) y backend Java en entornos corporativos complejos.",
+        "highlights": [
+          "Evolución de flujos críticos de onboarding digital: carga de documentos, validaciones, OTP, promociones y componentes de visualización financiera",
+          "Integración continua y despliegues vía Kubernetes con pipelines automatizados de GitLab CI",
+          "Colaboración estrecha con equipos de negocio, marketing y seguridad para alinear requisitos y validar flujos sensibles",
+          "Intervención en entornos con arquitecturas legacy y módulos Java personalizados, garantizando compatibilidad y estabilidad"
+        ]
+      },
+      "onnera": {
+        "company": "Onnera Group",
+        "role": "Desarrollador de Software – IoT & Cloud",
+        "description": "Desarrollo de soluciones IoT combinando Angular, Spring Boot y servicios cloud de AWS.",
+        "highlights": [
+          "Implementación de lambdas, colas, topics y device shadow para comunicación dispositivo-backend",
+          "Creación de dashboards y herramientas internas para monitorización de dispositivos y estado de red IoT",
+          "Trabajo bajo metodología Scrum, participando en sprints, refinamientos, estimación y mejora continua"
+        ]
+      },
+      "personal": {
+        "company": "Proyectos Personales y Experimentación Técnica",
+        "role": "Desarrollador Independiente – Python, IA, Automatización",
+        "description": "Desarrollo constante de proyectos personales en Python, especialmente para webscraping, automatización de tareas y utilidades internas.",
+        "highlights": [
+          "Experimentación profunda con IA de código abierto, construyendo pipelines completos de OCR y extracción de datos desde documentación oficial",
+          "Práctica continua en containerización, creación de imágenes Docker, automatización de entornos y evaluación de modelos visión-lenguaje en GPU local",
+          "Investigación y adopción de nuevas herramientas, patrones y arquitecturas para mejorar productividad y calidad técnica"
+        ]
+      }
     }
   },
   "contact": {
@@ -72,6 +124,11 @@
     "backToTop": "Volver arriba",
     "present": "Actualidad",
     "viewMore": "Ver Más",
-    "viewLess": "Ver Menos"
+    "viewLess": "Ver Menos",
+    "experienceTypes": {
+      "fulltime": "Tiempo Completo",
+      "freelance": "Freelance",
+      "personal": "Personal"
+    }
   }
 }

@@ -45,6 +45,25 @@
     "cta": {
       "text": "Want to see more?",
       "button": "View GitHub Profile"
+    },
+    "items": {
+      "ocr-pipeline": {
+        "title": "Intelligent Document Processing Pipeline",
+        "description": "End-to-end OCR and document understanding pipeline using state-of-the-art vision-language models.",
+        "longDescription": "A complete pipeline for extracting structured data from documents using docTR, PaddleOCR, LayoutLMv3, and Qwen3-VL. Deployed on Kubernetes with GPU support and strict security compliance."
+      },
+      "finnk-onboarding": {
+        "title": "Digital Banking Onboarding",
+        "description": "Critical digital onboarding flows for Finnk investment platform with document validation and OTP verification."
+      },
+      "iot-dashboard": {
+        "title": "IoT Device Monitoring Dashboard",
+        "description": "Real-time monitoring dashboard for IoT devices with AWS integration and device shadow management."
+      },
+      "automation-toolkit": {
+        "title": "Web Scraping & Automation Toolkit",
+        "description": "Collection of Python tools for web scraping, task automation, and data processing utilities."
+      }
     }
   },
   "experience": {
@@ -53,6 +72,39 @@
     "cta": {
       "text": "Want the full picture?",
       "button": "Download Resume"
+    },
+    "items": {
+      "finnk": {
+        "company": "Kutxabank Investment – Finnk",
+        "role": "Software Engineer (Frontend & Backend)",
+        "description": "Development of key functionalities within the Finnk ecosystem, combining frontend (Angular, Ionic/Capacitor, Angular Material, charting libraries) and backend Java in complex corporate environments.",
+        "highlights": [
+          "Evolution of critical digital onboarding flows: document upload, validations, OTP, promotions, and financial visualization components",
+          "Continuous integration and deployments via Kubernetes with automated GitLab CI pipelines",
+          "Close collaboration with business, marketing, and security teams to align requirements and validate sensitive flows",
+          "Intervention in environments with legacy architectures and custom Java modules, ensuring compatibility and stability"
+        ]
+      },
+      "onnera": {
+        "company": "Onnera Group",
+        "role": "Software Developer – IoT & Cloud",
+        "description": "Development of IoT solutions combining Angular, Spring Boot, and AWS cloud services.",
+        "highlights": [
+          "Implementation of lambdas, queues, topics, and device shadow for device-backend communication",
+          "Creation of dashboards and internal tools for device monitoring and IoT network status",
+          "Work under Scrum methodology, participating in sprints, refinements, estimation, and continuous improvement"
+        ]
+      },
+      "personal": {
+        "company": "Personal Projects & Technical Experimentation",
+        "role": "Independent Developer – Python, AI, Automation",
+        "description": "Constant development of personal projects in Python, especially for webscraping, task automation, and internal utilities.",
+        "highlights": [
+          "In-depth experimentation with open-source AI, building complete OCR and data extraction pipelines from official documentation",
+          "Continuous practice in containerization, Docker image creation, environment automation, and evaluation of vision-language models on local GPU",
+          "Research and adoption of new tools, patterns, and architectures to improve productivity and technical quality"
+        ]
+      }
     }
   },
   "contact": {
@@ -72,6 +124,11 @@
     "backToTop": "Back to top",
     "present": "Present",
     "viewMore": "View More",
-    "viewLess": "View Less"
+    "viewLess": "View Less",
+    "experienceTypes": {
+      "fulltime": "Full-time",
+      "freelance": "Freelance",
+      "personal": "Personal"
+    }
   }
 }
