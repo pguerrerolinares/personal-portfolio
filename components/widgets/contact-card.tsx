@@ -32,7 +32,7 @@ export function ContactCard({
             <div className={styles.timelineLine} />
             <div className={styles.timelineDot} />
 
-            <div className={styles.card}>
+            <div className={styles.card} tabIndex={href ? undefined : 0} role={href ? undefined : "article"} aria-label={`Contact: ${label}`}>
                 <div className={styles.content}>
                     <div className={styles.iconWrapper}>
                         <Icon size={20} className={styles.icon} />
@@ -53,6 +53,7 @@ export function ContactCard({
                 target={external ? "_blank" : undefined}
                 rel={external ? "noopener noreferrer" : undefined}
                 className={styles.link}
+                aria-label={`${label}: ${value}`}
             >
                 {content}
             </a>

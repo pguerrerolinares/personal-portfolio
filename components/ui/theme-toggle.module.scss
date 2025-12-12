@@ -8,7 +8,7 @@
     height: 2.25rem;
     border-radius: 0.5rem;
     color: var(--foreground);
-    transition: background 200ms ease;
+    transition: background v.$transition-fast ease;
 
     &:hover {
         background: rgba(var(--foreground-rgb), 0.05);

@@ -19,6 +19,52 @@ $accent-dark: #3b82f6;
 // Accent foreground (same for both themes)
 $accent-foreground: #ffffff;
 
+// Semantic Colors - Light Theme
+$success-light: #22c55e;
+$warning-light: #f59e0b;
+$error-light: #ef4444;
+$info-light: #3b82f6;
+
+// Semantic Colors - Dark Theme
+$success-dark: #4ade80;
+$warning-dark: #fbbf24;
+$error-dark: #f87171;
+$info-dark: #60a5fa;
+
+// Gray Scale (50-950)
+$gray-50: #fafafa;
+$gray-100: #f5f5f5;
+$gray-200: #e5e5e5;
+$gray-300: #d4d4d4;
+$gray-400: #a3a3a3;
+$gray-500: #737373;
+$gray-600: #525252;
+$gray-700: #404040;
+$gray-800: #262626;
+$gray-900: #171717;
+$gray-950: #0a0a0a;
+
+// Opacity Scale
+$opacity-0: 0;
+$opacity-5: 0.05;
+$opacity-10: 0.1;
+$opacity-20: 0.2;
+$opacity-30: 0.3;
+$opacity-40: 0.4;
+$opacity-50: 0.5;
+$opacity-60: 0.6;
+$opacity-70: 0.7;
+$opacity-80: 0.8;
+$opacity-90: 0.9;
+$opacity-100: 1;
+
+// Category Colors (currently hardcoded in components)
+$category-web: #3b82f6;
+$category-mobile: #22c55e;
+$category-ai: #a855f7;
+$category-automation: #f97316;
+$category-other: #6b7280;
+
 // Spacing
 $spacing-0: 0;
 $spacing-1: 0.25rem;  // 4px
@@ -80,6 +126,17 @@ $shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 $shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 $shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 $shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+$shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+$shadow-none: 0 0 #0000;
+
+// Shadow Elevation System
+$elevation-0: $shadow-none;
+$elevation-1: $shadow-sm;
+$elevation-2: $shadow-md;
+$elevation-3: $shadow-lg;
+$elevation-4: $shadow-xl;
+$elevation-5: $shadow-2xl;
 
 // Transitions
 $transition-fast: 150ms;

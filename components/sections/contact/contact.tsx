@@ -40,7 +40,7 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className={styles.section}>
+    <section id="contact" className={styles.section} aria-labelledby="contact-heading">
       <div className={styles.container}>
         {/* Section header */}
         <m.div
@@ -50,7 +50,7 @@ export function Contact() {
           transition={{ duration: 0.5 }}
           className={styles.header}
         >
-          <h2 className={styles.title}>{t("title")}</h2>
+          <h2 id="contact-heading" className={styles.title}>{t("title")}</h2>
           <p className={styles.subtitle}>{t("subtitle")}</p>
           <div className={styles.accent} />
         </m.div>

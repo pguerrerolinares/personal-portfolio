@@ -3,6 +3,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Providers } from '@/components/providers';
+import { LazyMotionProvider } from '@/components/providers/lazy-motion-provider';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import styles from './layout.module.scss';
@@ -29,9 +30,11 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider messages={messages}>
       <Providers>
-        <Navbar />
-        <div className={styles.pageContainer}>{children}</div>
-        <Footer />
+        <LazyMotionProvider>
+          <Navbar />
+          <div className={styles.pageContainer}>{children}</div>
+          <Footer />
+        </LazyMotionProvider>
       </Providers>
     </NextIntlClientProvider>
   );

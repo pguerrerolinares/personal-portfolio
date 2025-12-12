@@ -16,10 +16,37 @@
     --accent: #{v.$accent-light};
     --accent-foreground: #{v.$accent-foreground};
 
+    // Semantic colors
+    --success: #{v.$success-light};
+    --warning: #{v.$warning-light};
+    --error: #{v.$error-light};
+    --info: #{v.$info-light};
+
+    // Category colors
+    --category-web: #{v.$category-web};
+    --category-mobile: #{v.$category-mobile};
+    --category-ai: #{v.$category-ai};
+    --category-automation: #{v.$category-automation};
+    --category-other: #{v.$category-other};
+
     // RGB versions for rgba() usage
     --background-rgb: 255, 255, 255;
     --foreground-rgb: 10, 10, 10;
     --accent-rgb: 37, 99, 235;
+    --muted-rgb: 115, 115, 115;
+
+    // Semantic RGB versions
+    --success-rgb: 34, 197, 94;
+    --warning-rgb: 245, 158, 11;
+    --error-rgb: 239, 68, 68;
+    --info-rgb: 59, 130, 246;
+
+    // Category RGB versions
+    --category-web-rgb: 59, 130, 246;
+    --category-mobile-rgb: 34, 197, 94;
+    --category-ai-rgb: 168, 85, 247;
+    --category-automation-rgb: 249, 115, 22;
+    --category-other-rgb: 107, 114, 128;
 }
 
 .dark {
@@ -30,9 +57,23 @@
     --border: #{v.$border-dark};
     --accent: #{v.$accent-dark};
 
+    // Semantic colors (dark theme)
+    --success: #{v.$success-dark};
+    --warning: #{v.$warning-dark};
+    --error: #{v.$error-dark};
+    --info: #{v.$info-dark};
+
+    // RGB versions (dark theme)
     --background-rgb: 10, 10, 10;
     --foreground-rgb: 250, 250, 250;
     --accent-rgb: 59, 130, 246;
+    --muted-rgb: 163, 163, 163;
+
+    // Semantic RGB versions (dark theme)
+    --success-rgb: 74, 222, 128;
+    --warning-rgb: 251, 191, 36;
+    --error-rgb: 248, 113, 113;
+    --info-rgb: 96, 165, 250;
 }
 
 // Base reset & styles
@@ -58,6 +99,7 @@ body {
     line-height: v.$leading-normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 300ms ease, color 300ms ease;
 }
 
 // Ensure code/pre elements use mono font
@@ -71,6 +113,7 @@ samp {
 // Default border color
 * {
     border-color: var(--border);
+    transition: border-color 300ms ease;
 }
 
 // Links

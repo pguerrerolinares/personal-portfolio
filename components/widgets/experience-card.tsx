@@ -61,7 +61,7 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
         className={styles.timelineDot}
       />
 
-      <div className={styles.card}>
+      <div className={styles.card} tabIndex={0} role="article" aria-label={`Experience: ${experience.role} at ${experience.company}`}>
         <div className={`${styles.cardHeader} ${styles[experience.type]}`}>
           <div className={styles.logo}>
             {experience.type === "personal" ? (

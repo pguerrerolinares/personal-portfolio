@@ -50,7 +50,7 @@
     font-weight: 500;
     color: var(--muted);
     border-radius: 0.5rem;
-    transition: all 200ms ease;
+    transition: all v.$transition-fast ease;
 
     &:hover {
         color: var(--foreground);
@@ -72,7 +72,7 @@
     height: 2.25rem;
     border-radius: 0.5rem;
     color: var(--foreground);
-    transition: background 200ms ease;
+    transition: background v.$transition-fast ease;
 
     &:hover {
         background: rgba(var(--foreground-rgb), 0.05);
@@ -115,7 +115,7 @@
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--muted);
-    transition: color 200ms ease;
+    transition: color v.$transition-fast ease;
 
     &:hover {
         color: var(--foreground);

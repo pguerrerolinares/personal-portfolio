@@ -5,6 +5,7 @@ import { m } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { AnimatedBackground } from "@/components/ui/animated-background";
+import { getButtonClasses } from "@/components/ui/button";
 import { GithubIcon, LinkedinIcon, ArrowDownIcon } from "@/components/ui/icon";
 import styles from './hero.module.scss';
 
@@ -32,7 +33,7 @@ export function Hero() {
   const t = useTranslations("hero");
 
   return (
-    <section id="hero" className={styles.hero}>
+    <section id="hero" className={styles.hero} aria-label="Introduction">
       <AnimatedBackground />
 
       <m.div
@@ -58,10 +59,10 @@ export function Hero() {
         </m.p>
 
         <m.div variants={item} className={styles.ctaContainer}>
-          <Link href="#projects" className={styles.ctaPrimary}>
+          <Link href="#projects" className={getButtonClasses({ variant: "primary", size: "md" })}>
             {t("cta.projects")}
           </Link>
-          <Link href="#contact" className={styles.ctaSecondary}>
+          <Link href="#contact" className={getButtonClasses({ variant: "outline", size: "md" })}>
             {t("cta.contact")}
           </Link>
         </m.div>

@@ -15,6 +15,12 @@
         border-color: rgba(var(--accent-rgb), 0.5);
         background: rgba(var(--foreground-rgb), 0.04);
     }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-color: var(--accent);
+    }
 }
 
 .imageHeader {
@@ -26,23 +32,23 @@
     overflow: hidden;
 
     &.web {
-        background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.2), rgba(34, 211, 238, 0.2));
+        background: linear-gradient(to bottom right, rgba(var(--category-web-rgb), 0.2), rgba(var(--info-rgb), 0.2));
     }
 
     &.mobile {
-        background: linear-gradient(to bottom right, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.2));
+        background: linear-gradient(to bottom right, rgba(var(--category-mobile-rgb), 0.2), rgba(var(--success-rgb), 0.2));
     }
 
     &.ai {
-        background: linear-gradient(to bottom right, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+        background: linear-gradient(to bottom right, rgba(var(--category-ai-rgb), 0.2), rgba(236, 72, 153, 0.2));
     }
 
     &.automation {
-        background: linear-gradient(to bottom right, rgba(249, 115, 22, 0.2), rgba(245, 158, 11, 0.2));
+        background: linear-gradient(to bottom right, rgba(var(--category-automation-rgb), 0.2), rgba(var(--warning-rgb), 0.2));
     }
 
     &.other {
-        background: linear-gradient(to bottom right, rgba(107, 114, 128, 0.2), rgba(100, 116, 139, 0.2));
+        background: linear-gradient(to bottom right, rgba(var(--category-other-rgb), 0.2), rgba(var(--muted-rgb), 0.2));
     }
 }
 
@@ -59,23 +65,23 @@
     z-index: 1;
 
     &.web {
-        color: #3b82f6;
+        color: var(--category-web);
     }
 
     &.mobile {
-        color: #22c55e;
+        color: var(--category-mobile);
     }
 
     &.ai {
-        color: #a855f7;
+        color: var(--category-ai);
     }
 
     &.automation {
-        color: #f97316;
+        color: var(--category-automation);
     }
 
     &.other {
-        color: #6b7280;
+        color: var(--category-other);
     }
 }
 
@@ -135,6 +141,12 @@
     &:hover {
         color: var(--foreground);
     }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: v.$radius-sm;
+    }
 }
 
 .description {
@@ -155,12 +167,4 @@
     gap: v.$spacing-1 + 0.125rem;
     padding-top: v.$spacing-3;
     border-top: 1px solid rgba(var(--foreground-rgb), 0.05);
-}
-
-.tech {
-    font-size: v.$text-xs;
-    padding: v.$spacing-0 + 0.125rem v.$spacing-2;
-    background: rgba(var(--foreground-rgb), 0.05);
-    color: var(--muted);
-    border-radius: v.$radius-full;
 }

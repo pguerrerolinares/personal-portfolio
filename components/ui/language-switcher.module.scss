@@ -10,7 +10,7 @@
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--foreground);
-    transition: background 200ms ease;
+    transition: background v.$transition-fast ease;
 
     &:hover {
         background: rgba(var(--foreground-rgb), 0.05);

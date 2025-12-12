@@ -2,6 +2,7 @@
 
 import { m } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import styles from './animated-background.module.scss';
 
 interface Particle {
@@ -14,12 +15,24 @@ interface Particle {
 }
 
 export function AnimatedBackground() {
+    const reducedMotion = useReducedMotion();
     const [particles, setParticles] = useState<Particle[]>([]);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (reducedMotion) return; // Skip particles when reduced motion is preferred
+
         const generateParticles = () => {
+            const count = isMobile ? 15 : 30; // Reduced from 50
             const newParticles: Particle[] = [];
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < count; i++) {
                 newParticles.push({
                     id: i,
                     x: Math.random() * 100,
@@ -33,11 +46,23 @@ export function AnimatedBackground() {
         };
 
         generateParticles();
-    }, []);
+    }, [reducedMotion, isMobile]);
+
+    if (reducedMotion) {
+        return (
+            <div className={styles.background}>
+                {/* Static gradients only when reduced motion is preferred */}
+                <div className={`${styles.orb} ${styles.orb1}`} />
+                <div className={`${styles.orb} ${styles.orb2}`} />
+                <div className={`${styles.orb} ${styles.orb3}`} />
+                <div className={styles.grid} />
+            </div>
+        );
+    }
 
     return (
         <div className={styles.background}>
-            {/* Gradient orbs */}
+            {/* Animated gradient orbs */}
             <m.div
                 animate={{
                     x: [0, 30, 0],

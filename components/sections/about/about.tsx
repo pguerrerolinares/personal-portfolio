@@ -47,7 +47,7 @@ export function About() {
   ];
 
   return (
-    <section id="about" className={styles.section}>
+    <section id="about" className={styles.section} aria-labelledby="about-heading">
       <div className={styles.container}>
         {/* Section header */}
         <m.div
@@ -57,7 +57,7 @@ export function About() {
           transition={{ duration: 0.5 }}
           className={styles.header}
         >
-          <h2 className={styles.title}>{t("title")}</h2>
+          <h2 id="about-heading" className={styles.title}>{t("title")}</h2>
           <div className={styles.accent} />
         </m.div>
 

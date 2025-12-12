@@ -232,3 +232,13 @@
     position: relative;
     z-index: $z;
 }
+
+// Shadow elevation
+@mixin elevation($level: 1) {
+    @if $level == 0 { box-shadow: $elevation-0; }
+    @if $level == 1 { box-shadow: $elevation-1; }
+    @if $level == 2 { box-shadow: $elevation-2; }
+    @if $level == 3 { box-shadow: $elevation-3; }
+    @if $level == 4 { box-shadow: $elevation-4; }
+    @if $level == 5 { box-shadow: $elevation-5; }
+}

@@ -11,7 +11,7 @@ export function Experience() {
   const t = useTranslations("experience");
 
   return (
-    <section id="experience" className={styles.section}>
+    <section id="experience" className={styles.section} aria-labelledby="experience-heading">
       <div className={styles.container}>
         {/* Section header */}
         <m.div
@@ -21,7 +21,7 @@ export function Experience() {
           transition={{ duration: 0.5 }}
           className={styles.header}
         >
-          <h2 className={styles.title}>{t("title")}</h2>
+          <h2 id="experience-heading" className={styles.title}>{t("title")}</h2>
           <p className={styles.subtitle}>{t("subtitle")}</p>
           <div className={styles.accent} />
         </m.div>

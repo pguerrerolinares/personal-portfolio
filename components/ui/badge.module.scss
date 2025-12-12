@@ -1,0 +1,59 @@
+@use '../../styles/variables' as v;
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: v.$radius-full;
+    font-weight: v.$font-medium;
+    white-space: nowrap;
+    transition: background-color v.$transition-fast v.$ease-default;
+}
+
+// Sizes
+.sm {
+    padding: v.$spacing-1 v.$spacing-2;
+    font-size: v.$text-xs;
+}
+
+.md {
+    padding: v.$spacing-1 + 0.125rem v.$spacing-3;
+    font-size: v.$text-sm;
+}
+
+// Variants
+.default {
+    background: rgba(var(--foreground-rgb), 0.05);
+    color: var(--muted);
+}
+
+.accent {
+    background: rgba(var(--accent-rgb), 0.15);
+    color: var(--accent);
+}
+
+.success {
+    background: rgba(var(--success-rgb), 0.15);
+    color: var(--success);
+}
+
+.warning {
+    background: rgba(var(--warning-rgb), 0.15);
+    color: var(--warning);
+}
+
+.error {
+    background: rgba(var(--error-rgb), 0.15);
+    color: var(--error);
+}
+
+.info {
+    background: rgba(var(--info-rgb), 0.15);
+    color: var(--info);
+}
+
+.outline {
+    background: transparent;
+    border: 1px solid rgba(var(--foreground-rgb), 0.2);
+    color: var(--muted);
+}

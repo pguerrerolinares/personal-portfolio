@@ -1,7 +1,16 @@
 'use client';
 
-import { LazyMotion, domAnimation } from 'framer-motion';
+import { LazyMotion, domAnimation, MotionConfig } from 'framer-motion';
+import { useReducedMotion } from '@/lib/hooks/use-reduced-motion';
 
 export function LazyMotionProvider({ children }: { children: React.ReactNode }) {
-    return <LazyMotion features={domAnimation}>{children}</LazyMotion>;
+    const reducedMotion = useReducedMotion();
+
+    return (
+        <LazyMotion features={domAnimation}>
+            <MotionConfig reducedMotion={reducedMotion ? "always" : "never"}>
+                {children}
+            </MotionConfig>
+        </LazyMotion>
+    );
 }

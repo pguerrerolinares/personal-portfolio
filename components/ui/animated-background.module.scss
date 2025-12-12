@@ -35,7 +35,7 @@
     transform: translate(-50%, -50%);
     width: 33%;
     height: 33%;
-    background: rgba(168, 85, 247, 0.05);
+    background: rgba(var(--category-ai-rgb), 0.05);
 }
 
 .particle {

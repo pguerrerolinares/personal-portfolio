@@ -2,6 +2,7 @@
 
 import { m } from "framer-motion";
 import { ExternalLinkIcon, GithubIcon, GlobeIcon, SmartphoneIcon, BrainIcon, BotIcon, FolderIcon } from "@/components/ui/icon";
+import { Badge } from "@/components/ui/badge";
 import type { Project } from "@/lib/constants/portfolio-data";
 import styles from './project-card.module.scss';
 
@@ -28,6 +29,9 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       className={styles.card}
+      tabIndex={0}
+      role="article"
+      aria-label={`Project: ${project.title}`}
     >
       {/* Image/Gradient Header */}
       <div className={`${styles.imageHeader} ${styles[project.category]}`}>
@@ -75,14 +79,14 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
         <div className={styles.technologies}>
           {project.technologies.slice(0, 4).map((tech) => (
-            <span key={tech} className={styles.tech}>
+            <Badge key={tech} variant="default" size="sm">
               {tech}
-            </span>
+            </Badge>
           ))}
           {project.technologies.length > 4 && (
-            <span className={styles.tech}>
+            <Badge variant="default" size="sm">
               +{project.technologies.length - 4}
-            </span>
+            </Badge>
           )}
         </div>
       </div>

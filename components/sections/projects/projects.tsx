@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { m } from "framer-motion";
 import { projects } from "@/lib/constants/portfolio-data";
 import { ProjectCard } from "@/components/widgets";
+import { getButtonClasses } from "@/components/ui/button";
 import styles from './projects.module.scss';
 
 export function Projects() {
@@ -13,7 +14,7 @@ export function Projects() {
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className={styles.section}>
+    <section id="projects" className={styles.section} aria-labelledby="projects-heading">
       <div className={styles.container}>
         {/* Section header */}
         <m.div
@@ -23,7 +24,7 @@ export function Projects() {
           transition={{ duration: 0.5 }}
           className={styles.header}
         >
-          <h2 className={styles.title}>{t("title")}</h2>
+          <h2 id="projects-heading" className={styles.title}>{t("title")}</h2>
           <p className={styles.subtitle}>{t("subtitle")}</p>
           <div className={styles.accent} />
         </m.div>
@@ -83,7 +84,7 @@ export function Projects() {
             href="https://github.com/pguerrerolinares"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.ctaLink}
+            className={getButtonClasses({ variant: "primary", size: "md" })}
           >
             {t("cta.button")}
           </a>
