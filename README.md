@@ -57,6 +57,36 @@ bun format
 
 El servidor de desarrollo estará disponible en [http://localhost:3000](http://localhost:3000)
 
+## 🚀 Deploy a GitHub Pages
+
+Este proyecto está configurado para deployarse automáticamente a GitHub Pages usando GitHub Actions.
+
+### Configuración inicial (solo una vez)
+
+1. Ve a tu repositorio en GitHub
+2. Click en **Settings** > **Pages**
+3. En "Source", selecciona **GitHub Actions**
+4. Guarda los cambios
+
+### Deploy automático
+
+El deploy se ejecuta automáticamente cuando:
+- Haces `push` a la rama `main`
+- O ejecutas el workflow manualmente desde GitHub Actions
+
+### URL del sitio
+
+Una vez deployado, tu portfolio estará disponible en:
+```
+https://pguerrerolinares.github.io/personal-portfolio/
+```
+
+### Verificar el deploy
+
+1. Ve a la pestaña **Actions** en GitHub
+2. Verifica que el workflow "Deploy to GitHub Pages" se ejecutó correctamente
+3. Accede a tu URL para ver el sitio en vivo
+
 ## 📁 Estructura del Proyecto
 
 ```
