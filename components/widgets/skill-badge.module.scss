@@ -8,6 +8,14 @@
     font-size: v.$text-sm;
     font-weight: v.$font-medium;
     border: 1px solid;
+    transition: transform v.$transition-fast v.$ease-default,
+                box-shadow v.$transition-fast v.$ease-default;
+    cursor: default;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 6px -1px rgba(var(--foreground-rgb), 0.1);
+    }
 
     &.expert {
         background: rgba(var(--accent-rgb), 0.2);

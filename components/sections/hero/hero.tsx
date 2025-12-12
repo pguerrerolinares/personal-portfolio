@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 import { getButtonClasses } from "@/components/ui/button";
+import { useMagnetic } from "@/lib/hooks/use-magnetic";
 import { GithubIcon, LinkedinIcon, ArrowDownIcon } from "@/components/ui/icon";
 import styles from './hero.module.scss';
 
@@ -31,6 +32,7 @@ const item = {
 
 export function Hero() {
   const t = useTranslations("hero");
+  const magneticProps = useMagnetic(0.3);
 
   return (
     <section id="hero" className={styles.hero} aria-label="Introduction">
@@ -59,9 +61,17 @@ export function Hero() {
         </m.p>
 
         <m.div variants={item} className={styles.ctaContainer}>
-          <Link href="#projects" className={getButtonClasses({ variant: "primary", size: "md" })}>
-            {t("cta.projects")}
-          </Link>
+          <m.div style={{ x: magneticProps.x, y: magneticProps.y }}>
+            <Link
+              ref={magneticProps.ref}
+              href="#projects"
+              className={getButtonClasses({ variant: "primary", size: "md" })}
+              onMouseMove={magneticProps.onMouseMove}
+              onMouseLeave={magneticProps.onMouseLeave}
+            >
+              {t("cta.projects")}
+            </Link>
+          </m.div>
           <Link href="#contact" className={getButtonClasses({ variant: "outline", size: "md" })}>
             {t("cta.contact")}
           </Link>

@@ -107,10 +107,15 @@
 
 .socialLink {
     color: var(--muted);
-    transition: color v.$transition-normal v.$ease-default;
+    transition: color v.$transition-fast, transform v.$transition-fast;
 
     &:hover {
-        color: var(--foreground);
+        color: var(--accent);
+        transform: scale(1.1) translateY(-2px);
+    }
+
+    &:active {
+        transform: scale(0.95);
     }
 }
 

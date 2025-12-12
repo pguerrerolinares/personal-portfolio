@@ -7,7 +7,12 @@
     border-radius: v.$radius-full;
     font-weight: v.$font-medium;
     white-space: nowrap;
-    transition: background-color v.$transition-fast v.$ease-default;
+    transition: background-color v.$transition-fast v.$ease-default,
+                transform v.$transition-fast v.$ease-default;
+
+    &:hover {
+        transform: scale(1.05);
+    }
 }
 
 // Sizes

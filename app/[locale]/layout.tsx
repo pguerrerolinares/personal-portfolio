@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Providers } from '@/components/providers';
 import { LazyMotionProvider } from '@/components/providers/lazy-motion-provider';
+import { ScrollProgress } from '@/components/ui/scroll-progress';
+import { PageTransition } from '@/components/ui/page-transition';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import styles from './layout.module.scss';
@@ -31,8 +33,11 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider messages={messages}>
       <Providers>
         <LazyMotionProvider>
+          <ScrollProgress />
           <Navbar />
-          <div className={styles.pageContainer}>{children}</div>
+          <PageTransition>
+            <div className={styles.pageContainer}>{children}</div>
+          </PageTransition>
           <Footer />
         </LazyMotionProvider>
       </Providers>
