@@ -81,6 +81,10 @@ Una vez deployado, tu portfolio estará disponible en:
 https://pguerrerolinares.github.io/personal-portfolio/
 ```
 
+**Nota:** La página raíz detecta automáticamente el idioma del navegador y redirige a `/es` o `/en`. También puedes acceder directamente a:
+- Español: `https://pguerrerolinares.github.io/personal-portfolio/es/`
+- English: `https://pguerrerolinares.github.io/personal-portfolio/en/`
+
 ### Verificar el deploy
 
 1. Ve a la pestaña **Actions** en GitHub

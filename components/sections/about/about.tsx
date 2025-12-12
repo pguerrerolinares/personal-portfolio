@@ -87,7 +87,7 @@ export function About() {
                 <div className={styles.statLabel}>{t("stats.technologies")}</div>
               </div>
               <div className={styles.stat}>
-                <div className={styles.statValue}>AI/ML</div>
+                <div className={styles.statValue}>Full-Stack</div>
                 <div className={styles.statLabel}>{t("stats.focus")}</div>
               </div>
             </m.div>

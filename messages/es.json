@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Paul Guerrero Linares - Ingeniero de Software",
-    "description": "Portfolio profesional de Paul Guerrero Linares - Ingeniero de Software especializado en desarrollo full-stack, pipelines de IA/ML y arquitecturas cloud-native."
+    "title": "Paul Guerrero Linares - Ingeniero Informático",
+    "description": "Portfolio profesional de Paul Guerrero Linares - Ingeniero Informático especializado en aplicaciones empresariales, desde IoT hasta plataformas de inversión."
   },
   "nav": {
     "about": "Sobre mí",
@@ -12,8 +12,8 @@
   "hero": {
     "greeting": "Hola, soy",
     "name": "Paul Guerrero",
-    "role": "Ingeniero de Software",
-    "description": "Construyendo soluciones robustas en la intersección del desarrollo full-stack, pipelines de IA/ML y arquitecturas cloud-native.",
+    "role": "Ingeniero Informático",
+    "description": "Especializado en aplicaciones empresariales que marcan la diferencia, desde IoT hasta plataformas de inversión.",
     "cta": {
       "projects": "Ver Proyectos",
       "contact": "Contactar"
@@ -23,9 +23,9 @@
     "title": "Sobre Mí",
     "subtitle": "Ingeniero por pasión, solucionador de problemas por naturaleza",
     "bio": {
-      "p1": "Ingeniero informático con una base sólida en desarrollo backend y frontend, evolucionado hacia un perfil híbrido poco común: alguien que programa, entiende arquitectura, domina pipelines complejos y opera en entornos con requisitos de seguridad estrictos.",
-      "p2": "Destaco por diseñar y mantener pipelines de alto nivel, especialmente en OCR, visión por computadora y modelos de lenguaje multimodales. Construyendo soluciones con docTR, PaddleOCR, LayoutLMv3 y Qwen3-VL, desplegándolas en Kubernetes on-prem cumpliendo requisitos de seguridad muy altos.",
-      "p3": "Más allá del código, entiendo Scrum desde dentro, participo en refinamientos, escribo historias de usuario claras, gestiono deuda técnica y anticipo riesgos del sprint. El objetivo no es solo que el software funcione, sino que el equipo funcione."
+      "p1": "Desarrollador full-stack con dominio real de ambos mundos: interfaces modernas que los usuarios aman y backends robustos que las empresas necesitan. Desde dispositivos IoT hasta plataformas digitales escalables.",
+      "p2": "Me especializo en proyectos donde la complejidad técnica se encuentra con la realidad empresarial. Entornos donde hay que integrar lo nuevo con sistemas legacy, cumplir requisitos de seguridad estrictos y navegar arquitecturas corporativas complejas.",
+      "p3": "El mejor código es el que resuelve problemas de negocio y hace crecer equipos. Colaboro estrechamente con product owners, traduzco necesidades complejas en soluciones técnicas y me aseguro de que cada entrega aporte valor real. Porque el software es un medio, no un fin."
     },
     "stats": {
       "years": "Años de Experiencia",
@@ -53,12 +53,12 @@
         "longDescription": "Un pipeline completo para extraer datos estructurados de documentos usando docTR, PaddleOCR, LayoutLMv3 y Qwen3-VL. Desplegado en Kubernetes con soporte GPU y cumplimiento estricto de seguridad."
       },
       "finnk-onboarding": {
-        "title": "Onboarding Digital Bancario",
-        "description": "Flujos críticos de onboarding digital para la plataforma de inversión Finnk con validación de documentos y verificación OTP."
+        "title": "Plataforma Digital de Fondos de Inversión",
+        "description": "Plataforma digital completa para fondos de inversión: desde verificación bancaria y onboarding hasta seguimiento de carteras en tiempo real."
       },
       "iot-dashboard": {
-        "title": "Dashboard de Monitorización IoT",
-        "description": "Dashboard de monitorización en tiempo real para dispositivos IoT con integración AWS y gestión de device shadow."
+        "title": "Plataforma de Gestión IoT",
+        "description": "Infraestructura completa para miles de dispositivos IoT: comunicación bidireccional con AWS IoT, gestión de colas y topics."
       },
       "automation-toolkit": {
         "title": "Kit de Herramientas de Scraping y Automatización",
@@ -76,7 +76,7 @@
     "items": {
       "finnk": {
         "company": "Kutxabank Investment – Finnk",
-        "role": "Ingeniero de Software (Frontend & Backend)",
+        "role": "Ingeniero Informático (Frontend & Backend)",
         "description": "Desarrollo de funcionalidades clave dentro del ecosistema Finnk, combinando frontend (Angular, Ionic/Capacitor, Angular Material, librerías de gráficos) y backend Java en entornos corporativos complejos.",
         "highlights": [
           "Evolución de flujos críticos de onboarding digital: carga de documentos, validaciones, OTP, promociones y componentes de visualización financiera",

@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Paul Guerrero Linares - Software Engineer",
-    "description": "Professional portfolio of Paul Guerrero Linares - Software Engineer specializing in full-stack development, AI/ML pipelines, and cloud-native architectures."
+    "title": "Paul Guerrero Linares - Computer Engineer",
+    "description": "Professional portfolio of Paul Guerrero Linares - Computer Engineer specialized in enterprise applications, from IoT to investment platforms."
   },
   "nav": {
     "about": "About",
@@ -12,8 +12,8 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Paul Guerrero",
-    "role": "Software Engineer",
-    "description": "Building robust solutions at the intersection of full-stack development, AI/ML pipelines, and cloud-native architectures.",
+    "role": "Computer Engineer",
+    "description": "Specialized in enterprise applications that make a difference, from IoT to investment platforms.",
     "cta": {
       "projects": "View Projects",
       "contact": "Get in Touch"
@@ -23,9 +23,9 @@
     "title": "About Me",
     "subtitle": "Engineer by passion, problem solver by nature",
     "bio": {
-      "p1": "Computer engineer with a solid foundation in backend and frontend development, evolved into a rare hybrid profile: someone who codes, understands architecture, masters complex pipelines, and operates in strict security environments.",
-      "p2": "Notable for designing and maintaining high-level pipelines, especially in OCR, computer vision, and multimodal language models. Building solutions with docTR, PaddleOCR, LayoutLMv3, and Qwen3-VL, deploying them in on-prem Kubernetes while meeting strict security requirements.",
-      "p3": "Beyond coding, I understand Scrum from the inside, participate in refinements, write clear user stories, manage technical debt, and anticipate sprint risks. The goal is not just working software, but a working team."
+      "p1": "Full-stack developer with real mastery of both worlds: modern interfaces that users love and robust backends that businesses need. From IoT devices to scalable digital platforms.",
+      "p2": "I specialize in projects where technical complexity meets business reality. Environments where you need to integrate new technologies with legacy systems, meet strict security requirements, and navigate complex corporate architectures.",
+      "p3": "The best code is the one that solves business problems and grows teams. I work closely with product owners, translate complex needs into technical solutions, and ensure every delivery brings real value. Because software is a means, not an end."
     },
     "stats": {
       "years": "Years Experience",
@@ -53,12 +53,12 @@
         "longDescription": "A complete pipeline for extracting structured data from documents using docTR, PaddleOCR, LayoutLMv3, and Qwen3-VL. Deployed on Kubernetes with GPU support and strict security compliance."
       },
       "finnk-onboarding": {
-        "title": "Digital Banking Onboarding",
-        "description": "Critical digital onboarding flows for Finnk investment platform with document validation and OTP verification."
+        "title": "Digital Investment Funds Platform",
+        "description": "Complete digital platform for investment funds: from banking verification and onboarding to real-time portfolio tracking."
       },
       "iot-dashboard": {
-        "title": "IoT Device Monitoring Dashboard",
-        "description": "Real-time monitoring dashboard for IoT devices with AWS integration and device shadow management."
+        "title": "IoT Management Platform",
+        "description": "Complete infrastructure for thousands of IoT devices: bidirectional communication with AWS IoT, queue and topic management."
       },
       "automation-toolkit": {
         "title": "Web Scraping & Automation Toolkit",
@@ -76,7 +76,7 @@
     "items": {
       "finnk": {
         "company": "Kutxabank Investment – Finnk",
-        "role": "Software Engineer (Frontend & Backend)",
+        "role": "Computer Engineer (Frontend & Backend)",
         "description": "Development of key functionalities within the Finnk ecosystem, combining frontend (Angular, Ionic/Capacitor, Angular Material, charting libraries) and backend Java in complex corporate environments.",
         "highlights": [
           "Evolution of critical digital onboarding flows: document upload, validations, OTP, promotions, and financial visualization components",
