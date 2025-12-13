@@ -2,10 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { m } from "framer-motion";
+import { Box, Container, Typography } from "@mui/material";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { ContactCard } from "@/components/widgets";
 import { MailIcon, GithubIcon, LinkedinIcon, MapPinIcon } from "@/components/ui/icon";
-import styles from './contact.module.scss';
 
 export function Contact() {
   const t = useTranslations("contact");
@@ -40,34 +40,69 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className={styles.section} aria-labelledby="contact-heading">
-      <div className={styles.container}>
+    <Box
+      component="section"
+      id="contact"
+      aria-labelledby="contact-heading"
+      sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.paper' }}
+    >
+      <Container maxWidth="xl">
         {/* Section header */}
-        <m.div
+        <Box
+          component={m.div}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={styles.header}
+          sx={{ mb: 6, textAlign: 'center' }}
         >
-          <h2 id="contact-heading" className={styles.title}>{t("title")}</h2>
-          <p className={styles.subtitle}>{t("subtitle")}</p>
-          <div className={styles.accent} />
-        </m.div>
+          <Typography
+            id="contact-heading"
+            variant="h2"
+            sx={{
+              fontSize: { xs: '2rem', md: '3rem' },
+              fontWeight: 700,
+              mb: 2,
+            }}
+          >
+            {t("title")}
+          </Typography>
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+            {t("subtitle")}
+          </Typography>
+          <Box
+            sx={{
+              width: 60,
+              height: 4,
+              bgcolor: 'primary.main',
+              borderRadius: 2,
+              mx: 'auto',
+            }}
+          />
+        </Box>
 
         {/* Contact info with timeline */}
-        <m.div
+        <Box
+          component={m.div}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={styles.contactContainer}
+          sx={{ maxWidth: 700, mx: 'auto' }}
         >
-          <h3 className={styles.infoTitle}>{t("info.title")}</h3>
-          <p className={styles.infoDescription}>{t("info.description")}</p>
+          <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, textAlign: 'center' }}>
+            {t("info.title")}
+          </Typography>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ mb: 4, textAlign: 'center' }}
+          >
+            {t("info.description")}
+          </Typography>
 
           {/* Timeline of contact methods */}
-          <div className={styles.timeline}>
+          <Box>
             {contactItems.map((item, index) => (
               <ContactCard
                 key={item.label}
@@ -79,20 +114,23 @@ export function Contact() {
                 index={index}
               />
             ))}
-          </div>
+          </Box>
 
           {/* CTA */}
-          <m.p
+          <Typography
+            component={m.p}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className={styles.cta}
+            variant="body1"
+            color="text.secondary"
+            sx={{ mt: 4, textAlign: 'center', fontStyle: 'italic' }}
           >
             {t("cta")}
-          </m.p>
-        </m.div>
-      </div>
-    </section>
+          </Typography>
+        </Box>
+      </Container>
+    </Box>
   );
 }

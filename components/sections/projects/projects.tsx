@@ -2,10 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { m } from "framer-motion";
+import { Box, Container, Typography, Button } from "@mui/material";
 import { projects } from "@/lib/constants/portfolio-data";
 import { ProjectCard } from "@/components/widgets";
-import { getButtonClasses } from "@/components/ui/button";
-import styles from './projects.module.scss';
 
 export function Projects() {
   const t = useTranslations("projects");
@@ -14,52 +13,82 @@ export function Projects() {
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className={styles.section} aria-labelledby="projects-heading">
-      <div className={styles.container}>
+    <Box
+      component="section"
+      id="projects"
+      aria-labelledby="projects-heading"
+      sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.paper' }}
+    >
+      <Container maxWidth="xl">
         {/* Section header */}
-        <m.div
+        <Box
+          component={m.div}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={styles.header}
+          sx={{ mb: 6, textAlign: 'center' }}
         >
-          <h2 id="projects-heading" className={styles.title}>{t("title")}</h2>
-          <p className={styles.subtitle}>{t("subtitle")}</p>
-          <div className={styles.accent} />
-        </m.div>
+          <Typography
+            id="projects-heading"
+            variant="h2"
+            sx={{
+              fontSize: { xs: '2rem', md: '3rem' },
+              fontWeight: 700,
+              mb: 2,
+            }}
+          >
+            {t("title")}
+          </Typography>
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+            {t("subtitle")}
+          </Typography>
+          <Box
+            sx={{
+              width: 60,
+              height: 4,
+              bgcolor: 'primary.main',
+              borderRadius: 2,
+              mx: 'auto',
+            }}
+          />
+        </Box>
 
         {/* Featured projects */}
         {featuredProjects.length > 0 && (
-          <div>
-            <m.h3
+          <Box sx={{ mb: 8 }}>
+            <Typography
+              component={m.h3}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className={styles.featuredLabel}
+              variant="h5"
+              sx={{ fontWeight: 600, mb: 4, color: 'primary.main' }}
             >
               {t("featured")}
-            </m.h3>
-            <div className={styles.featuredGrid}>
+            </Typography>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
               {featuredProjects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />
               ))}
-            </div>
-          </div>
+            </Box>
+          </Box>
         )}
 
         {/* Other projects */}
         {otherProjects.length > 0 && (
-          <div>
-            <m.h3
+          <Box>
+            <Typography
+              component={m.h3}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className={styles.otherLabel}
+              variant="h5"
+              sx={{ fontWeight: 600, mb: 4, color: 'text.secondary' }}
             >
               {t("other")}
-            </m.h3>
-            <div className={styles.otherGrid}>
+            </Typography>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: 3 }}>
               {otherProjects.map((project, index) => (
                 <ProjectCard
                   key={project.id}
@@ -67,29 +96,40 @@ export function Projects() {
                   index={index + featuredProjects.length}
                 />
               ))}
-            </div>
-          </div>
+            </Box>
+          </Box>
         )}
 
         {/* Call to action */}
-        <m.div
+        <Box
+          component={m.div}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className={styles.cta}
+          sx={{
+            mt: 8,
+            textAlign: 'center',
+            p: 4,
+            borderRadius: 2,
+            bgcolor: 'action.hover',
+          }}
         >
-          <p className={styles.ctaText}>{t("cta.text")}</p>
-          <a
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            {t("cta.text")}
+          </Typography>
+          <Button
+            component="a"
             href="https://github.com/pguerrerolinares"
             target="_blank"
             rel="noopener noreferrer"
-            className={getButtonClasses({ variant: "primary", size: "md" })}
+            variant="contained"
+            size="large"
           >
             {t("cta.button")}
-          </a>
-        </m.div>
-      </div>
-    </section>
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 }

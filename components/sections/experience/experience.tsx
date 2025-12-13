@@ -2,32 +2,58 @@
 
 import { useTranslations } from "next-intl";
 import { m } from "framer-motion";
+import { Box, Container, Typography, Button } from "@mui/material";
 import { experiences } from "@/lib/constants/portfolio-data";
 import { ExperienceCard } from "@/components/widgets";
-import { FileDownIcon } from "@/components/ui/icon";
-import styles from './experience.module.scss';
+import DownloadIcon from '@mui/icons-material/Download';
 
 export function Experience() {
   const t = useTranslations("experience");
 
   return (
-    <section id="experience" className={styles.section} aria-labelledby="experience-heading">
-      <div className={styles.container}>
+    <Box
+      component="section"
+      id="experience"
+      aria-labelledby="experience-heading"
+      sx={{ py: { xs: 8, md: 12 } }}
+    >
+      <Container maxWidth="xl">
         {/* Section header */}
-        <m.div
+        <Box
+          component={m.div}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={styles.header}
+          sx={{ mb: 6, textAlign: 'center' }}
         >
-          <h2 id="experience-heading" className={styles.title}>{t("title")}</h2>
-          <p className={styles.subtitle}>{t("subtitle")}</p>
-          <div className={styles.accent} />
-        </m.div>
+          <Typography
+            id="experience-heading"
+            variant="h2"
+            sx={{
+              fontSize: { xs: '2rem', md: '3rem' },
+              fontWeight: 700,
+              mb: 2,
+            }}
+          >
+            {t("title")}
+          </Typography>
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+            {t("subtitle")}
+          </Typography>
+          <Box
+            sx={{
+              width: 60,
+              height: 4,
+              bgcolor: 'primary.main',
+              borderRadius: 2,
+              mx: 'auto',
+            }}
+          />
+        </Box>
 
         {/* Timeline */}
-        <div className={styles.timeline}>
+        <Box sx={{ maxWidth: 900, mx: 'auto', mb: 6 }}>
           {experiences.map((experience, index) => (
             <ExperienceCard
               key={experience.id}
@@ -35,28 +61,38 @@ export function Experience() {
               index={index}
             />
           ))}
-        </div>
+        </Box>
 
         {/* Download resume CTA */}
-        <m.div
+        <Box
+          component={m.div}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className={styles.cta}
+          sx={{
+            textAlign: 'center',
+            p: 4,
+            borderRadius: 2,
+            bgcolor: 'action.hover',
+          }}
         >
-          <p className={styles.ctaText}>{t("cta.text")}</p>
-          <a
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            {t("cta.text")}
+          </Typography>
+          <Button
+            component="a"
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.ctaLink}
+            variant="outlined"
+            startIcon={<DownloadIcon />}
+            size="large"
           >
-            <FileDownIcon size={20} />
             {t("cta.button")}
-          </a>
-        </m.div>
-      </div>
-    </section>
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 }
