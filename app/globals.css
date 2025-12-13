@@ -1,0 +1,22 @@
+/* Minimal global styles for MUI integration */
+/* Most styling is handled by MUI theme and CssBaseline */
+
+:root {
+  /* Custom category colors for portfolio */
+  --category-web: #3b82f6;
+  --category-mobile: #22c55e;
+  --category-ai: #a855f7;
+  --category-automation: #f97316;
+  --category-other: #6b7280;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Font smoothing */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
