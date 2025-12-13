@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import styles from './badge.module.scss';
+import { Chip } from "@mui/material";
 
 export interface BadgeProps {
   children: ReactNode;
@@ -14,9 +14,41 @@ export function Badge({
   size = "sm",
   className = ""
 }: BadgeProps) {
+  const muiSize = size === "sm" ? "small" : "medium";
+
+  const getColor = () => {
+    switch (variant) {
+      case "accent":
+        return "primary";
+      case "success":
+        return "success";
+      case "warning":
+        return "warning";
+      case "error":
+        return "error";
+      case "info":
+        return "info";
+      default:
+        return "default";
+    }
+  };
+
+  const chipVariant = variant === "outline" ? "outlined" : "filled";
+
   return (
-    <span className={`${styles.badge} ${styles[variant]} ${styles[size]} ${className}`}>
-      {children}
-    </span>
+    <Chip
+      label={children}
+      size={muiSize}
+      color={getColor() as any}
+      variant={chipVariant}
+      className={className}
+      sx={{
+        fontWeight: 500,
+        ...(variant === "default" && {
+          bgcolor: 'grey.200',
+          color: 'text.primary',
+        }),
+      }}
+    />
   );
 }

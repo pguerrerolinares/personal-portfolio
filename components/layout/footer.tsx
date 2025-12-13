@@ -1,8 +1,9 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { Box, Container, IconButton, Typography, Button } from '@mui/material';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/icon';
-import styles from './footer.module.scss';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 export function Footer() {
   const t = useTranslations('common');
@@ -13,39 +14,87 @@ export function Footer() {
   };
 
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.links}>
-            <a
+    <Box
+      component="footer"
+      sx={{
+        borderTop: 1,
+        borderColor: 'divider',
+        py: 6,
+        mt: 8,
+      }}
+    >
+      <Container maxWidth="xl">
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 3,
+          }}
+        >
+          {/* Social Links */}
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <IconButton
+              component="a"
               href="https://github.com/pguerrerolinares"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.socialLink}
               aria-label="GitHub"
+              sx={{
+                color: 'text.primary',
+                transition: 'color 0.2s',
+                '&:hover': {
+                  color: 'primary.main',
+                },
+              }}
             >
               <GithubIcon size={20} />
-            </a>
-            <a
+            </IconButton>
+            <IconButton
+              component="a"
               href="https://www.linkedin.com/in/paul-guerrero-linares-584759134"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.socialLink}
               aria-label="LinkedIn"
+              sx={{
+                color: 'text.primary',
+                transition: 'color 0.2s',
+                '&:hover': {
+                  color: 'primary.main',
+                },
+              }}
             >
               <LinkedinIcon size={20} />
-            </a>
-          </div>
+            </IconButton>
+          </Box>
 
-          <p className={styles.year}>
+          {/* Copyright */}
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ textAlign: 'center' }}
+          >
             &copy; {currentYear} Paul Guerrero Linares
-          </p>
+          </Typography>
 
-          <button onClick={scrollToTop} className={styles.backToTop}>
+          {/* Back to Top Button */}
+          <Button
+            onClick={scrollToTop}
+            endIcon={<KeyboardArrowUpIcon />}
+            size="small"
+            sx={{
+              color: 'text.secondary',
+              '&:hover': {
+                color: 'primary.main',
+                bgcolor: 'action.hover',
+              },
+            }}
+          >
             {t('backToTop')}
-          </button>
-        </div>
-      </div>
-    </footer>
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 }

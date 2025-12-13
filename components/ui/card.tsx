@@ -1,6 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
+import { Card as MuiCard } from "@mui/material";
 import { m, type HTMLMotionProps } from "framer-motion";
 
 interface CardProps extends Omit<HTMLMotionProps<"div">, "children"> {
@@ -10,13 +11,7 @@ interface CardProps extends Omit<HTMLMotionProps<"div">, "children"> {
     index?: number;
 }
 
-const variants = {
-    default: "bg-foreground/[0.02] border border-foreground/10",
-    ghost: "bg-transparent",
-    outline: "bg-transparent border border-foreground/10",
-};
-
-const hoverStyles = "hover:border-foreground/20 hover:bg-foreground/[0.04] transition-all duration-300";
+const MotionCard = m(MuiCard);
 
 export function Card({
     children,
@@ -27,15 +22,32 @@ export function Card({
     ...props
 }: CardProps) {
     return (
-        <m.div
+        <MotionCard
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
-            className={`rounded-xl p-6 ${variants[variant]} ${hover ? hoverStyles : ""} ${className}`}
+            elevation={variant === "default" ? 1 : 0}
+            variant={variant === "outline" ? "outlined" : "elevation"}
+            className={className}
+            sx={{
+                p: 3,
+                borderRadius: 3,
+                ...(variant === "ghost" && {
+                    bgcolor: 'transparent',
+                    boxShadow: 'none',
+                }),
+                ...(hover && {
+                    transition: 'all 0.3s',
+                    '&:hover': {
+                        borderColor: 'divider',
+                        bgcolor: 'action.hover',
+                    },
+                }),
+            }}
             {...props}
         >
             {children}
-        </m.div>
+        </MotionCard>
     );
 }

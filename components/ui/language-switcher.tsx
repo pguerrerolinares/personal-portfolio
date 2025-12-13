@@ -3,7 +3,8 @@
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition, useEffect, useRef } from 'react';
-import styles from './language-switcher.module.scss';
+import { Button } from '@mui/material';
+import LanguageIcon from '@mui/icons-material/Language';
 
 export function LanguageSwitcher() {
   const locale = useLocale();
@@ -35,13 +36,23 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <button
+    <Button
       onClick={() => switchLocale(locale === 'es' ? 'en' : 'es')}
       disabled={isPending}
-      className={styles.button}
+      size="small"
+      startIcon={<LanguageIcon />}
       aria-label="Switch language"
+      sx={{
+        color: 'text.primary',
+        textTransform: 'uppercase',
+        fontWeight: 600,
+        fontSize: '0.875rem',
+        '&:hover': {
+          bgcolor: 'action.hover',
+        },
+      }}
     >
       {locale === 'es' ? 'EN' : 'ES'}
-    </button>
+    </Button>
   );
 }

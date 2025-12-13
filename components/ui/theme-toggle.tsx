@@ -2,7 +2,9 @@
 
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import styles from './theme-toggle.module.scss';
+import { IconButton } from '@mui/material';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -13,50 +15,27 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className={styles.button} />;
+    return (
+      <IconButton size="small" disabled>
+        <LightModeIcon />
+      </IconButton>
+    );
   }
 
   return (
-    <button
+    <IconButton
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className={styles.button}
       aria-label="Toggle theme"
+      size="small"
+      sx={{
+        color: 'text.primary',
+        transition: 'transform 0.2s',
+        '&:hover': {
+          transform: 'rotate(15deg)',
+        },
+      }}
     >
-      {theme === 'dark' ? (
-        <svg
-          className={styles.icon}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2" />
-          <path d="M12 20v2" />
-          <path d="m4.93 4.93 1.41 1.41" />
-          <path d="m17.66 17.66 1.41 1.41" />
-          <path d="M2 12h2" />
-          <path d="M20 12h2" />
-          <path d="m6.34 17.66-1.41 1.41" />
-          <path d="m19.07 4.93-1.41 1.41" />
-        </svg>
-      ) : (
-        <svg
-          className={styles.icon}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </svg>
-      )}
-    </button>
+      {theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+    </IconButton>
   );
 }
