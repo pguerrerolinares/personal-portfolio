@@ -16,6 +16,7 @@ export function Footer() {
   return (
     <Box
       component="footer"
+      data-component="Footer"
       sx={{
         borderTop: 1,
         borderColor: 'divider',

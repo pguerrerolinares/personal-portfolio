@@ -23,9 +23,10 @@ export function TimelineItem({
 }: TimelineItemProps) {
     return (
         <FadeIn
+            data-component="TimelineItem"
             delay={index * 0.1}
             direction="right"
-            sx={{ position: 'relative', pl: { xs: 2, md: 4 }, pb: isLast ? 0 : 3, ...sx }}
+            sx={{ position: 'relative', pl: { xs: 0, md: 4 }, pb: isLast ? 0 : 3, ...sx }}
             {...(props as any)}
         >
             {/* Timeline line */}
@@ -33,10 +34,11 @@ export function TimelineItem({
                 <Box
                     sx={{
                         position: 'absolute',
-                        left: { xs: 4, md: 12 },
+                        left: { xs: 5, md: 12 },
                         top: 0,
                         bottom: 0,
                         width: 2,
+                        display: { xs: 'none', md: 'block' },
                         bgcolor: lineColor,
                     }}
                 />
@@ -59,13 +61,14 @@ export function TimelineItem({
                     width: 12,
                     height: 12,
                     borderRadius: '50%',
+                    display: { xs: 'none', md: 'block' },
                     bgcolor: dotColor,
                     border: 3,
                     borderColor: 'background.default',
                 }}
             />
 
-            <Box sx={{ ml: { xs: 2, md: 4 } }}>
+            <Box sx={{ ml: { xs: 0, md: 4 } }}>
                 {children}
             </Box>
         </FadeIn>

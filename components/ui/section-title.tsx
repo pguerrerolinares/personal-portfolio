@@ -30,6 +30,7 @@ export function SectionTitle({
         ...sx
       }}
       id={id}
+      data-component="SectionTitle"
       {...props}
     >
       <Typography
@@ -75,6 +76,7 @@ export function SectionSubtitle({ children, sx, ...props }: SectionSubtitleProps
         ...sx,
       }}
       {...props}
+      data-component="SectionSubtitle"
     >
       {children}
     </Typography>

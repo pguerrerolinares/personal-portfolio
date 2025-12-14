@@ -4,10 +4,11 @@ import { useTranslations } from "next-intl";
 import { m } from "framer-motion";
 import { Box, Typography, Button } from "@mui/material";
 import { projects } from "@/lib/constants/portfolio-data";
-import { ProjectCard } from "@/components/widgets";
+import { ProjectCard } from "./project-card";
 import { SectionContainer } from "@/components/ui/section-container";
 import { SectionTitle, SectionSubtitle } from "@/components/ui/section-title";
 import { GithubIcon } from "@/components/ui/icon";
+import { LAYOUT } from "@/lib/theme/layout";
 
 export function Projects() {
   const t = useTranslations("projects");
@@ -16,20 +17,20 @@ export function Projects() {
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
-    <SectionContainer id="projects" bgcolor="paper">
+    <SectionContainer id="projects" data-component="Projects" bgcolor="paper">
       <SectionTitle id="projects-heading" subtitle={t("subtitle")}>
         {t("title")}
       </SectionTitle>
 
       {/* Featured projects */}
       {featuredProjects.length > 0 && (
-        <Box sx={{ mb: { xs: 6, md: 8 } }}>
+        <Box sx={{ mb: LAYOUT.spacing.section }}>
           <SectionSubtitle>{t("featured")}</SectionSubtitle>
           <Box
             sx={{
               display: 'grid',
               gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
-              gap: { xs: 3, md: 4 },
+              gap: LAYOUT.spacing.grid,
             }}
           >
             {featuredProjects.map((project, index) => (
@@ -69,10 +70,10 @@ export function Projects() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.3 }}
         sx={{
-          mt: { xs: 6, md: 8 },
+          mt: LAYOUT.spacing.section,
           textAlign: 'center',
-          p: { xs: 3, md: 4 },
-          borderRadius: 3,
+          p: LAYOUT.spacing.grid,
+          borderRadius: LAYOUT.borderRadius.lg,
           bgcolor: 'action.hover',
           border: 1,
           borderColor: 'divider',

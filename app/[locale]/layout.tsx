@@ -3,7 +3,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Box } from '@mui/material';
 import { routing } from '@/i18n/routing';
-import { Providers } from '@/components/providers';
+import { Providers } from '@/components/providers/index';
 import { LazyMotionProvider } from '@/components/providers/lazy-motion-provider';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
 import { PageTransition } from '@/components/ui/page-transition';

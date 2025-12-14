@@ -28,6 +28,7 @@ export function ContactCard({
             role={href ? undefined : "article"}
             aria-label={`Contact: ${label}`}
             hoverShadow={!!href}
+            data-component="ContactCard"
         >
             <CardContent>
                 <Stack direction="row" spacing={2} alignItems="center">

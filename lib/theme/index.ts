@@ -7,9 +7,9 @@ const commonThemeOptions: ThemeOptions = {
   typography,
   shadows,
   shape: {
-    borderRadius: 12, // Larger, more modern radius
+    borderRadius: 12, // kept as number for compatibility, or change to string if allowed? MUI shape.borderRadius is usually number or string. Let's use standard sizing in component overrides
   },
-  spacing: 8, // 8px base spacing unit (mobile-first)
+  spacing: (factor: number) => `${0.25 * factor}rem`, // 1 unit = 4px = 0.25rem
   breakpoints: {
     values: {
       xs: 0,
@@ -24,7 +24,7 @@ const commonThemeOptions: ThemeOptions = {
       styleOverrides: {
         html: {
           scrollBehavior: 'smooth',
-          fontSize: 16,
+          fontSize: '100%', // Browser default (usually 16px)
         },
         body: {
           WebkitFontSmoothing: 'antialiased',
@@ -39,8 +39,8 @@ const commonThemeOptions: ThemeOptions = {
           textDecoration: 'none',
         },
         '::-webkit-scrollbar': {
-          width: 8,
-          height: 8,
+          width: '0.5rem',
+          height: '0.5rem',
         },
         '::-webkit-scrollbar-track': {
           background: 'transparent',
@@ -64,15 +64,15 @@ const commonThemeOptions: ThemeOptions = {
       },
       styleOverrides: {
         root: {
-          paddingLeft: 16, // Mobile-first: 16px on mobile
-          paddingRight: 16,
+          paddingLeft: '1.5rem', // 24px - Increased for better mobile breathing room
+          paddingRight: '1.5rem',
           '@media (min-width: 640px)': {
-            paddingLeft: 24, // 24px on tablet
-            paddingRight: 24,
+            paddingLeft: '1.5rem', // 24px
+            paddingRight: '1.5rem',
           },
           '@media (min-width: 1024px)': {
-            paddingLeft: 32, // 32px on desktop
-            paddingRight: 32,
+            paddingLeft: '2rem', // 32px
+            paddingRight: '2rem',
           },
         },
       },
@@ -80,31 +80,31 @@ const commonThemeOptions: ThemeOptions = {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
+          borderRadius: '0.5rem', // 8px
           textTransform: 'none',
           fontWeight: 600,
-          padding: '10px 24px',
+          padding: '0.625rem 1.5rem', // 10px 24px
           transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)',
           '&:hover': {
             transform: 'translateY(-2px)',
           },
         },
         sizeLarge: {
-          padding: '12px 32px',
+          padding: '0.75rem 2rem', // 12px 32px
           fontSize: '1rem',
         },
         sizeMedium: {
-          padding: '10px 24px',
+          padding: '0.625rem 1.5rem',
         },
         sizeSmall: {
-          padding: '6px 16px',
+          padding: '0.375rem 1rem', // 6px 16px
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 16,
+          borderRadius: '1rem', // 16px
           transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)',
         },
       },
@@ -115,14 +115,14 @@ const commonThemeOptions: ThemeOptions = {
           backgroundImage: 'none',
         },
         rounded: {
-          borderRadius: 16,
+          borderRadius: '1rem', // 16px
         },
       },
     },
     MuiChip: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
+          borderRadius: '0.5rem', // 8px
           fontWeight: 500,
         },
       },

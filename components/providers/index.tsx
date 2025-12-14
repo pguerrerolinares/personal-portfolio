@@ -1,8 +1,8 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { MuiNextThemeProvider } from '@/components/theme-provider';
-import { ToastProvider } from '@/components/ui/toast-provider';
+import { MuiNextThemeProvider } from '@/components/providers/theme-provider';
+import { ToastProvider } from '@/components/providers/toast-provider';
 
 interface ProvidersProps {
   children: ReactNode;

@@ -60,6 +60,7 @@ export function Navbar() {
       </Box>
 
       <AppBar
+        data-component="Navbar"
         position="sticky"
         elevation={trigger ? 2 : 0}
         sx={{

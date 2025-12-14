@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 import { Chip, alpha, useTheme } from "@mui/material";
 
-export interface BadgeProps {
+export interface BadgeProps extends Omit<React.ComponentProps<typeof Chip>, 'color' | 'variant' | 'children' | 'size'> {
   children: ReactNode;
   variant?: "default" | "accent" | "success" | "warning" | "error" | "info" | "outline";
   size?: "sm" | "md";
@@ -12,7 +12,9 @@ export function Badge({
   children,
   variant = "default",
   size = "sm",
-  className = ""
+  className = "",
+  sx,
+  ...props
 }: BadgeProps) {
   const theme = useTheme();
   const muiSize = size === "sm" ? "small" : "medium";
@@ -65,7 +67,9 @@ export function Badge({
           color: 'text.primary',
           border: `1px solid ${theme.palette.divider}`,
         }),
+        ...sx,
       }}
+      {...props}
     />
   );
 }

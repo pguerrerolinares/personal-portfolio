@@ -6,11 +6,12 @@ import { Box, Typography, Divider } from "@mui/material";
 import {
   skills,
   skillCategories,
-  type SkillCategory,
 } from "@/lib/constants/portfolio-data";
-import { SkillBadge } from "@/components/widgets";
+import type { SkillCategory } from "@/types";
+import { SkillBadge } from "./skill-badge";
 import { SectionContainer } from "@/components/ui/section-container";
 import { SectionTitle, SectionSubtitle } from "@/components/ui/section-title";
+import { LAYOUT } from "@/lib/theme/layout";
 
 const container = {
   hidden: { opacity: 0 },
@@ -49,10 +50,10 @@ export function About() {
   ];
 
   return (
-    <SectionContainer id="about">
+    <SectionContainer id="about" data-component="About">
       <SectionTitle id="about-heading">{t("title")}</SectionTitle>
 
-      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: { xs: 6, md: 8 } }}>
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: LAYOUT.spacing.container }}>
         {/* Bio section */}
         <Box sx={{ flex: 1 }}>
           <Box
@@ -81,13 +82,13 @@ export function About() {
               component={m.div}
               variants={item}
               sx={{
-                mt: 6,
-                p: { xs: 3, md: 4 },
+                mt: LAYOUT.spacing.container,
+                p: LAYOUT.spacing.grid,
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: { xs: 2, md: 3 },
+                gap: LAYOUT.spacing.grid,
                 bgcolor: 'background.paper',
-                borderRadius: 3,
+                borderRadius: LAYOUT.borderRadius.lg,
                 border: 1,
                 borderColor: 'divider',
                 alignItems: 'start', // Ensure top alignment if heights differ, or 'center'
@@ -102,7 +103,7 @@ export function About() {
                 </Typography>
               </Box>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <Typography variant="h4" sx={{ fontWeight: 700, color: 'success.main', mb: 1 }}>
+                <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main', mb: 1 }}>
                   {skills.length}+
                 </Typography>
                 <Typography variant="body2" color="text.secondary" align="center">
@@ -110,11 +111,11 @@ export function About() {
                 </Typography>
               </Box>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <Typography 
-                  variant="h4" 
-                  sx={{ 
-                    fontWeight: 700, 
-                    color: 'accent.purple', 
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    color: 'primary.main',
                     mb: 1,
                     fontSize: { xs: '1.5rem', sm: '2.125rem' } // Slightly smaller on mobile to fit "Full-Stack"
                   }}
@@ -148,7 +149,7 @@ export function About() {
                   variant="subtitle1"
                   sx={{
                     fontWeight: 600,
-                    color: 'primary.main',
+                    color: 'text.secondary',
                     mb: 2,
                   }}
                 >
@@ -171,6 +172,6 @@ export function About() {
           </Box>
         </Box>
       </Box>
-    </SectionContainer>
+    </SectionContainer >
   );
 }

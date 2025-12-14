@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { m } from "framer-motion";
 import { Box, Typography } from "@mui/material";
 import { personalInfo } from "@/lib/constants/portfolio-data";
-import { ContactCard } from "@/components/widgets";
+import { ContactCard } from "./contact-card";
 import { SectionContainer } from "@/components/ui/section-container";
 import { SectionTitle, SectionSubtitle } from "@/components/ui/section-title";
 import { MailIcon, GithubIcon, LinkedinIcon, MapPinIcon } from "@/components/ui/icon";
@@ -42,7 +42,7 @@ export function Contact() {
   ];
 
   return (
-    <SectionContainer id="contact" bgcolor="paper">
+    <SectionContainer id="contact" bgcolor="paper" data-component="Contact">
       <SectionTitle id="contact-heading" subtitle={t("subtitle")}>
         {t("title")}
       </SectionTitle>
@@ -56,16 +56,6 @@ export function Contact() {
         transition={{ duration: 0.5 }}
         sx={{ maxWidth: 700, mx: 'auto' }}
       >
-        <SectionSubtitle sx={{ textAlign: 'center', mb: 2, color: 'text.primary' }}>
-          {t("info.title")}
-        </SectionSubtitle>
-        <Typography
-          variant="body1"
-          color="text.secondary"
-          sx={{ mb: { xs: 4, md: 6 }, textAlign: 'center' }}
-        >
-          {t("info.description")}
-        </Typography>
 
         {/* Timeline of contact methods */}
         <Box>

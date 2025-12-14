@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Box, CardContent, Typography, Chip, Stack, Avatar } from "@mui/material";
 import { HoverCard, TimelineItem } from "@/components/ui";
 import { BriefcaseIcon, CodeIcon, CalendarIcon, Building2Icon } from "@/components/ui/icon";
-import type { Experience } from "@/lib/constants/portfolio-data";
+import type { Experience } from "@/types";
 
 interface ExperienceCardProps {
   experience: Experience;
@@ -57,15 +57,16 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
         tabIndex={0}
         role="article"
         aria-label={`Experience: ${role} at ${company}`}
+        data-component="ExperienceCard"
       >
         <CardContent>
+          {/* Header */}
           {/* Header */}
           <Stack direction="row" spacing={2} alignItems="flex-start" sx={{ mb: 2 }}>
             <Avatar
               sx={{
-                bgcolor: 'primary.main',
-                width: 48,
-                height: 48,
+                width: { xs: '2.5rem', md: '3rem' }, // 40px / 48px
+                height: { xs: '2.5rem', md: '3rem' },
               }}
             >
               {experience.type === "personal" ? (
@@ -76,21 +77,30 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
             </Avatar>
 
             <Box sx={{ flex: 1 }}>
-              <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                {role}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {company}
-              </Typography>
-            </Box>
+              <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                justifyContent="space-between"
+                alignItems="flex-start"
+                spacing={1}
+              >
+                <Box>
+                  <Typography variant="h6" sx={{ fontWeight: 600, lineHeight: 1.3 }}>
+                    {role}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {company}
+                  </Typography>
+                </Box>
 
-            <Chip
-              icon={<Icon size={12} />}
-              label={tCommon(`experienceTypes.${experience.type}`)}
-              size="small"
-              color="primary"
-              variant="outlined"
-            />
+                <Chip
+                  icon={<Icon size={12} />}
+                  label={tCommon(`experienceTypes.${experience.type}`)}
+                  size="small"
+                  color="primary"
+                  variant="outlined"
+                />
+              </Stack>
+            </Box>
           </Stack>
 
           {/* Date */}
@@ -109,7 +119,7 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
 
           {/* Highlights */}
           {highlights.length > 0 && (
-            <Box component="ul" sx={{ pl: 2, mb: 2, m: 0 }}>
+            <Box component="ul" sx={{ m: 0, pl: 2, mb: 2 }}>
               {highlights.map((highlight, i) => (
                 <Typography
                   key={i}

@@ -37,6 +37,7 @@ export function LanguageSwitcher() {
 
   return (
     <Button
+      data-component="LanguageSwitcher"
       onClick={() => switchLocale(locale === 'es' ? 'en' : 'es')}
       disabled={isPending}
       size="small"

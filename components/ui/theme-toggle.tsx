@@ -24,6 +24,7 @@ export function ThemeToggle() {
 
   return (
     <IconButton
+      data-component="ThemeToggle"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       aria-label="Toggle theme"
       size="small"

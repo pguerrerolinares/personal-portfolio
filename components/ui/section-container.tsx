@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, Container, ContainerProps } from "@mui/material";
+import { LAYOUT } from "@/lib/theme/layout";
 
 interface SectionContainerProps extends Omit<ContainerProps, 'component'> {
   children: React.ReactNode;
@@ -10,9 +11,9 @@ interface SectionContainerProps extends Omit<ContainerProps, 'component'> {
 }
 
 const spacingMap = {
-  sm: { xs: 6, md: 8 },
-  md: { xs: 8, md: 12 },
-  lg: { xs: 10, md: 16 },
+  sm: { xs: 6, md: 10 },
+  md: LAYOUT.spacing.section, // { xs: 10, md: 16 }
+  lg: { xs: 12, md: 24 },
 };
 
 export function SectionContainer({

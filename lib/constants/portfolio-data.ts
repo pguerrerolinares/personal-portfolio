@@ -1,3 +1,5 @@
+import { Experience, Project, Skill, SkillCategory } from "@/types";
+
 export const personalInfo = {
   name: "Paul Guerrero Linares",
   initials: "PGL",
@@ -19,21 +21,6 @@ Notable for designing and maintaining high-level pipelines, especially in OCR, c
   },
   resumeUrl: "/resume.pdf", // Add your resume file to public folder
 } as const;
-
-export type SkillCategory =
-  | "frontend"
-  | "backend"
-  | "ai-ml"
-  | "devops"
-  | "tools"
-  | "methodologies";
-
-export interface Skill {
-  name: string;
-  category: SkillCategory;
-  level: "expert" | "advanced" | "intermediate";
-  icon?: string;
-}
 
 export const skills: Skill[] = [
   // Frontend
@@ -74,18 +61,6 @@ export const skills: Skill[] = [
   { name: "Scrum", category: "methodologies", level: "expert" },
   { name: "Agile", category: "methodologies", level: "expert" },
 ];
-
-export interface Experience {
-  id: string;
-  company: string;
-  role: string;
-  startDate: string;
-  endDate: string | null; // null means "Present"
-  description: string;
-  highlights: string[];
-  technologies: string[];
-  type: "fulltime" | "freelance" | "personal";
-}
 
 export const experiences: Experience[] = [
   {
@@ -163,19 +138,6 @@ export const experiences: Experience[] = [
     type: "personal",
   },
 ];
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  longDescription?: string;
-  image?: string;
-  technologies: string[];
-  liveUrl?: string;
-  githubUrl?: string;
-  featured: boolean;
-  category: "web" | "mobile" | "ai" | "automation" | "other";
-}
 
 export const projects: Project[] = [
   {

@@ -6,7 +6,7 @@ import { Box, CardContent, Typography, IconButton, Stack, alpha } from "@mui/mat
 import { FadeIn, HoverCard } from "@/components/ui";
 import { ExternalLinkIcon, GithubIcon, GlobeIcon, SmartphoneIcon, BrainIcon, BotIcon, FolderIcon } from "@/components/ui/icon";
 import { Badge } from "@/components/ui/badge";
-import type { Project } from "@/lib/constants/portfolio-data";
+import type { Project } from "@/types";
 
 interface ProjectCardProps {
   project: Project;
@@ -40,6 +40,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         tabIndex={0}
         role="article"
         aria-label={`Project: ${title}`}
+        data-component="ProjectCard"
         sx={{
           height: '100%',
           display: 'flex',

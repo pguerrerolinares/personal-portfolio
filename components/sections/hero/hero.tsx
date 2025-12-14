@@ -8,6 +8,7 @@ import { personalInfo } from "@/lib/constants/portfolio-data";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, LinkedinIcon, ArrowDownIcon } from "@/components/ui/icon";
+import { LAYOUT } from "@/lib/theme/layout";
 
 const container = {
   hidden: { opacity: 0 },
@@ -38,6 +39,7 @@ export function Hero() {
       component="section"
       id="hero"
       aria-label="Introduction"
+      data-component="Hero"
       sx={{
         position: 'relative',
         minHeight: '100vh',
@@ -57,12 +59,12 @@ export function Hero() {
           sx={{
             position: 'relative',
             zIndex: 1,
-            py: { xs: 8, md: 12 },
+            py: LAYOUT.spacing.section,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             textAlign: 'center',
-            gap: 3,
+            gap: LAYOUT.spacing.grid,
           }}
         >
           <Typography
@@ -206,7 +208,7 @@ export function Hero() {
         transition={{ delay: 1.5, duration: 0.5 }}
         sx={{
           position: 'absolute',
-          bottom: 32,
+          bottom: '2rem',
           left: '50%',
           transform: 'translateX(-50%)',
           color: 'text.secondary',
