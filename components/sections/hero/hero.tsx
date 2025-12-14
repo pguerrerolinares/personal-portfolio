@@ -6,7 +6,7 @@ import { Box, Container, Typography, Stack } from "@mui/material";
 import { Link } from "@/i18n/routing";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { AnimatedBackground } from "@/components/ui/animated-background";
-import { getButtonClasses } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { useMagnetic } from "@/lib/hooks/use-magnetic";
 import { GithubIcon, LinkedinIcon, ArrowDownIcon } from "@/components/ui/icon";
 
@@ -32,7 +32,7 @@ const item = {
 
 export function Hero() {
   const t = useTranslations("hero");
-  const magneticProps = useMagnetic(0.1);
+  const magneticProps = useMagnetic<HTMLAnchorElement>(0.1);
 
   return (
     <Box
@@ -72,7 +72,10 @@ export function Hero() {
             variant="body1"
             sx={{
               color: 'primary.main',
-              fontWeight: 500,
+              fontWeight: 600,
+              fontSize: { xs: '0.875rem', md: '1rem' },
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
             }}
           >
             {t("greeting")}
@@ -83,12 +86,16 @@ export function Hero() {
             variants={item}
             variant="h1"
             sx={{
-              fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
-              fontWeight: 700,
-              background: 'linear-gradient(135deg, var(--foreground) 0%, var(--muted) 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              fontSize: { xs: '3rem', sm: '4rem', md: '5rem', lg: '6rem' },
+              fontWeight: 800,
+              lineHeight: 1.1,
+              mb: 2,
+              background: (theme) =>
+                `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
               backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              textShadow: 'none',
             }}
           >
             {t("name")}
@@ -99,9 +106,10 @@ export function Hero() {
             variants={item}
             variant="h4"
             sx={{
-              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+              fontSize: { xs: '1.25rem', sm: '1.75rem', md: '2rem' },
               fontWeight: 600,
               color: 'text.primary',
+              mb: 2,
             }}
           >
             {t("role")}
@@ -115,7 +123,8 @@ export function Hero() {
               maxWidth: '42rem',
               fontSize: { xs: '1rem', md: '1.125rem' },
               color: 'text.secondary',
-              lineHeight: 1.7,
+              lineHeight: 1.8,
+              px: { xs: 2, sm: 0 },
             }}
           >
             {t("description")}
@@ -129,22 +138,26 @@ export function Hero() {
             sx={{ mt: 2 }}
           >
             <m.div style={{ x: magneticProps.x, y: magneticProps.y }}>
-              <Link
-                ref={magneticProps.ref}
+              <Button
+                component={Link}
                 href="#projects"
-                className={getButtonClasses({ variant: "primary", size: "md" })}
-                onMouseMove={magneticProps.onMouseMove}
-                onMouseLeave={magneticProps.onMouseLeave}
+                ref={magneticProps.ref as any}
+                variant="primary"
+                size="md"
+                onMouseMove={magneticProps.onMouseMove as any}
+                onMouseLeave={magneticProps.onMouseLeave as any}
               >
                 {t("cta.projects")}
-              </Link>
+              </Button>
             </m.div>
-            <Link
+            <Button
+              component={Link}
               href="#contact"
-              className={getButtonClasses({ variant: "outline", size: "md" })}
+              variant="outline"
+              size="md"
             >
               {t("cta.contact")}
-            </Link>
+            </Button>
           </Stack>
 
           <Stack

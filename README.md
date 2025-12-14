@@ -1,19 +1,21 @@
 # Portfolio Personal - Paul Guerrero Linares
 
-Portfolio personal, desarrollado con Next.js 16, TypeScript, Bun y SCSS.
+Portfolio personal moderno, desarrollado con Next.js 16, TypeScript, Material UI y Bun.
 
 ## 🚀 Características
 
-- **Diseño minimalista**: Interfaz minimalista y profesional con mucho espacio en blanco
+- **Diseño moderno**: Interfaz profesional con Material UI y sistema de diseño cohesivo
+- **Paleta complementaria**: Colores Blue (primario) + Orange (secundario) + Purple (acento)
 - **Bilingüe**: Soporte para Español (es_ES) e Inglés (en_US) con toggle
 - **Dark/Light Mode**: Tema oscuro y claro con toggle y detección automática
-- **Responsive**: Mobile-first, adaptado a todos los dispositivos
-- **Animaciones premium**: Transiciones fluidas, efectos de hover, scroll progress y micro-interacciones con Framer Motion
+- **Mobile-First**: Diseño responsive optimizado para todos los dispositivos
+- **Animaciones premium**: Transiciones fluidas, efectos de hover y micro-interacciones con Framer Motion
 - **Optimizado**: Performance optimizado con Next.js 16 y Turbopack
 - **TypeScript**: Código type-safe con TypeScript estricto
-- **SCSS Design System**: Sistema de diseño completo con tokens, elevación y gradientes
+- **Material UI v7**: Sistema de diseño completo con Emotion CSS-in-JS
+- **Componentes estandarizados**: SectionContainer, SectionTitle, StandardCard para consistencia
 - **Accesibilidad**: WCAG AA compliant con soporte para reduced motion y navegación por teclado
-- **Interacciones avanzadas**: Magnetic hover effects, gradient borders, section reveals
+- **Interacciones avanzadas**: Magnetic hover effects, card animations, section reveals
 
 ## 📋 Requisitos
 
@@ -97,60 +99,57 @@ https://pguerrerolinares.github.io/personal-portfolio/
 portfolio-personal/
 ├── app/
 │   ├── layout.tsx              # Root layout (fonts, metadata)
+│   ├── globals.css             # Minimal global styles
 │   ├── [locale]/               # Rutas internacionalizadas
-│   │   ├── layout.tsx          # Layout con navbar/footer
-│   │   ├── layout.module.scss  # Estilos del layout (colocados)
+│   │   ├── layout.tsx          # Layout con navbar/footer + MUI providers
 │   │   ├── page.tsx            # Home page
-│   │   ├── not-found.tsx       # Página 404
-│   │   └── not-found.module.scss
+│   │   └── not-found.tsx       # Página 404
 │   ├── sitemap.ts              # SEO sitemap
 │   └── robots.ts               # SEO robots.txt
 │
 ├── components/
 │   ├── layout/                 # Componentes de layout
-│   │   ├── navbar.tsx
-│   │   ├── navbar.module.scss
-│   │   └── ...
+│   │   ├── navbar.tsx          # AppBar + Drawer navigation
+│   │   └── footer.tsx          # Footer con links sociales
 │   ├── providers/              # Providers globales
 │   │   ├── lazy-motion-provider.tsx  # LazyMotion + MotionConfig
-│   │   └── ...
+│   │   └── theme-provider.tsx        # MUI + next-themes integration
 │   ├── sections/               # Secciones (organizadas por carpeta)
 │   │   ├── hero/
-│   │   │   ├── hero.tsx
-│   │   │   └── hero.module.scss
+│   │   │   └── hero.tsx        # Hero con gradient text
 │   │   ├── about/
-│   │   │   ├── about.tsx
-│   │   │   └── about.module.scss
-│   │   └── ...
+│   │   │   └── about.tsx       # About con skills
+│   │   ├── projects/
+│   │   │   └── projects.tsx    # Projects grid
+│   │   ├── experience/
+│   │   │   └── experience.tsx  # Timeline de experiencia
+│   │   └── contact/
+│   │       └── contact.tsx     # Contact cards
 │   ├── widgets/                # Widgets reutilizables
-│   │   ├── project-card.tsx
-│   │   ├── project-card.module.scss
-│   │   └── ...
+│   │   ├── project-card.tsx    # Card con gradientes
+│   │   ├── experience-card.tsx # Card con timeline
+│   │   ├── contact-card.tsx    # Card interactiva
+│   │   └── skill-badge.tsx     # Chip con hover effect
 │   └── ui/                     # Componentes UI base
-│       ├── animated-section.tsx      # Section reveal animations
-│       ├── button.tsx                # Button component
-│       ├── button.module.scss
-│       ├── badge.tsx                 # Badge component
-│       ├── badge.module.scss
-│       ├── spinner.tsx               # Loading spinner
-│       ├── spinner.module.scss
-│       ├── scroll-progress.tsx       # Scroll progress bar
-│       ├── scroll-progress.module.scss
-│       ├── page-transition.tsx       # Page transitions
+│       ├── section-container.tsx     # Wrapper estandarizado
+│       ├── section-title.tsx         # Title + Subtitle estandarizados
+│       ├── standard-card.tsx         # Card con animaciones
+│       ├── animated-background.tsx   # Background con partículas
+│       ├── scroll-progress.tsx       # Barra de progreso
+│       ├── page-transition.tsx       # Transiciones de página
 │       ├── toast-provider.tsx        # Toast notifications (Sonner)
 │       ├── icon.tsx                  # Sistema de iconos (Simple Icons)
-│       ├── theme-toggle.tsx
+│       ├── theme-toggle.tsx          # Toggle dark/light
 │       └── ...
 │
-├── styles/                     # Design System SCSS Global
-│   ├── globals.scss            # Estilos base + CSS variables
-│   ├── _variables.scss         # Design tokens (colores, spacing, etc.)
-│   ├── _mixins.scss            # Mixins reutilizables
-│   ├── _typography.scss        # Estilos de tipografía
-│   └── _animations.scss        # Keyframes y animaciones
-│
 ├── lib/
+│   ├── theme/                  # Material UI theme
+│   │   ├── palette.ts          # Paleta de colores (light + dark)
+│   │   ├── typography.ts       # Sistema de tipografía
+│   │   ├── shadows.ts          # Sistema de sombras
+│   │   └── index.ts            # Theme principal
 │   ├── constants/              # Datos del portfolio
+│   │   └── portfolio-data.ts   # Información personal, skills, proyectos, etc.
 │   └── hooks/                  # Custom React hooks
 │       ├── use-magnetic.ts     # Magnetic hover effect
 │       └── use-reduced-motion.ts  # Reduced motion detection
@@ -164,28 +163,50 @@ portfolio-personal/
 
 - **Framework**: Next.js 16 (App Router + Turbopack)
 - **Lenguaje**: TypeScript 5
-- **Estilos**: SCSS + CSS Modules
+- **UI Library**: Material UI (MUI) v7
+- **Estilos**: Emotion CSS-in-JS + MUI sx prop
 - **Animaciones**: Framer Motion (LazyMotion + domAnimation)
 - **Internacionalización**: next-intl
-- **Tema**: next-themes
-- **Iconos**: Custom Icon System (Simple Icons SVG paths)
+- **Tema**: next-themes + MUI ThemeProvider
+- **Iconos**: Custom Icon System (Simple Icons SVG paths) + MUI Icons
 - **Notificaciones**: Sonner (toast notifications)
 - **Runtime**: Bun
 
 ## ✨ Características Premium
 
+### 🎨 Sistema de Diseño Material UI
+
+#### Paleta de Colores Complementaria
+- **Primary**: Blue (#2563eb) - Profesional y confiable
+- **Secondary**: Orange (#f97316) - Complementario al azul, añade calidez
+- **Accent**: Purple (#a855f7), Pink (#ec4899), Cyan (#06b6d4) - Para variedad
+- **Text**: Alto contraste para mejor legibilidad
+- **Dark Mode**: Deep blue-gray (#0f172a) con contraste optimizado
+
+#### Componentes Estandarizados
+- **SectionContainer**: Wrapper con spacing consistente (sm/md/lg presets)
+- **SectionTitle**: Títulos con gradiente primary → secondary
+- **SectionSubtitle**: Subtítulos h5 con color primary
+- **StandardCard**: Cards con animaciones y hover effects
+
+#### Mobile-First Responsive
+- **Container padding**: 16px (móvil) → 24px (tablet) → 32px (desktop)
+- **Spacing base**: 8px para mejor touch targets en móvil
+- **Breakpoints**: xs (0), sm (640), md (768), lg (1024), xl (1280)
+
 ### 🎯 Interacciones Avanzadas
 
 #### Enhanced Card Hover Effects
-- **Lift Animation**: Las tarjetas se elevan suavemente al hacer hover con `translateY(-4px)`
-- **Gradient Borders**: Bordes con gradiente animado usando CSS mask composite
-- **Shadow Elevation**: Sistema de sombras con 5 niveles de elevación para dar profundidad
-- **Bounce Effect**: Transiciones con cubic-bezier personalizado `(0.34, 1.56, 0.64, 1)` para efecto elástico sutil
+- **Lift Animation**: Las tarjetas se elevan al hacer hover con `translateY(-8px)`
+- **Shadow Elevation**: Sistema de sombras MUI con 8 niveles
+- **Smooth Transitions**: Transiciones suaves con cubic-bezier optimizado
+- **Staggered Animations**: Aparición escalonada usando Framer Motion
 
 Aplicado en:
-- `components/widgets/project-card.module.scss`
-- `components/widgets/experience-card.module.scss`
-- `components/widgets/contact-card.module.scss`
+- `components/ui/standard-card.tsx` (componente base)
+- `components/widgets/project-card.tsx`
+- `components/widgets/experience-card.tsx`
+- `components/widgets/contact-card.tsx`
 
 #### Magnetic Hover Effect
 - **Efecto magnético** en el botón principal "View Projects" del Hero
@@ -213,12 +234,13 @@ Aplicado en:
 
 ### 🎨 Visual Enhancements
 
-#### Enhanced Gradient Backgrounds
-- **Mesh Gradients**: 5 gradientes radiales superpuestos con colores del design system
-- **Noise Texture**: Textura de ruido SVG con `fractalNoise` para añadir profundidad
-- Posicionamiento estratégico: `27% 37%`, `97% 21%`, `52% 99%`, `10% 29%`, `84% 67%`
-- Opacidad controlada: gradientes al 60%, ruido al 3%
-- Implementado en: `components/ui/animated-background.module.scss`
+#### Animated Background
+- **Gradient Orbs**: 3 orbes animados con colores primary, secondary y accent
+- **Floating Particles**: 30 partículas en desktop, 15 en móvil
+- **Grid Pattern**: Patrón de rejilla sutil para textura
+- **Smooth Animations**: Spring physics con Framer Motion
+- **Reduced Motion**: Orbes estáticos cuando el usuario prefiere menos movimiento
+- Implementado en: `components/ui/animated-background.tsx`
 
 #### Page Transitions
 - Transiciones suaves entre páginas con `AnimatePresence`
@@ -245,30 +267,31 @@ Aplicado en:
 - LazyMotion con `domAnimation` para bundle más pequeño
 - Animaciones con viewport triggers para evitar renders innecesarios
 
-### 🎭 Design System Enhancements
+### 🎭 Material UI Design System
 
-#### Color System Expansion
-- **Semantic Colors**: success, warning, error, info (light + dark variants)
-- **Category Colors**: web, mobile, AI, automation, other
-- **Gray Scale**: 50-950 (11 tonos)
-- **Opacity Scale**: 5%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%
-- Todas con versiones RGB para transparencias
+#### Color System
+- **Semantic Colors**: success, warning, error, info con variantes light/dark
+- **Category Colors**: web (blue), mobile (green), AI (purple), automation (orange), other (gray)
+- **Accent Colors**: purple, pink, cyan para elementos destacados
+- **Gray Scale**: 50-900 con nombres semánticos (slate tones)
+- **Theme Switching**: Paletas separadas para light/dark mode
 
-#### Shadow Elevation System
-```scss
-$elevation-0: none
-$elevation-1: sm shadow
-$elevation-2: md shadow
-$elevation-3: lg shadow
-$elevation-4: xl shadow
-$elevation-5: 2xl shadow (25px blur)
-```
+#### Typography System
+- **Font Family**: Geist Sans (variable) con fallbacks optimizados
+- **Scale**: h1-h6 + body1/body2 + button + caption
+- **Responsive**: Tamaños adaptativos según breakpoint
+- **Line Heights**: Optimizados para legibilidad (1.7-1.8)
+
+#### Shadow & Elevation
+- **MUI Shadows**: 25 niveles de elevación
+- **Custom Shadows**: Definidos en `lib/theme/shadows.ts`
+- **Hover States**: Elevación incrementada al hover
 
 #### Component Library
-- **Button**: 4 variantes (primary, secondary, outline, ghost) × 3 tamaños (sm, md, lg)
-- **Badge**: 6 variantes (default, accent, success, warning, error, outline)
-- **Spinner**: 3 tamaños con animación de rotación suave
-- **Toast**: Sistema de notificaciones con Sonner (rich colors, position customizable)
+- **MUI Components**: Button, Card, Chip, AppBar, Drawer, Typography, etc.
+- **Custom Components**: SectionContainer, SectionTitle, StandardCard
+- **Icons**: Custom SVG + MUI Icons (@mui/icons-material)
+- **Toast**: Sistema de notificaciones con Sonner
 
 ### 📊 Performance Metrics
 
@@ -304,15 +327,50 @@ Edita los archivos de traducción en [`messages/`](messages/):
 - `es.json` - Español
 - `en.json` - English
 
-### Estilos
+### Tema y Colores
 
-El sistema de diseño utiliza SCSS Modules y Variables CSS.
-- **Tokens globales**: `styles/_variables.scss`
-- **Componentes**: Estilos colocados junto a cada componente (`.module.scss`)
+El sistema de diseño utiliza Material UI con temas personalizados.
+- **Paleta**: `lib/theme/palette.ts` - Define colores light/dark
+- **Tipografía**: `lib/theme/typography.ts` - Escalas de texto
+- **Sombras**: `lib/theme/shadows.ts` - Sistema de elevación
+- **Theme principal**: `lib/theme/index.ts` - Configuración general
+
+#### Ejemplo: Cambiar color primario
+```typescript
+// lib/theme/palette.ts
+export const lightPalette: PaletteOptions = {
+  mode: 'light',
+  primary: {
+    main: '#tu-color-aqui', // Cambia esto
+    light: '#variante-clara',
+    dark: '#variante-oscura',
+    contrastText: '#ffffff',
+  },
+  // ...
+};
+```
+
+### Estilos de Componentes
+
+Todos los componentes usan el `sx` prop de Material UI:
+```tsx
+<Box
+  sx={{
+    bgcolor: 'background.paper',
+    color: 'text.primary',
+    p: { xs: 2, md: 4 }, // responsive padding
+  }}
+>
+```
 
 ### Iconos
 
 El sistema de iconos usa SVG paths de Simple Icons. Para añadir nuevos iconos, edita [`components/ui/icon.tsx`](components/ui/icon.tsx).
+
+También puedes usar Material UI Icons:
+```typescript
+import DownloadIcon from '@mui/icons-material/Download';
+```
 
 ## 👤 Autor
 

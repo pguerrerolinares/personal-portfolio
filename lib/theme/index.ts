@@ -1,5 +1,5 @@
 import { createTheme, ThemeOptions } from '@mui/material/styles';
-import { lightPalette, darkPalette, categoryColors } from './palette';
+import { lightPalette, darkPalette, accentColors, categoryColors } from './palette';
 import { typography } from './typography';
 import { shadows } from './shadows';
 
@@ -7,9 +7,9 @@ const commonThemeOptions: ThemeOptions = {
   typography,
   shadows,
   shape: {
-    borderRadius: 6, // 0.375rem (radius-md)
+    borderRadius: 12, // Larger, more modern radius
   },
-  spacing: 4, // 4px base spacing unit
+  spacing: 8, // 8px base spacing unit (mobile-first)
   breakpoints: {
     values: {
       xs: 0,
@@ -58,20 +58,54 @@ const commonThemeOptions: ThemeOptions = {
         },
       },
     },
+    MuiContainer: {
+      defaultProps: {
+        maxWidth: 'xl',
+      },
+      styleOverrides: {
+        root: {
+          paddingLeft: 16, // Mobile-first: 16px on mobile
+          paddingRight: 16,
+          '@media (min-width: 640px)': {
+            paddingLeft: 24, // 24px on tablet
+            paddingRight: 24,
+          },
+          '@media (min-width: 1024px)': {
+            paddingLeft: 32, // 32px on desktop
+            paddingRight: 32,
+          },
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 6,
+          borderRadius: 8,
           textTransform: 'none',
-          fontWeight: 500,
-          transition: 'all 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+          fontWeight: 600,
+          padding: '10px 24px',
+          transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)',
+          '&:hover': {
+            transform: 'translateY(-2px)',
+          },
+        },
+        sizeLarge: {
+          padding: '12px 32px',
+          fontSize: '1rem',
+        },
+        sizeMedium: {
+          padding: '10px 24px',
+        },
+        sizeSmall: {
+          padding: '6px 16px',
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
+          borderRadius: 16,
+          transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)',
         },
       },
     },
@@ -79,6 +113,17 @@ const commonThemeOptions: ThemeOptions = {
       styleOverrides: {
         root: {
           backgroundImage: 'none',
+        },
+        rounded: {
+          borderRadius: 16,
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          fontWeight: 500,
         },
       },
     },
@@ -106,6 +151,7 @@ export const lightTheme = createTheme({
   ...commonThemeOptions,
   palette: {
     ...lightPalette,
+    accent: accentColors,
     category: categoryColors,
   },
 });
@@ -114,8 +160,9 @@ export const darkTheme = createTheme({
   ...commonThemeOptions,
   palette: {
     ...darkPalette,
+    accent: accentColors,
     category: categoryColors,
   },
 });
 
-export { categoryColors };
+export { accentColors, categoryColors };

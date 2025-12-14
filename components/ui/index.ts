@@ -1,7 +1,7 @@
 export { ThemeToggle } from "./theme-toggle";
 export { LanguageSwitcher } from "./language-switcher";
 export { Card } from "./card";
-export { SectionHeader } from "./section-header";
+
 export { Skeleton, CardSkeleton, SectionSkeleton } from "./skeleton";
 export { Icon, icons } from "./icon";
 export type { IconName, IconProps } from "./icon";

@@ -1,22 +1,31 @@
 import { PaletteOptions } from '@mui/material/styles';
 
+// Complementary color scheme: Blue (primary) + Orange (secondary) + Purple (accent)
 export const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#2563eb',
+    main: '#2563eb', // Blue
+    light: '#60a5fa',
+    dark: '#1e40af',
+    contrastText: '#ffffff',
+  },
+  secondary: {
+    main: '#f97316', // Orange (complementary to blue)
+    light: '#fb923c',
+    dark: '#c2410c',
     contrastText: '#ffffff',
   },
   background: {
-    default: '#ffffff',
+    default: '#fafafa', // Soft white
     paper: '#ffffff',
   },
   text: {
-    primary: '#0a0a0a',
-    secondary: '#737373',
+    primary: '#0f172a', // Darker for better contrast
+    secondary: '#64748b', // Better readability
   },
-  divider: '#e5e5e5',
+  divider: 'rgba(0, 0, 0, 0.08)',
   success: {
-    main: '#22c55e',
+    main: '#10b981',
   },
   warning: {
     main: '#f59e0b',
@@ -28,36 +37,44 @@ export const lightPalette: PaletteOptions = {
     main: '#3b82f6',
   },
   grey: {
-    50: '#fafafa',
-    100: '#f5f5f5',
-    200: '#e5e5e5',
-    300: '#d4d4d4',
-    400: '#a3a3a3',
-    500: '#737373',
-    600: '#525252',
-    700: '#404040',
-    800: '#262626',
-    900: '#171717',
+    50: '#f8fafc',
+    100: '#f1f5f9',
+    200: '#e2e8f0',
+    300: '#cbd5e1',
+    400: '#94a3b8',
+    500: '#64748b',
+    600: '#475569',
+    700: '#334155',
+    800: '#1e293b',
+    900: '#0f172a',
   },
 };
 
 export const darkPalette: PaletteOptions = {
   mode: 'dark',
   primary: {
-    main: '#3b82f6',
+    main: '#3b82f6', // Blue
+    light: '#60a5fa',
+    dark: '#2563eb',
     contrastText: '#ffffff',
   },
+  secondary: {
+    main: '#fb923c', // Orange (complementary to blue)
+    light: '#fdba74',
+    dark: '#f97316',
+    contrastText: '#0f172a',
+  },
   background: {
-    default: '#0a0a0a',
-    paper: '#0a0a0a',
+    default: '#0f172a', // Deep blue-gray
+    paper: '#1e293b', // Slightly lighter for cards
   },
   text: {
-    primary: '#fafafa',
-    secondary: '#a3a3a3',
+    primary: '#f1f5f9',
+    secondary: '#94a3b8',
   },
-  divider: '#262626',
+  divider: 'rgba(255, 255, 255, 0.08)',
   success: {
-    main: '#4ade80',
+    main: '#34d399',
   },
   warning: {
     main: '#fbbf24',
@@ -69,21 +86,26 @@ export const darkPalette: PaletteOptions = {
     main: '#60a5fa',
   },
   grey: {
-    50: '#fafafa',
-    100: '#f5f5f5',
-    200: '#e5e5e5',
-    300: '#d4d4d4',
-    400: '#a3a3a3',
-    500: '#737373',
-    600: '#525252',
-    700: '#404040',
-    800: '#262626',
-    900: '#171717',
+    50: '#f8fafc',
+    100: '#f1f5f9',
+    200: '#e2e8f0',
+    300: '#cbd5e1',
+    400: '#94a3b8',
+    500: '#64748b',
+    600: '#475569',
+    700: '#334155',
+    800: '#1e293b',
+    900: '#0f172a',
   },
 };
 
 declare module '@mui/material/styles' {
   interface Palette {
+    accent: {
+      purple: string;
+      pink: string;
+      cyan: string;
+    };
     category: {
       web: string;
       mobile: string;
@@ -93,6 +115,11 @@ declare module '@mui/material/styles' {
     };
   }
   interface PaletteOptions {
+    accent?: {
+      purple?: string;
+      pink?: string;
+      cyan?: string;
+    };
     category?: {
       web?: string;
       mobile?: string;
@@ -103,10 +130,18 @@ declare module '@mui/material/styles' {
   }
 }
 
+// Accent colors for variety
+export const accentColors = {
+  purple: '#a855f7',
+  pink: '#ec4899',
+  cyan: '#06b6d4',
+};
+
+// Category colors using the complementary palette
 export const categoryColors = {
-  web: '#3b82f6',
-  mobile: '#22c55e',
-  ai: '#a855f7',
-  automation: '#f97316',
-  other: '#6b7280',
+  web: '#3b82f6', // Primary blue
+  mobile: '#10b981', // Green
+  ai: '#a855f7', // Purple accent
+  automation: '#f97316', // Secondary orange
+  other: '#64748b', // Neutral gray
 };

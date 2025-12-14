@@ -3,8 +3,8 @@
 import { useRef } from 'react';
 import { useMotionValue, useSpring } from 'framer-motion';
 
-export function useMagnetic(strength: number = 0.15) {
-  const ref = useRef<HTMLAnchorElement>(null);
+export function useMagnetic<T extends HTMLElement = HTMLElement>(strength: number = 0.15) {
+  const ref = useRef<T>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -12,7 +12,7 @@ export function useMagnetic(strength: number = 0.15) {
   const xSpring = useSpring(x, springConfig);
   const ySpring = useSpring(y, springConfig);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<T>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;

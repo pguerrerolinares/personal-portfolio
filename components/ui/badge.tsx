@@ -16,6 +16,7 @@ export function Badge({
 }: BadgeProps) {
   const muiSize = size === "sm" ? "small" : "medium";
 
+  // Map custom variants to MUI Chip colors/variants
   const getColor = () => {
     switch (variant) {
       case "accent":
@@ -33,19 +34,21 @@ export function Badge({
     }
   };
 
+  const color = getColor();
   const chipVariant = variant === "outline" ? "outlined" : "filled";
 
   return (
     <Chip
       label={children}
       size={muiSize}
-      color={getColor() as any}
+      color={color as any}
       variant={chipVariant}
       className={className}
       sx={{
         fontWeight: 500,
+        height: size === "sm" ? 24 : 32,
         ...(variant === "default" && {
-          bgcolor: 'grey.200',
+          bgcolor: 'action.selected',
           color: 'text.primary',
         }),
       }}
