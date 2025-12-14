@@ -1,101 +1,101 @@
 import { PaletteOptions } from '@mui/material/styles';
 
-// Complementary color scheme: Blue (primary) + Orange (secondary) + Purple (accent)
+// Apple Human Interface Guidelines inspired palette
 export const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#2563eb', // Blue
-    light: '#60a5fa',
-    dark: '#1e40af',
+    main: '#0071e3', // Apple Blue
+    light: '#409cff',
+    dark: '#005bb7',
     contrastText: '#ffffff',
   },
   secondary: {
-    main: '#f97316', // Orange (complementary to blue)
-    light: '#fb923c',
-    dark: '#c2410c',
+    main: '#86868b', // SF Gray for secondary elements
+    light: '#a1a1a6',
+    dark: '#6e6e73',
     contrastText: '#ffffff',
   },
   background: {
-    default: '#fafafa', // Soft white
+    default: '#f5f5f7', // Apple light gray background
     paper: '#ffffff',
   },
   text: {
-    primary: '#0f172a', // Darker for better contrast
-    secondary: '#64748b', // Better readability
+    primary: '#1d1d1f', // SF Near Black
+    secondary: '#86868b', // SF Gray
   },
-  divider: 'rgba(0, 0, 0, 0.08)',
+  divider: 'rgba(0, 0, 0, 0.1)',
   success: {
-    main: '#10b981',
+    main: '#34c759', // SF Green
   },
   warning: {
-    main: '#f59e0b',
+    main: '#ff9f0a', // SF Orange
   },
   error: {
-    main: '#ef4444',
+    main: '#ff3b30', // SF Red
   },
   info: {
-    main: '#3b82f6',
+    main: '#0071e3', // SF Blue
   },
   grey: {
-    50: '#f8fafc',
-    100: '#f1f5f9',
-    200: '#e2e8f0',
-    300: '#cbd5e1',
-    400: '#94a3b8',
-    500: '#64748b',
-    600: '#475569',
-    700: '#334155',
-    800: '#1e293b',
-    900: '#0f172a',
+    50: '#fbfbfd',
+    100: '#f5f5f7',
+    200: '#e5e5e5',
+    300: '#d2d2d7',
+    400: '#aeaeb2',
+    500: '#86868b',
+    600: '#6e6e73',
+    700: '#424245',
+    800: '#1d1d1f',
+    900: '#000000',
   },
 };
 
 export const darkPalette: PaletteOptions = {
   mode: 'dark',
   primary: {
-    main: '#3b82f6', // Blue
-    light: '#60a5fa',
-    dark: '#2563eb',
+    main: '#0a84ff', // SF Dark Mode Blue (slightly lighter/more vibrant)
+    light: '#64d2ff',
+    dark: '#0071e3',
     contrastText: '#ffffff',
   },
   secondary: {
-    main: '#fb923c', // Orange (complementary to blue)
-    light: '#fdba74',
-    dark: '#f97316',
-    contrastText: '#0f172a',
+    main: '#98989d', // SF Gray Dark
+    light: '#bebec2',
+    dark: '#6e6e73',
+    contrastText: '#000000',
   },
   background: {
-    default: '#0f172a', // Deep blue-gray
-    paper: '#1e293b', // Slightly lighter for cards
+    default: '#000000', // Apple pure black background
+    paper: '#1c1c1e', // Apple dark gray card background
   },
   text: {
-    primary: '#f1f5f9',
-    secondary: '#94a3b8',
+    primary: '#f5f5f7', // SF Near White
+    secondary: '#86868b', // SF Gray
   },
-  divider: 'rgba(255, 255, 255, 0.08)',
+  divider: 'rgba(255, 255, 255, 0.1)',
   success: {
-    main: '#34d399',
+    main: '#30d158',
   },
   warning: {
-    main: '#fbbf24',
+    main: '#ff9f0a',
   },
   error: {
-    main: '#f87171',
+    main: '#ff453a',
   },
   info: {
-    main: '#60a5fa',
+    main: '#0a84ff',
   },
   grey: {
-    50: '#f8fafc',
-    100: '#f1f5f9',
-    200: '#e2e8f0',
-    300: '#cbd5e1',
-    400: '#94a3b8',
-    500: '#64748b',
-    600: '#475569',
-    700: '#334155',
-    800: '#1e293b',
-    900: '#0f172a',
+    50: '#1c1c1e',
+    100: '#2c2c2e',
+    200: '#3a3a3c',
+    300: '#48484a',
+    400: '#636366',
+    500: '#8e8e93',
+    600: '#aeaeb2',
+    700: '#d1d1d6',
+    800: '#e5e5ea',
+    900: '#f2f2f7',
   },
 };
 
@@ -130,18 +130,18 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Accent colors for variety
+// Accent colors aligned with Apple HIG
 export const accentColors = {
-  purple: '#a855f7',
-  pink: '#ec4899',
-  cyan: '#06b6d4',
+  purple: '#bf5af2', // SF Purple
+  pink: '#ff375f',   // SF Pink
+  cyan: '#64d2ff',   // SF Cyan
 };
 
-// Category colors using the complementary palette
+// Category colors normalized
 export const categoryColors = {
-  web: '#3b82f6', // Primary blue
-  mobile: '#10b981', // Green
-  ai: '#a855f7', // Purple accent
-  automation: '#f97316', // Secondary orange
-  other: '#64748b', // Neutral gray
+  web: '#0071e3',    // SF Blue
+  mobile: '#34c759', // SF Green
+  ai: '#bf5af2',     // SF Purple
+  automation: '#ff9f0a', // SF Orange
+  other: '#8e8e93',  // SF Gray
 };

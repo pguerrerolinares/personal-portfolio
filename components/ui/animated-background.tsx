@@ -70,8 +70,8 @@ export function AnimatedBackground() {
             >
                 {/* Static gradients only when reduced motion is preferred */}
                 <Box sx={{ ...orbStyles, top: '10%', left: '10%', width: '500px', height: '500px', bgcolor: 'primary.main', opacity: 0.15 }} />
-                <Box sx={{ ...orbStyles, top: '60%', right: '10%', width: '400px', height: '400px', bgcolor: 'secondary.main', opacity: 0.12 }} />
-                <Box sx={{ ...orbStyles, bottom: '20%', left: '30%', width: '300px', height: '300px', bgcolor: '#a855f7', opacity: 0.1 }} />
+                <Box sx={{ ...orbStyles, top: '60%', right: '10%', width: '400px', height: '400px', bgcolor: 'accent.cyan', opacity: 0.12 }} />
+                <Box sx={{ ...orbStyles, bottom: '20%', left: '30%', width: '300px', height: '300px', bgcolor: 'accent.purple', opacity: 0.1 }} />
                 <Box
                     sx={{
                         position: 'absolute',
@@ -124,7 +124,7 @@ export function AnimatedBackground() {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                sx={{ ...orbStyles, top: '60%', right: '10%', width: '400px', height: '400px', bgcolor: 'secondary.main', opacity: 0.12 }}
+                sx={{ ...orbStyles, top: '60%', right: '10%', width: '400px', height: '400px', bgcolor: 'accent.cyan', opacity: 0.12 }}
             />
 
             {/* Third orb for depth */}
@@ -140,7 +140,7 @@ export function AnimatedBackground() {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                sx={{ ...orbStyles, bottom: '20%', left: '30%', width: '300px', height: '300px', bgcolor: '#a855f7' }}
+                sx={{ ...orbStyles, bottom: '20%', left: '30%', width: '300px', height: '300px', bgcolor: 'accent.purple' }}
             />
 
             {/* Floating particles */}

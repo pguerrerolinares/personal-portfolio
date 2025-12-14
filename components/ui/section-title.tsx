@@ -37,11 +37,7 @@ export function SectionTitle({
         component="h2"
         sx={{
           fontWeight: 700,
-          background: 'linear-gradient(45deg, #FF6B6B, #4ECDC4)',
-          backgroundClip: 'text',
-          textFillColor: 'transparent',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
+          color: 'primary.main',
           mb: 2,
         }}
       >

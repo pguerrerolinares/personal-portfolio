@@ -91,7 +91,7 @@ export function Hero() {
               lineHeight: 1.1,
               mb: 2,
               background: (theme) =>
-                `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.accent.cyan} 100%)`,
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
               color: 'transparent',

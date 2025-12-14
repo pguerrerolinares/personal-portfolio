@@ -3,34 +3,39 @@ import { ThemeOptions } from '@mui/material/styles';
 export const typography: ThemeOptions['typography'] = {
   fontFamily:
     'var(--font-geist-sans, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif)',
-  fontWeightLight: 400,
+  fontWeightLight: 300,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
-  fontWeightBold: 700,
+  fontWeightBold: 600, // Apple Display standard uses 600/700 but often lighter in UI
   h1: {
     fontSize: '4.5rem', // 72px
     lineHeight: 1,
-    fontWeight: 700,
+    fontWeight: 600, // Reduced from 700
+    letterSpacing: '-0.025em',
   },
   h2: {
     fontSize: '3.75rem', // 60px
     lineHeight: 1,
-    fontWeight: 700,
+    fontWeight: 600, // Reduced from 700
+    letterSpacing: '-0.025em',
   },
   h3: {
     fontSize: '3rem', // 48px
     lineHeight: 1.25,
-    fontWeight: 700,
+    fontWeight: 600, // Reduced from 700
+    letterSpacing: '-0.025em',
   },
   h4: {
     fontSize: '2.25rem', // 36px
     lineHeight: 1.25,
     fontWeight: 600,
+    letterSpacing: '-0.02em',
   },
   h5: {
     fontSize: '1.875rem', // 30px
     lineHeight: 1.25,
     fontWeight: 600,
+    letterSpacing: '-0.015em',
   },
   h6: {
     fontSize: '1.5rem', // 24px
@@ -40,7 +45,7 @@ export const typography: ThemeOptions['typography'] = {
   subtitle1: {
     fontSize: '1.25rem', // 20px
     lineHeight: 1.5,
-    fontWeight: 500,
+    fontWeight: 400, // Reduced from 500 for a cleaner look
   },
   subtitle2: {
     fontSize: '1.125rem', // 18px

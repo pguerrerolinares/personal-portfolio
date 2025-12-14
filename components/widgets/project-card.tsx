@@ -22,11 +22,11 @@ const categoryIcons = {
 };
 
 const categoryGradients = {
-  web: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  mobile: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-  ai: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-  automation: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-  other: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+  web: 'linear-gradient(135deg, #0071e3 0%, #409cff 100%)', // Blue
+  mobile: 'linear-gradient(135deg, #34c759 0%, #30d158 100%)', // Green
+  ai: 'linear-gradient(135deg, #bf5af2 0%, #d288ff 100%)', // Purple
+  automation: 'linear-gradient(135deg, #ff9f0a 0%, #ffb340 100%)', // Orange
+  other: 'linear-gradient(135deg, #8e8e93 0%, #aeaeb2 100%)', // Gray
 };
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {

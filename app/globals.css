@@ -2,12 +2,33 @@
 /* Most styling is handled by MUI theme and CssBaseline */
 
 :root {
-  /* Custom category colors for portfolio */
-  --category-web: #3b82f6;
-  --category-mobile: #22c55e;
-  --category-ai: #a855f7;
-  --category-automation: #f97316;
-  --category-other: #6b7280;
+  /* Apple-inspired global variables */
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  
+  --primary: #0071e3;
+  --secondary: #86868b;
+  
+  /* Custom category colors for portfolio - synced with palette.ts */
+  --category-web: #0071e3;
+  --category-mobile: #34c759;
+  --category-ai: #bf5af2;
+  --category-automation: #ff9f0a;
+  --category-other: #8e8e93;
+
+  /* Accent colors */
+  --accent-purple: #bf5af2;
+  --accent-pink: #ff375f;
+  --accent-cyan: #64d2ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #f5f5f7;
+    --primary: #0a84ff;
+    --secondary: #98989d;
+  }
 }
 
 /* Smooth scroll behavior */
