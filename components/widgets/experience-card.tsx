@@ -1,8 +1,8 @@
 "use client";
 
-import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { Box, Card, CardContent, Typography, Chip, Stack, Avatar } from "@mui/material";
+import { Box, CardContent, Typography, Chip, Stack, Avatar } from "@mui/material";
+import { HoverCard, TimelineItem } from "@/components/ui";
 import { BriefcaseIcon, CodeIcon, CalendarIcon, Building2Icon } from "@/components/ui/icon";
 import type { Experience } from "@/lib/constants/portfolio-data";
 
@@ -52,58 +52,11 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
   const initials = getCompanyInitials(company);
 
   return (
-    <Box
-      component={m.div}
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.15 }}
-      sx={{ position: 'relative', pl: { xs: 2, md: 4 }, pb: 4 }}
-    >
-      {/* Timeline line */}
-      <Box
-        sx={{
-          position: 'absolute',
-          left: { xs: 4, md: 12 },
-          top: 0,
-          bottom: -16,
-          width: 2,
-          bgcolor: 'divider',
-        }}
-      />
-
-      {/* Timeline dot */}
-      <Box
-        component={m.div}
-        initial={{ scale: 0 }}
-        whileInView={{ scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3, delay: index * 0.15 + 0.2 }}
-        sx={{
-          position: 'absolute',
-          left: { xs: 0, md: 8 },
-          top: 8,
-          width: 12,
-          height: 12,
-          borderRadius: '50%',
-          bgcolor: 'primary.main',
-          border: 3,
-          borderColor: 'background.default',
-        }}
-      />
-
-      <Card
+    <TimelineItem index={index}>
+      <HoverCard
         tabIndex={0}
         role="article"
         aria-label={`Experience: ${role} at ${company}`}
-        sx={{
-          ml: { xs: 2, md: 4 },
-          transition: 'all 0.3s',
-          '&:hover': {
-            transform: 'translateX(4px)',
-            boxShadow: 3,
-          },
-        }}
       >
         <CardContent>
           {/* Header */}
@@ -184,7 +137,7 @@ export function ExperienceCard({ experience, index = 0 }: ExperienceCardProps) {
             ))}
           </Stack>
         </CardContent>
-      </Card>
-    </Box>
+      </HoverCard>
+    </TimelineItem>
   );
 }

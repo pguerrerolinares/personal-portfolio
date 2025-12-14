@@ -1,80 +1,73 @@
 "use client";
 
-import { m } from "framer-motion";
-import { Box, Typography, TypographyProps } from "@mui/material";
+import { Typography, TypographyProps } from "@mui/material";
+import { FadeIn } from "@/components/ui";
+import { SxProps, Theme } from '@mui/material/styles';
+import { ComponentProps } from 'react';
 
-interface SectionTitleProps {
+interface SectionTitleProps extends Omit<ComponentProps<typeof FadeIn>, 'children' | 'sx' | 'id'> {
   children: React.ReactNode;
   subtitle?: string;
-  align?: "left" | "center" | "right";
+  centered?: boolean;
   id?: string;
+  sx?: SxProps<Theme>;
 }
 
-export function SectionTitle({ children, subtitle, align = "center", id }: SectionTitleProps) {
+export function SectionTitle({
+  children,
+  subtitle,
+  centered = false,
+  id,
+  sx,
+  ...props
+}: SectionTitleProps) {
   return (
-    <Box
-      component={m.div}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+    <FadeIn
+      direction="up"
       sx={{
-        mb: { xs: 6, md: 8 },
-        textAlign: align,
+        textAlign: centered ? 'center' : 'left',
+        mb: { xs: 4, md: 6 },
+        ...sx
       }}
+      id={id}
+      {...props}
     >
       <Typography
-        id={id}
         variant="h2"
         component="h2"
         sx={{
-          fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
           fontWeight: 700,
-          mb: subtitle ? 2 : 3,
-          background: (theme) =>
-            `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+          background: 'linear-gradient(45deg, #FF6B6B, #4ECDC4)',
           backgroundClip: 'text',
+          textFillColor: 'transparent',
           WebkitBackgroundClip: 'text',
-          color: 'transparent',
+          WebkitTextFillColor: 'transparent',
+          mb: 2,
         }}
       >
         {children}
       </Typography>
-
       {subtitle && (
         <Typography
-          variant="body1"
+          variant="subtitle1"
           color="text.secondary"
           sx={{
-            mb: 3,
-            maxWidth: 600,
-            mx: align === 'center' ? 'auto' : 0,
+            maxWidth: centered ? 600 : '100%',
+            mx: centered ? 'auto' : 0,
           }}
         >
           {subtitle}
         </Typography>
       )}
-
-      <Box
-        sx={{
-          width: 60,
-          height: 4,
-          bgcolor: 'primary.main',
-          borderRadius: 2,
-          mx: align === 'center' ? 'auto' : 0,
-          ml: align === 'right' ? 'auto' : align === 'center' ? 'auto' : 0,
-        }}
-      />
-    </Box>
+    </FadeIn>
   );
 }
 
-interface SectionSubtitleProps {
+interface SectionSubtitleProps extends TypographyProps {
   children: React.ReactNode;
-  sx?: TypographyProps['sx'];
 }
 
-export function SectionSubtitle({ children, sx }: SectionSubtitleProps) {
+export function SectionSubtitle({ children, sx, ...props }: SectionSubtitleProps) {
   return (
     <Typography
       component="h3"
@@ -85,6 +78,7 @@ export function SectionSubtitle({ children, sx }: SectionSubtitleProps) {
         color: 'primary.main',
         ...sx,
       }}
+      {...props}
     >
       {children}
     </Typography>
