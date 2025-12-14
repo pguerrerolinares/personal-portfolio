@@ -7,6 +7,7 @@ import { projects } from "@/lib/constants/portfolio-data";
 import { ProjectCard } from "@/components/widgets";
 import { SectionContainer } from "@/components/ui/section-container";
 import { SectionTitle, SectionSubtitle } from "@/components/ui/section-title";
+import { GithubIcon } from "@/components/ui/icon";
 
 export function Projects() {
   const t = useTranslations("projects");
@@ -85,8 +86,9 @@ export function Projects() {
           href="https://github.com/pguerrerolinares"
           target="_blank"
           rel="noopener noreferrer"
-          variant="contained"
+          variant="outlined"
           size="large"
+          startIcon={<GithubIcon />}
         >
           {t("cta.button")}
         </Button>
