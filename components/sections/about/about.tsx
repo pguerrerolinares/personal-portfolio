@@ -90,29 +90,38 @@ export function About() {
                 borderRadius: 3,
                 border: 1,
                 borderColor: 'divider',
+                alignItems: 'start', // Ensure top alignment if heights differ, or 'center'
               }}
             >
-              <Box sx={{ textAlign: 'center' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main', mb: 1 }}>
                   4+
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" align="center">
                   {t("stats.years")}
                 </Typography>
               </Box>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h4" sx={{ fontWeight: 700, color: 'secondary.main', mb: 1 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <Typography variant="h4" sx={{ fontWeight: 700, color: 'success.main', mb: 1 }}>
                   {skills.length}+
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" align="center">
                   {t("stats.technologies")}
                 </Typography>
               </Box>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: 'accent.purple', fontSize: { xs: '0.9rem', sm: '1.25rem' }, mb: 1 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    fontWeight: 700, 
+                    color: 'accent.purple', 
+                    mb: 1,
+                    fontSize: { xs: '1.5rem', sm: '2.125rem' } // Slightly smaller on mobile to fit "Full-Stack"
+                  }}
+                >
                   Full-Stack
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" align="center">
                   {t("stats.focus")}
                 </Typography>
               </Box>

@@ -25,16 +25,16 @@ export const lightPalette: PaletteOptions = {
   },
   divider: 'rgba(0, 0, 0, 0.1)',
   success: {
-    main: '#34c759', // SF Green
+    main: '#0d9488', // Teal (aligned with Automation/Cool theme)
   },
   warning: {
-    main: '#ff9f0a', // SF Orange
+    main: '#f59e0b', // Standard Amber (warmth without being neon)
   },
   error: {
     main: '#ff3b30', // SF Red
   },
   info: {
-    main: '#0071e3', // SF Blue
+    main: '#0ea5e9', // Sky Blue (aligned with Mobile/Cool theme)
   },
   grey: {
     50: '#fbfbfd',
@@ -74,16 +74,16 @@ export const darkPalette: PaletteOptions = {
   },
   divider: 'rgba(255, 255, 255, 0.1)',
   success: {
-    main: '#30d158',
+    main: '#14b8a6', // Teal Light
   },
   warning: {
-    main: '#ff9f0a',
+    main: '#fbbf24',
   },
   error: {
     main: '#ff453a',
   },
   info: {
-    main: '#0a84ff',
+    main: '#38bdf8', // Sky Light
   },
   grey: {
     50: '#1c1c1e',
@@ -130,18 +130,18 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Accent colors aligned with Apple HIG
+// Accent colors aligned with Harmonious Cool Palette
 export const accentColors = {
-  purple: '#bf5af2', // SF Purple
-  pink: '#ff375f',   // SF Pink
-  cyan: '#64d2ff',   // SF Cyan
+  purple: '#6366f1', // Indigo (was Purple) - keeping key name for compatibility but shifting hue
+  pink: '#0ea5e9',   // Sky Blue (was Pink) - keeping key name for compatibility
+  cyan: '#0d9488',   // Teal (was Cyan) - keeping key name for compatibility
 };
 
-// Category colors normalized
+// Category colors normalized to Cool Tones
 export const categoryColors = {
-  web: '#0071e3',    // SF Blue
-  mobile: '#34c759', // SF Green
-  ai: '#bf5af2',     // SF Purple
-  automation: '#ff9f0a', // SF Orange
-  other: '#8e8e93',  // SF Gray
+  web: '#0071e3',    // Primary Blue
+  mobile: '#0ea5e9', // Sky Blue
+  ai: '#6366f1',     // Indigo
+  automation: '#0d9488', // Teal
+  other: '#64748b',  // Slate
 };

@@ -2,7 +2,7 @@
 
 import { m } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Box, CardContent, Typography, IconButton, Stack } from "@mui/material";
+import { Box, CardContent, Typography, IconButton, Stack, alpha } from "@mui/material";
 import { FadeIn, HoverCard } from "@/components/ui";
 import { ExternalLinkIcon, GithubIcon, GlobeIcon, SmartphoneIcon, BrainIcon, BotIcon, FolderIcon } from "@/components/ui/icon";
 import { Badge } from "@/components/ui/badge";
@@ -21,13 +21,7 @@ const categoryIcons = {
   other: FolderIcon,
 };
 
-const categoryGradients = {
-  web: 'linear-gradient(135deg, #0071e3 0%, #409cff 100%)', // Blue
-  mobile: 'linear-gradient(135deg, #34c759 0%, #30d158 100%)', // Green
-  ai: 'linear-gradient(135deg, #bf5af2 0%, #d288ff 100%)', // Purple
-  automation: 'linear-gradient(135deg, #ff9f0a 0%, #ffb340 100%)', // Orange
-  other: 'linear-gradient(135deg, #8e8e93 0%, #aeaeb2 100%)', // Gray
-};
+
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const t = useTranslations("projects.items");
@@ -59,29 +53,21 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           sx={{
             position: 'relative',
             height: 180,
-            background: categoryGradients[project.category],
+            bgcolor: (theme) => alpha(theme.palette.category[project.category], 0.04), // Very subtle tint
+            borderTop: (theme) => `4px solid ${theme.palette.category[project.category]}`, // The "Connection"
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             overflow: 'hidden',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.05) 10px, rgba(255,255,255,.05) 20px)',
-            },
           }}
         >
           <Box
             component={m.div}
             whileHover={{ scale: 1.1, rotate: 5 }}
             sx={{
-              color: 'white',
+              color: (theme) => theme.palette.category[project.category], // Icon matches category
               zIndex: 1,
-              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.2))',
+              filter: (theme) => `drop-shadow(0 4px 6px ${alpha(theme.palette.category[project.category], 0.2)})`,
             }}
           >
             <CategoryIcon size={48} />

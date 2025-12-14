@@ -7,7 +7,6 @@ import { Link } from "@/i18n/routing";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 import { Button } from "@/components/ui/button";
-import { useMagnetic } from "@/lib/hooks/use-magnetic";
 import { GithubIcon, LinkedinIcon, ArrowDownIcon } from "@/components/ui/icon";
 
 const container = {
@@ -32,7 +31,7 @@ const item = {
 
 export function Hero() {
   const t = useTranslations("hero");
-  const magneticProps = useMagnetic<HTMLAnchorElement>(0.1);
+
 
   return (
     <Box
@@ -137,19 +136,14 @@ export function Hero() {
             spacing={2}
             sx={{ mt: 2 }}
           >
-            <m.div style={{ x: magneticProps.x, y: magneticProps.y }}>
-              <Button
-                component={Link}
-                href="#projects"
-                ref={magneticProps.ref as any}
-                variant="primary"
-                size="md"
-                onMouseMove={magneticProps.onMouseMove as any}
-                onMouseLeave={magneticProps.onMouseLeave as any}
-              >
-                {t("cta.projects")}
-              </Button>
-            </m.div>
+            <Button
+              component={Link}
+              href="#projects"
+              variant="primary"
+              size="md"
+            >
+              {t("cta.projects")}
+            </Button>
             <Button
               component={Link}
               href="#contact"

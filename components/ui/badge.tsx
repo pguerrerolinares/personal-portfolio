@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { Chip } from "@mui/material";
+import { Chip, alpha, useTheme } from "@mui/material";
 
 export interface BadgeProps {
   children: ReactNode;
@@ -14,6 +14,7 @@ export function Badge({
   size = "sm",
   className = ""
 }: BadgeProps) {
+  const theme = useTheme();
   const muiSize = size === "sm" ? "small" : "medium";
 
   // Map custom variants to MUI Chip colors/variants
@@ -34,22 +35,35 @@ export function Badge({
     }
   };
 
-  const color = getColor();
-  const chipVariant = variant === "outline" ? "outlined" : "filled";
+  // Resolve color token from theme based on variant
+  const getThemeColor = () => {
+    switch (variant) {
+      case "accent": return theme.palette.primary.main;
+      case "success": return theme.palette.success.main;
+      case "warning": return theme.palette.warning.main;
+      case "error": return theme.palette.error.main;
+      case "info": return theme.palette.info.main;
+      default: return theme.palette.text.secondary;
+    }
+  };
+
+  const colorHex = getThemeColor();
 
   return (
     <Chip
       label={children}
       size={muiSize}
-      color={color as any}
-      variant={chipVariant}
       className={className}
       sx={{
         fontWeight: 500,
         height: size === "sm" ? 24 : 32,
+        color: colorHex,
+        bgcolor: alpha(colorHex, 0.1),
+        border: `1px solid ${alpha(colorHex, 0.2)}`,
         ...(variant === "default" && {
-          bgcolor: 'action.selected',
+          bgcolor: 'action.selected', // Keep default slightly different or same? Let's keep consistent.
           color: 'text.primary',
+          border: `1px solid ${theme.palette.divider}`,
         }),
       }}
     />
