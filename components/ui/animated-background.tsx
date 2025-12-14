@@ -2,8 +2,8 @@
 
 import { m } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Box } from "@mui/material";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
-import styles from './animated-background.module.scss';
 
 interface Particle {
     id: number;
@@ -13,6 +13,13 @@ interface Particle {
     duration: number;
     delay: number;
 }
+
+const orbStyles = {
+    position: 'absolute',
+    borderRadius: '50%',
+    filter: 'blur(60px)',
+    pointerEvents: 'none',
+};
 
 export function AnimatedBackground() {
     const reducedMotion = useReducedMotion();
@@ -50,20 +57,49 @@ export function AnimatedBackground() {
 
     if (reducedMotion) {
         return (
-            <div className={styles.background}>
+            <Box
+                sx={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: -1,
+                    overflow: 'hidden',
+                }}
+            >
                 {/* Static gradients only when reduced motion is preferred */}
-                <div className={`${styles.orb} ${styles.orb1}`} />
-                <div className={`${styles.orb} ${styles.orb2}`} />
-                <div className={`${styles.orb} ${styles.orb3}`} />
-                <div className={styles.grid} />
-            </div>
+                <Box sx={{ ...orbStyles, top: '10%', left: '10%', width: '500px', height: '500px', bgcolor: 'primary.main', opacity: 0.15 }} />
+                <Box sx={{ ...orbStyles, top: '60%', right: '10%', width: '400px', height: '400px', bgcolor: 'secondary.main', opacity: 0.12 }} />
+                <Box sx={{ ...orbStyles, bottom: '20%', left: '30%', width: '300px', height: '300px', bgcolor: '#a855f7', opacity: 0.1 }} />
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        inset: 0,
+                        backgroundImage: 'linear-gradient(rgba(128, 128, 128, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(128, 128, 128, 0.05) 1px, transparent 1px)',
+                        backgroundSize: '50px 50px',
+                        pointerEvents: 'none',
+                    }}
+                />
+            </Box>
         );
     }
 
     return (
-        <div className={styles.background}>
+        <Box
+            sx={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: -1,
+                overflow: 'hidden',
+            }}
+        >
             {/* Animated gradient orbs */}
-            <m.div
+            <Box
+                component={m.div}
                 animate={{
                     x: [0, 30, 0],
                     y: [0, -20, 0],
@@ -74,9 +110,10 @@ export function AnimatedBackground() {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className={`${styles.orb} ${styles.orb1}`}
+                sx={{ ...orbStyles, top: '10%', left: '10%', width: '500px', height: '500px', bgcolor: 'primary.main', opacity: 0.15 }}
             />
-            <m.div
+            <Box
+                component={m.div}
                 animate={{
                     x: [0, -20, 0],
                     y: [0, 30, 0],
@@ -87,34 +124,38 @@ export function AnimatedBackground() {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className={`${styles.orb} ${styles.orb2}`}
+                sx={{ ...orbStyles, top: '60%', right: '10%', width: '400px', height: '400px', bgcolor: 'secondary.main', opacity: 0.12 }}
             />
 
             {/* Third orb for depth */}
-            <m.div
+            <Box
+                component={m.div}
                 animate={{
                     x: [0, 40, 0],
                     y: [0, -30, 0],
-                    opacity: [0.3, 0.5, 0.3],
+                    opacity: [0.1, 0.15, 0.1],
                 }}
                 transition={{
                     duration: 15,
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className={`${styles.orb} ${styles.orb3}`}
+                sx={{ ...orbStyles, bottom: '20%', left: '30%', width: '300px', height: '300px', bgcolor: '#a855f7' }}
             />
 
             {/* Floating particles */}
             {particles.map((particle) => (
-                <m.div
+                <Box
                     key={particle.id}
-                    className={styles.particle}
-                    style={{
+                    component={m.div}
+                    sx={{
+                        position: 'absolute',
+                        borderRadius: '50%',
+                        bgcolor: 'primary.main',
                         left: `${particle.x}%`,
                         top: `${particle.y}%`,
-                        width: particle.size,
-                        height: particle.size,
+                        width: `${particle.size}px`,
+                        height: `${particle.size}px`,
                     }}
                     animate={{
                         y: [0, -30, 0],
@@ -130,7 +171,15 @@ export function AnimatedBackground() {
             ))}
 
             {/* Grid pattern overlay */}
-            <div className={styles.grid} />
-        </div>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundImage: 'linear-gradient(rgba(128, 128, 128, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(128, 128, 128, 0.05) 1px, transparent 1px)',
+                    backgroundSize: '50px 50px',
+                    pointerEvents: 'none',
+                }}
+            />
+        </Box>
     );
 }

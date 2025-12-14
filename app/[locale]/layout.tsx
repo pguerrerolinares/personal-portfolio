@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { Box } from '@mui/material';
 import { routing } from '@/i18n/routing';
 import { Providers } from '@/components/providers';
 import { LazyMotionProvider } from '@/components/providers/lazy-motion-provider';
@@ -8,7 +9,6 @@ import { ScrollProgress } from '@/components/ui/scroll-progress';
 import { PageTransition } from '@/components/ui/page-transition';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
-import styles from './layout.module.scss';
 
 type Props = {
   children: React.ReactNode;
@@ -36,7 +36,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <ScrollProgress />
           <Navbar />
           <PageTransition>
-            <div className={styles.pageContainer}>{children}</div>
+            <Box sx={{ minHeight: '100vh', pt: '4rem' }}>{children}</Box>
           </PageTransition>
           <Footer />
         </LazyMotionProvider>

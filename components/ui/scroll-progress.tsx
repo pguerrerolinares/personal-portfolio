@@ -1,7 +1,7 @@
 "use client";
 
 import { m, useScroll, useSpring } from 'framer-motion';
-import styles from './scroll-progress.module.scss';
+import { Box } from '@mui/material';
 
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -11,5 +11,20 @@ export function ScrollProgress() {
     restDelta: 0.001
   });
 
-  return <m.div className={styles.progressBar} style={{ scaleX }} />;
+  return (
+    <Box
+      component={m.div}
+      sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: '4px',
+        bgcolor: 'primary.main',
+        transformOrigin: '0%',
+        zIndex: 9999,
+      }}
+      style={{ scaleX }}
+    />
+  );
 }

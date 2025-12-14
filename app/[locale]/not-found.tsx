@@ -2,83 +2,158 @@
 
 import { m } from "framer-motion";
 import Link from "next/link";
+import { Box, Typography, Button, Stack } from "@mui/material";
 import { HomeIcon, ArrowLeftIcon } from "@/components/ui/icon";
-import styles from './not-found.module.scss';
 
 export default function NotFound() {
     return (
-        <div className={styles.container}>
+        <Box
+            sx={{
+                minHeight: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                p: { xs: 4, sm: 6, lg: 8 },
+            }}
+        >
             {/* Background */}
-            <div className={styles.background}>
-                <div className={styles.orb1} />
-                <div className={styles.orb2} />
-            </div>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: -1,
+                    overflow: 'hidden',
+                }}
+            >
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '33%',
+                        left: '25%',
+                        width: '33%',
+                        height: '33%',
+                        bgcolor: 'primary.main',
+                        opacity: 0.1,
+                        borderRadius: '50%',
+                        filter: 'blur(48px)',
+                    }}
+                />
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        bottom: '33%',
+                        right: '25%',
+                        width: '25%',
+                        height: '25%',
+                        bgcolor: '#a855f7',
+                        opacity: 0.1,
+                        borderRadius: '50%',
+                        filter: 'blur(48px)',
+                    }}
+                />
+            </Box>
 
-            <m.div
+            <Box
+                component={m.div}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className={styles.content}
+                sx={{ textAlign: 'center', maxWidth: '28rem' }}
             >
                 {/* 404 Number */}
-                <m.div
+                <Box
+                    component={m.div}
                     initial={{ scale: 0.8 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className={styles.number}
+                    sx={{ mb: 8 }}
                 >
-                    <span className={styles.numberText}>404</span>
-                </m.div>
+                    <Typography
+                        component="span"
+                        sx={{
+                            fontSize: { xs: '7.5rem', sm: '10rem' },
+                            fontWeight: 700,
+                            lineHeight: 1,
+                            background: (theme) =>
+                                `linear-gradient(to bottom right, ${theme.palette.text.primary}, ${theme.palette.text.primary}80)`,
+                            backgroundClip: 'text',
+                            WebkitBackgroundClip: 'text',
+                            color: 'transparent',
+                        }}
+                    >
+                        404
+                    </Typography>
+                </Box>
 
                 {/* Message */}
-                <m.h1
+                <Typography
+                    component={m.h1}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className={styles.title}
+                    variant="h4"
+                    sx={{ fontWeight: 600, mb: 4 }}
                 >
                     Page Not Found
-                </m.h1>
+                </Typography>
 
-                <m.p
+                <Typography
+                    component={m.p}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className={styles.message}
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{ mb: 8 }}
                 >
                     The page you&apos;re looking for doesn&apos;t exist or has been moved.
-                </m.p>
+                </Typography>
 
                 {/* Actions */}
-                <m.div
+                <Stack
+                    component={m.div}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className={styles.actions}
+                    direction={{ xs: 'column', sm: 'row' }}
+                    spacing={2}
+                    justifyContent="center"
                 >
-                    <Link href="/" className={styles.homeLink}>
-                        <HomeIcon size={16} />
-                        Go Home
-                    </Link>
-                    <button
-                        onClick={() => window.history.back()}
-                        className={styles.backButton}
+                    <Button
+                        component={Link}
+                        href="/"
+                        variant="contained"
+                        startIcon={<HomeIcon size={16} />}
                     >
-                        <ArrowLeftIcon size={16} />
+                        Go Home
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        onClick={() => window.history.back()}
+                        startIcon={<ArrowLeftIcon size={16} />}
+                    >
                         Go Back
-                    </button>
-                </m.div>
+                    </Button>
+                </Stack>
 
                 {/* Decorative element */}
-                <m.div
+                <Box
+                    component={m.div}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className={styles.accent}
+                    sx={{ mt: 16, display: 'flex', justifyContent: 'center' }}
                 >
-                    <div className={styles.accentLine} />
-                </m.div>
-            </m.div>
-        </div>
+                    <Box
+                        sx={{
+                            width: '5rem',
+                            height: '0.25rem',
+                            bgcolor: 'primary.main',
+                            borderRadius: '9999px',
+                        }}
+                    />
+                </Box>
+            </Box>
+        </Box>
     );
 }
