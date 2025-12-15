@@ -1,9 +1,10 @@
 # Portfolio Personal - Paul Guerrero Linares
 
-Portfolio personal moderno, desarrollado con Next.js 16, TypeScript, Material UI y Bun.
+Portfolio personal moderno, desarrollado con Next.js 16, TypeScript (sin JSX), Material UI y Bun.
 
 ## 🚀 Características
 
+- **Arquitectura sin JSX**: Usa TypeScript (`.ts`) con `React.createElement()` vía helper `h()` para máxima portabilidad
 - **Diseño moderno**: Interfaz profesional con Material UI y sistema de diseño cohesivo
 - **Paleta complementaria**: Colores Blue (primario) + Orange (secundario) + Purple (acento)
 - **Bilingüe**: Soporte para Español (es_ES) e Inglés (en_US) con toggle
@@ -11,7 +12,7 @@ Portfolio personal moderno, desarrollado con Next.js 16, TypeScript, Material UI
 - **Mobile-First**: Diseño responsive optimizado para todos los dispositivos
 - **Animaciones premium**: Transiciones fluidas, efectos de hover y micro-interacciones con Framer Motion
 - **Optimizado**: Performance optimizado con Next.js 16 y Turbopack
-- **TypeScript**: Código type-safe con TypeScript estricto
+- **TypeScript**: Código type-safe con TypeScript estricto (sin archivos `.tsx`)
 - **Material UI v7**: Sistema de diseño completo con Emotion CSS-in-JS
 - **Componentes estandarizados**: SectionContainer, SectionTitle, StandardCard para consistencia
 - **Accesibilidad**: WCAG AA compliant con soporte para reduced motion y navegación por teclado
@@ -59,6 +60,8 @@ bun format
 
 El servidor de desarrollo estará disponible en [http://localhost:3000](http://localhost:3000)
 
+**Advertencia esperada**: Al ejecutar `bun dev` verás una advertencia sobre middleware. Es inofensiva y puede ignorarse. Ver sección "Advertencias Esperadas" más abajo.
+
 ## 🚀 Deploy a GitHub Pages
 
 Este proyecto está configurado para deployarse automáticamente a GitHub Pages usando GitHub Actions.
@@ -93,56 +96,101 @@ https://pguerrerolinares.github.io/personal-portfolio/
 2. Verifica que el workflow "Deploy to GitHub Pages" se ejecutó correctamente
 3. Accede a tu URL para ver el sitio en vivo
 
+## 🏗️ Arquitectura sin JSX
+
+Este proyecto usa una arquitectura única: **TypeScript sin JSX**. Todos los componentes usan archivos `.ts` (no `.tsx`) y `React.createElement()` a través del helper `h()`.
+
+### ¿Por qué sin JSX?
+
+- **Portabilidad máxima**: El código puede migrarse fácilmente a otros frameworks
+- **Bundle más pequeño**: Sin overhead de transformación JSX
+- **Framework agnóstico**: No atado a herramientas específicas de JSX
+- **Mejor comprensión**: Estructura de componentes explícita
+
+### Ejemplo de Código
+
+```typescript
+import { h } from '@/lib/react-helpers';
+import { Box, Typography } from '@mui/material';
+
+export function MyComponent() {
+  return h(Box, {
+    sx: { p: 2 },
+    children: [
+      h(Typography, { key: 'title', variant: "h4" }, "Título"),
+      h(Typography, { key: 'subtitle' }, "Subtítulo")
+    ]
+  });
+}
+```
+
+### Helper `h()`
+
+El archivo `lib/react-helpers.ts` proporciona utilidades para crear elementos React:
+
+- `h(type, props, ...children)` - Helper principal
+- `map(items, fn)` - Mapear arrays
+- `when(condition, fn)` - Renderizado condicional
+- `Fragment` - React.Fragment
+- Shortcuts HTML: `div()`, `span()`, `p()`, etc.
+
 ## 📁 Estructura del Proyecto
+
+**Nota**: Todos los archivos de componentes usan extensión `.ts` (no `.tsx`)
 
 ```
 portfolio-personal/
 ├── app/
-│   ├── layout.tsx              # Root layout (fonts, metadata)
+│   ├── layout.ts               # Root layout (fonts, metadata)
+│   ├── page.ts                 # Página de redirección de idioma
 │   ├── globals.css             # Minimal global styles
 │   ├── [locale]/               # Rutas internacionalizadas
-│   │   ├── layout.tsx          # Layout con navbar/footer + MUI providers
-│   │   ├── page.tsx            # Home page
-│   │   └── not-found.tsx       # Página 404
+│   │   ├── layout.ts           # Layout con navbar/footer + MUI providers
+│   │   ├── page.ts             # Home page
+│   │   └── not-found.ts        # Página 404
 │   ├── sitemap.ts              # SEO sitemap
 │   └── robots.ts               # SEO robots.txt
 │
 ├── components/
 │   ├── layout/                 # Componentes de layout
-│   │   ├── navbar.tsx          # AppBar + Drawer navigation
-│   │   └── footer.tsx          # Footer con links sociales
+│   │   ├── navbar.ts           # AppBar + Drawer navigation
+│   │   └── footer.ts           # Footer con links sociales
 │   ├── providers/              # Providers globales
-│   │   ├── lazy-motion-provider.tsx  # LazyMotion + MotionConfig
-│   │   └── theme-provider.tsx        # MUI + next-themes integration
+│   │   ├── index.ts            # Combined providers
+│   │   ├── lazy-motion-provider.ts  # LazyMotion + MotionConfig
+│   │   ├── theme-provider.ts   # MUI + next-themes integration
+│   │   └── toast-provider.ts   # Toast notifications
 │   ├── sections/               # Secciones (organizadas por carpeta)
 │   │   ├── hero/
-│   │   │   └── hero.tsx        # Hero con gradient text
+│   │   │   └── hero.ts         # Hero con gradient text
 │   │   ├── about/
-│   │   │   └── about.tsx       # About con skills
+│   │   │   ├── about.ts        # About con skills
+│   │   │   └── skill-badge.ts  # Skill badge component
 │   │   ├── projects/
-│   │   │   └── projects.tsx    # Projects grid
+│   │   │   ├── projects.ts     # Projects grid
+│   │   │   └── project-card.ts # Project card widget
 │   │   ├── experience/
-│   │   │   └── experience.tsx  # Timeline de experiencia
+│   │   │   ├── experience.ts   # Timeline de experiencia
+│   │   │   └── experience-card.ts  # Experience card widget
 │   │   └── contact/
-│   │       └── contact.tsx     # Contact cards
-│   ├── widgets/                # Widgets reutilizables
-│   │   ├── project-card.tsx    # Card con gradientes
-│   │   ├── experience-card.tsx # Card con timeline
-│   │   ├── contact-card.tsx    # Card interactiva
-│   │   └── skill-badge.tsx     # Chip con hover effect
+│   │       ├── contact.ts      # Contact cards
+│   │       └── contact-card.ts # Contact card widget
 │   └── ui/                     # Componentes UI base
-│       ├── section-container.tsx     # Wrapper estandarizado
-│       ├── section-title.tsx         # Title + Subtitle estandarizados
-│       ├── standard-card.tsx         # Card con animaciones
-│       ├── animated-background.tsx   # Background con partículas
-│       ├── scroll-progress.tsx       # Barra de progreso
-│       ├── page-transition.tsx       # Transiciones de página
-│       ├── toast-provider.tsx        # Toast notifications (Sonner)
-│       ├── icon.tsx                  # Sistema de iconos (Simple Icons)
-│       ├── theme-toggle.tsx          # Toggle dark/light
+│       ├── react-helpers.ts    # ⭐ Helper h() y utilidades sin JSX
+│       ├── section-container.ts     # Wrapper estandarizado
+│       ├── section-title.ts         # Title + Subtitle estandarizados
+│       ├── animated-background.ts   # Background con partículas
+│       ├── scroll-progress.ts       # Barra de progreso
+│       ├── page-transition.ts       # Transiciones de página
+│       ├── fade-in.ts               # Fade-in wrapper (motion.create)
+│       ├── button.ts                # Button wrapper (motion.create)
+│       ├── card.ts                  # Card wrapper (motion.create)
+│       ├── icon.ts                  # Sistema de iconos (Simple Icons)
+│       ├── theme-toggle.ts          # Toggle dark/light
 │       └── ...
 │
 ├── lib/
+│   ├── react-helpers.ts        # ⭐ Helper h() principal
 │   ├── theme/                  # Material UI theme
 │   │   ├── palette.ts          # Paleta de colores (light + dark)
 │   │   ├── typography.ts       # Sistema de tipografía
@@ -161,16 +209,18 @@ portfolio-personal/
 
 ## 🎨 Stack Tecnológico
 
-- **Framework**: Next.js 16 (App Router + Turbopack)
-- **Lenguaje**: TypeScript 5
-- **UI Library**: Material UI (MUI) v7
+- **Framework**: Next.js 16 (App Router + Turbopack + Static Export)
+- **Lenguaje**: TypeScript 5 (archivos `.ts` - **sin JSX**)
+- **React**: React 19.2.0 con `React.createElement()` vía helper `h()`
+- **UI Library**: Material UI (MUI) v7.3.6
 - **Estilos**: Emotion CSS-in-JS + MUI sx prop
-- **Animaciones**: Framer Motion (LazyMotion + domAnimation)
-- **Internacionalización**: next-intl
-- **Tema**: next-themes + MUI ThemeProvider
+- **Animaciones**: Framer Motion 12.23.25 (LazyMotion + domAnimation, usando `motion.create()`)
+- **Internacionalización**: next-intl 4.5.8
+- **Tema**: next-themes 0.4.6 + MUI ThemeProvider
 - **Iconos**: Custom Icon System (Simple Icons SVG paths) + MUI Icons
 - **Notificaciones**: Sonner (toast notifications)
 - **Runtime**: Bun
+- **Helper personalizado**: `h()` en `lib/react-helpers.ts` para componentes sin JSX
 
 ## ✨ Características Premium
 
@@ -371,6 +421,32 @@ También puedes usar Material UI Icons:
 ```typescript
 import DownloadIcon from '@mui/icons-material/Download';
 ```
+
+## ⚠️ Advertencias Esperadas
+
+Al ejecutar `bun dev` verás la siguiente advertencia:
+
+```
+⨯ Middleware cannot be used with "output: export"
+```
+
+**Esto es esperado y puede ignorarse**. El plugin next-intl registra configuración de middleware, pero nunca se usa con export estático. El enrutado de locales funciona a través de la estructura de carpetas `[locale]` y `generateStaticParams()`. Esta advertencia NO aparece durante `bun run build` y no afecta la funcionalidad.
+
+## 📝 Historial de Migración
+
+Este proyecto fue migrado de `.tsx` (JSX) a `.ts` (sin JSX) para mejorar la portabilidad y reducir el acoplamiento al framework. La migración incluyó:
+
+1. ✅ Creación de `lib/react-helpers.ts` con helper `h()` y utilidades
+2. ✅ Conversión de todos los archivos `.tsx` a `.ts` usando `React.createElement()`
+3. ✅ Actualización de Framer Motion de `m()` obsoleto a `motion.create()`
+4. ✅ Corrección de todas las advertencias de keys de React usando arrays explícitos de `children`
+5. ✅ Mantenimiento del 100% de funcionalidad eliminando la sintaxis JSX
+
+**Beneficios de la migración**:
+- Estructura de componentes framework-agnóstica
+- Migración más fácil a otros frameworks si es necesario
+- Mejor comprensión de la creación de elementos React
+- Sin overhead de transformación JSX
 
 ## 👤 Autor
 
