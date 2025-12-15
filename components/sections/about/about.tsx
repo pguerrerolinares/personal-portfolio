@@ -85,45 +85,31 @@ export function About() {
                 mt: LAYOUT.spacing.container,
                 p: LAYOUT.spacing.grid,
                 display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
+                gridTemplateColumns: 'repeat(2, 1fr)',
                 gap: LAYOUT.spacing.grid,
                 bgcolor: 'background.paper',
                 borderRadius: LAYOUT.borderRadius.lg,
                 border: 1,
                 borderColor: 'divider',
-                alignItems: 'start', // Ensure top alignment if heights differ, or 'center'
+                alignItems: 'center',
+                alignContent: 'center',
+                justifyContent: 'center',
               }}
             >
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main', mb: 1 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100px' }}>
+                <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main', mb: 1, lineHeight: 1.2 }}>
                   4+
                 </Typography>
                 <Typography variant="body2" color="text.secondary" align="center">
                   {t("stats.years")}
                 </Typography>
               </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main', mb: 1 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100px' }}>
+                <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main', mb: 1, lineHeight: 1.2 }}>
                   {skills.length}+
                 </Typography>
                 <Typography variant="body2" color="text.secondary" align="center">
                   {t("stats.technologies")}
-                </Typography>
-              </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <Typography
-                  variant="h4"
-                  sx={{
-                    fontWeight: 700,
-                    color: 'primary.main',
-                    mb: 1,
-                    fontSize: { xs: '1.5rem', sm: '2.125rem' } // Slightly smaller on mobile to fit "Full-Stack"
-                  }}
-                >
-                  Full-Stack
-                </Typography>
-                <Typography variant="body2" color="text.secondary" align="center">
-                  {t("stats.focus")}
                 </Typography>
               </Box>
             </Box>
