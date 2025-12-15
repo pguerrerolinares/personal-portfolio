@@ -10,7 +10,9 @@
 
 Implementar una nueva sección **"Playground/Demo"** en el portafolio con una **librería personalizada de Web Components** basada en **Highcharts**. La librería será **framework-agnostic** (portable a Next.js, Angular, JSP) usando el estándar de Web Components.
 
-**Enfoque**: **Proyecto separado** en GitHub, componentes construidos con **Lit.js**, build con **Vite**, integración en portafolio vía npm/Git.
+**Enfoque**: **Proyecto separado** en GitHub, componentes construidos con **TypeScript + Web Components nativos + @preact/signals-core**, build con **Bun**, integración en portafolio vía npm/Git.
+
+**Filosofía técnica**: Máxima portabilidad y control usando estándares web puros (Custom Elements API, Shadow DOM) con reactividad ligera vía @preact/signals-core. Sin frameworks intermedios (Lit, Stencil), solo TypeScript + Web APIs + signals.
 
 ## ⚠️ IMPORTANTE: Proyecto Separado
 
@@ -45,7 +47,7 @@ viz-components/                   # ⭐ PROYECTO SEPARADO
 ├── docs/                         # Documentación
 ├── package.json
 ├── tsconfig.json
-├── vite.config.ts
+├── bunfig.toml                   # Bun build configuration (opcional)
 ├── README.md
 └── LICENSE
 ```
@@ -70,12 +72,95 @@ personal-portfolio/
 | Aspecto | Decisión | Justificación |
 |---------|----------|---------------|
 | **Arquitectura** | Proyecto separado en GitHub | Librería reutilizable, desarrollo independiente, publicable a npm |
-| **Web Components** | Lit.js 3.x | TypeScript-first, ligero (~5KB), excelente DX |
-| **Build System** | Vite | Rápido, optimizado para librerías, tree-shaking |
+| **Web Components** | Nativos (TypeScript) | Estándar web puro, sin abstracción, máxima portabilidad |
+| **Reactividad** | @preact/signals-core | Ligero (~1.5KB), framework-agnostic, excelente DX |
+| **Build System** | Bun bundler | Ultra-rápido (3-4x más que Vite), zero-config, bundler nativo integrado |
 | **Chart Library** | Highcharts 11.x | Potente, versátil, buena documentación (gratis para uso personal) |
 | **Theming** | CSS Custom Properties | Decoupled, reactivo, portable |
 | **SSR** | Dynamic import + `ssr: false` | Web Components requieren browser environment |
-| **Package Manager** | Bun | Rápido, moderno, excelente DX |
+| **Package Manager** | Bun | All-in-one: runtime + package manager + bundler + test runner |
+
+### 1.3 Arquitectura Web Components + Signals
+
+**Patrón de Implementación**:
+
+```typescript
+import { signal, computed, effect } from '@preact/signals-core';
+
+class VizChart extends HTMLElement {
+  // Signals para estado reactivo
+  private data = signal<any[]>([]);
+  private type = signal<'line' | 'bar' | 'pie'>('line');
+  private config = signal<any>({});
+
+  // Computed values
+  private chartOptions = computed(() => ({
+    chart: { type: this.type.value },
+    series: [{ data: this.data.value }],
+    ...this.config.value
+  }));
+
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  connectedCallback() {
+    this.render();
+
+    // Effect para re-render cuando cambian las signals
+    effect(() => {
+      this.updateChart(this.chartOptions.value);
+    });
+  }
+
+  // Observed attributes (Web Components API)
+  static get observedAttributes() {
+    return ['type', 'data'];
+  }
+
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (name === 'type') {
+      this.type.value = newValue as any;
+    }
+    if (name === 'data') {
+      this.data.value = JSON.parse(newValue);
+    }
+  }
+
+  private render() {
+    // Shadow DOM rendering
+  }
+
+  private updateChart(options: any) {
+    // Actualizar Highcharts
+  }
+}
+
+customElements.define('viz-chart', VizChart);
+```
+
+**Beneficios de este enfoque**:
+- ✅ **Web Components nativos**: Sin abstracción, máxima compatibilidad
+- ✅ **@preact/signals-core**: Reactividad granular y eficiente (~1.5KB vs ~5KB de Lit)
+- ✅ **TypeScript**: Tipos completos, autocomplete, refactoring seguro
+- ✅ **Shadow DOM**: Encapsulación CSS, no hay colisiones de estilos
+- ✅ **Custom Elements API**: Estándar web, funciona en todos los frameworks
+- ✅ **Zero dependencies**: Solo @preact/signals-core como runtime reactivo
+- ✅ **Full control**: Acceso directo a Web Components API sin abstracciones
+
+**Comparación vs Lit.js**:
+
+| Aspecto | Web Components + Signals | Lit.js |
+|---------|-------------------------|--------|
+| Bundle size | ~1.5KB (signals only) | ~5KB (Lit runtime) |
+| Abstracción | Cero (Web APIs directas) | Decorators, templates |
+| Curva aprendizaje | Steeper (APIs nativas) | Gentler (API simplificada) |
+| Control | Máximo | Moderado |
+| Portabilidad | 100% (estándar web) | 100% (también estándar) |
+| DX | Manual rendering | Automatic re-render |
+
+**Decisión**: Preferimos **control total** y **menor bundle size** sobre la conveniencia de Lit.
 
 ---
 
@@ -198,17 +283,24 @@ function ThemeVariablesInjector() {
 **En Web Components** (consumir):
 
 ```typescript
-static styles = css`
-  :host {
-    --chart-primary: var(--viz-primary, #0071e3);
-    --chart-bg: var(--viz-bg, #ffffff);
-  }
+// En el Shadow DOM del componente
+class VizChart extends HTMLElement {
+  private applyStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+      :host {
+        --chart-primary: var(--viz-primary, #0071e3);
+        --chart-bg: var(--viz-bg, #ffffff);
+      }
 
-  .chart-container {
-    background: var(--chart-bg);
-    border-radius: var(--viz-radius, 16px);
+      .chart-container {
+        background: var(--chart-bg);
+        border-radius: var(--viz-radius, 16px);
+      }
+    `;
+    this.shadowRoot?.appendChild(style);
   }
-`;
+}
 ```
 
 **Beneficios**:
@@ -219,6 +311,106 @@ static styles = css`
 ---
 
 ## 5. Build Configuration
+
+### 5.0 Configuración del Build con Bun
+
+**package.json** (scripts recomendados):
+
+```json
+{
+  "name": "@pguerrero/viz-components",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target browser --minify --sourcemap",
+    "build:watch": "bun build src/index.ts --outdir dist --target browser --watch",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationMap",
+    "dev": "bun run build:watch",
+    "prepublishOnly": "bun run build && bun run build:types"
+  },
+  "dependencies": {
+    "@preact/signals-core": "^1.5.0",
+    "highcharts": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
+```
+
+**tsconfig.json**:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+**bunfig.toml** (opcional - configuración avanzada):
+
+```toml
+[build]
+target = "browser"
+format = "esm"
+minify = true
+sourcemap = "external"
+splitting = true
+
+[build.naming]
+entry = "[dir]/[name].[ext]"
+chunk = "[name]-[hash].[ext]"
+asset = "[name]-[hash].[ext]"
+```
+
+**Comandos de build**:
+
+```bash
+# Build de producción (minificado + sourcemaps)
+bun run build
+
+# Build en modo watch (desarrollo)
+bun run build:watch
+
+# Generar tipos TypeScript (.d.ts)
+bun run build:types
+
+# Build completo (código + tipos) - se ejecuta antes de publish
+bun run prepublishOnly
+```
+
+**Ventajas de Bun bundler**:
+- ✅ **Ultra-rápido**: 3-4x más rápido que Vite/esbuild
+- ✅ **Zero-config**: Funciona out-of-the-box sin configuración
+- ✅ **Tree-shaking nativo**: Elimina código no usado automáticamente
+- ✅ **Sourcemaps**: Debug facilitado en dev
+- ✅ **Watch mode**: Rebuild automático en cambios
+- ✅ **Minificación**: Producción optimizada
+- ✅ **Code splitting**: Lazy loading automático
 
 ### 5.1 Opciones de Integración
 
@@ -275,15 +467,15 @@ bun link @pguerrero/viz-components
 
 3. Instalar dependencias:
    ```bash
-   bun add lit highcharts
-   bun add -d vite vite-plugin-dts typescript @types/node
+   bun add @preact/signals-core highcharts
+   bun add -d typescript @types/node
    ```
 
 4. Crear estructura básica:
    - `src/index.ts`
    - `src/base/viz-base-component.ts`
-   - `vite.config.ts`
    - `tsconfig.json`
+   - `bunfig.toml` (configuración de build opcional)
    - `README.md`
 
 5. Setup build scripts en `package.json`
@@ -305,16 +497,17 @@ bun link @pguerrero/viz-components
 
 **Objetivo**: Componente `<viz-chart>` funcional
 
-1. Implementar `VizChart` con Lit
-2. Lazy load de Highcharts
-3. Soportar tipos: line, bar, pie, area
-4. Integración con theme (colors, fonts)
-5. Responsive sizing
-6. Event system (`chart-click`, `series-hover`)
-7. Crear `playground.tsx` section
-8. Crear `chart-demo.tsx` con ejemplos
-9. Agregar traducciones es/en
-10. Agregar al navbar y home page
+1. Implementar `VizChart` con Web Components nativos + TypeScript
+2. Integrar @preact/signals-core para reactividad
+3. Lazy load de Highcharts
+4. Soportar tipos: line, bar, pie, area
+5. Integración con theme (colors, fonts)
+6. Responsive sizing
+7. Event system (`chart-click`, `series-hover`)
+8. Crear `playground.tsx` section
+9. Crear `chart-demo.tsx` con ejemplos
+10. Agregar traducciones es/en
+11. Agregar al navbar y home page
 
 **Entregables**:
 - ✅ `<viz-chart>` funcional con 4 tipos
@@ -444,7 +637,7 @@ bun link @pguerrero/viz-components
 **Terminal 1** - Watch mode para librería:
 ```bash
 cd /home/paul/Documentos/proyectos/frontend/viz-components
-bun run dev  # Vite watch mode
+bun run build --watch  # Bun watch mode
 ```
 
 **Terminal 2** - Next.js dev server:
@@ -453,7 +646,7 @@ cd /home/paul/Documentos/proyectos/frontend/personal-portfolio
 bun dev
 ```
 
-**Hot reload**: Cambios en Web Components → rebuild automático → Next.js detecta cambios
+**Hot reload**: Cambios en Web Components → Bun rebuild automático → Next.js detecta cambios
 
 ---
 
@@ -461,15 +654,22 @@ bun dev
 
 ### 8.1 Bundle Size
 
-**Concern**: Highcharts ~300KB minified
+**Tamaño estimado**:
+- @preact/signals-core: ~1.5KB minified + gzip
+- Highcharts core: ~300KB minified
+- Web Components (nativos): 0KB (browser built-in)
+
+**Total librería base**: ~1.5KB (sin Highcharts)
+**Total con Highcharts**: ~301.5KB (lazy-loaded)
 
 **Mitigación**:
 - ✅ Lazy load por componente (no en initial page load)
 - ✅ Tree-shaking (importar solo módulos necesarios)
 - ✅ Code-split Playground section
 - ✅ Considerar Highcharts Lite para charts simples
+- ✅ Web Components nativos (0KB overhead vs ~5KB de Lit)
 
-**Impacto**: Aceptable (Playground es feature opcional)
+**Impacto**: Muy bajo (Playground es feature opcional + signals ultra-ligero)
 
 ### 8.2 Licencia Highcharts
 
@@ -502,7 +702,8 @@ bun dev
 
 ### Técnicas:
 - ✅ Build exitoso (0 errors)
-- ✅ Bundle size < 400KB (total lazy-loaded)
+- ✅ Bundle size librería base < 2KB (solo signals)
+- ✅ Bundle size total < 305KB (con Highcharts lazy-loaded)
 - ✅ Lighthouse performance > 90
 - ✅ TypeScript strict mode OK
 
@@ -524,13 +725,14 @@ bun dev
 Este plan implementa una **solución moderna, portable y escalable** para una sección de Playground/Demo con Web Components. Arquitectura basada en estándares web, integración seamless con Next.js, y diseño que permite futuro uso en Angular/JSP sin modificaciones.
 
 **Ventajas clave**:
-1. ✅ Framework-agnostic (Web Components estándar)
-2. ✅ TypeScript-first con Lit
-3. ✅ Proyecto separado (reutilizable, publicable)
-4. ✅ Theme bridge elegante (CSS custom properties)
-5. ✅ Performance optimizado (lazy loading, code splitting)
-6. ✅ Portable (npm publish posible en futuro)
-7. ✅ Bun como package manager (rápido, moderno)
+1. ✅ Framework-agnostic (Web Components nativos estándar)
+2. ✅ TypeScript-first sin abstracción de framework
+3. ✅ Reactividad ligera con @preact/signals-core (~1.5KB)
+4. ✅ Proyecto separado (reutilizable, publicable)
+5. ✅ Theme bridge elegante (CSS custom properties)
+6. ✅ Performance optimizado (lazy loading, code splitting)
+7. ✅ Portable (npm publish posible en futuro)
+8. ✅ Bun all-in-one (package manager + bundler + runtime, ultra-rápido)
 
 ---
 
