@@ -1,11 +1,11 @@
 "use client";
 
-import { m, MotionProps } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
 import { Box, BoxProps } from "@mui/material";
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 // Create a motion component from MUI Box
-const MotionBox = m(Box);
+const MotionBox = motion.create(Box);
 
 // Combine BoxProps and MotionProps. 
 // We use Omit to explicitly handle conflicts.
@@ -52,7 +52,7 @@ export function FadeIn({
             viewport={{ once: true, margin: viewportMargin }}
             transition={{ duration, delay, ease: "easeOut" }}
             className={className}
-            style={style as any} // Cast style to avoid strict compatibility issues between Motion and React styles
+            style={style as CSSProperties}
             width={fullWidth ? '100%' : undefined}
             {...props}
         >

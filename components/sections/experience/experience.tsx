@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { Box, Typography, Button } from "@mui/material";
 import { experiences } from "@/lib/constants/portfolio-data";
 import { ExperienceCard } from "./experience-card";
@@ -32,7 +32,7 @@ export function Experience() {
 
       {/* Download resume CTA */}
       <Box
-        component={m.div}
+        component={motion.div}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

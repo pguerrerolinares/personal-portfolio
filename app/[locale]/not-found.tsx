@@ -1,6 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { Box, Typography, Button, Stack } from "@mui/material";
 import { HomeIcon, ArrowLeftIcon } from "@/components/ui/icon";
@@ -54,7 +54,7 @@ export default function NotFound() {
             </Box>
 
             <Box
-                component={m.div}
+                component={motion.div}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -62,7 +62,7 @@ export default function NotFound() {
             >
                 {/* 404 Number */}
                 <Box
-                    component={m.div}
+                    component={motion.div}
                     initial={{ scale: 0.8 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
@@ -87,7 +87,7 @@ export default function NotFound() {
 
                 {/* Message */}
                 <Typography
-                    component={m.h1}
+                    component={motion.h1}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
@@ -98,7 +98,7 @@ export default function NotFound() {
                 </Typography>
 
                 <Typography
-                    component={m.p}
+                    component={motion.p}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
@@ -111,7 +111,7 @@ export default function NotFound() {
 
                 {/* Actions */}
                 <Stack
-                    component={m.div}
+                    component={motion.div}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
@@ -138,7 +138,7 @@ export default function NotFound() {
 
                 {/* Decorative element */}
                 <Box
-                    component={m.div}
+                    component={motion.div}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.5 }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Box, CardContent, Typography, IconButton, Stack, alpha } from "@mui/material";
 import { FadeIn, HoverCard } from "@/components/ui";
@@ -63,7 +63,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           }}
         >
           <Box
-            component={m.div}
+            component={motion.div}
             whileHover={{ scale: 1.1, rotate: 5 }}
             sx={{
               color: (theme) => theme.palette.category[project.category], // Icon matches category

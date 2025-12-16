@@ -2,7 +2,7 @@
 
 import { type ReactNode, forwardRef } from "react";
 import { Button as MuiButton, CircularProgress, type ButtonProps as MuiButtonProps } from "@mui/material";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 
 
 export interface ButtonProps extends Omit<MuiButtonProps, "variant" | "size" | "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration"> {
@@ -16,7 +16,7 @@ export interface ButtonProps extends Omit<MuiButtonProps, "variant" | "size" | "
 
 
 
-const MotionButton = m(MuiButton);
+const MotionButton = motion.create(MuiButton);
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button({

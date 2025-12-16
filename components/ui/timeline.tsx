@@ -1,15 +1,16 @@
 "use client";
 
-import { Box, BoxProps } from "@mui/material";
+import { Box, SxProps, Theme } from "@mui/material";
 import { ReactNode } from "react";
 import { FadeIn } from "./fade-in";
 
-interface TimelineItemProps extends BoxProps {
+interface TimelineItemProps {
     children: ReactNode;
     index?: number;
     isLast?: boolean;
     lineColor?: string;
     dotColor?: string;
+    sx?: SxProps<Theme>;
 }
 
 export function TimelineItem({
@@ -19,7 +20,6 @@ export function TimelineItem({
     lineColor = 'divider',
     dotColor = 'primary.main',
     sx,
-    ...props
 }: TimelineItemProps) {
     return (
         <FadeIn
@@ -27,7 +27,6 @@ export function TimelineItem({
             delay={index * 0.1}
             direction="right"
             sx={{ position: 'relative', pl: { xs: 0, md: 4 }, pb: isLast ? 0 : 3, ...sx }}
-            {...(props as any)}
         >
             {/* Timeline line */}
             {!isLast && (

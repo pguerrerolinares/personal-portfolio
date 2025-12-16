@@ -1,6 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
@@ -99,7 +99,7 @@ export function AnimatedBackground() {
         >
             {/* Animated gradient orbs */}
             <Box
-                component={m.div}
+                component={motion.div}
                 animate={{
                     x: [0, 30, 0],
                     y: [0, -20, 0],
@@ -113,7 +113,7 @@ export function AnimatedBackground() {
                 sx={{ ...orbStyles, top: '10%', left: '10%', width: '500px', height: '500px', bgcolor: 'primary.main', opacity: 0.15 }}
             />
             <Box
-                component={m.div}
+                component={motion.div}
                 animate={{
                     x: [0, -20, 0],
                     y: [0, 30, 0],
@@ -129,7 +129,7 @@ export function AnimatedBackground() {
 
             {/* Third orb for depth */}
             <Box
-                component={m.div}
+                component={motion.div}
                 animate={{
                     x: [0, 40, 0],
                     y: [0, -30, 0],
@@ -147,7 +147,7 @@ export function AnimatedBackground() {
             {particles.map((particle) => (
                 <Box
                     key={particle.id}
-                    component={m.div}
+                    component={motion.div}
                     sx={{
                         position: 'absolute',
                         borderRadius: '50%',

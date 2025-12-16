@@ -1,18 +1,23 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { IconButton } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
+// Hydration-safe mounted state using useSyncExternalStore
+const emptySubscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
+function useMounted() {
+  return useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot);
+}
+
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   if (!mounted) {
     return (

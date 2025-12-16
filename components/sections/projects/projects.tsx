@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { Box, Typography, Button } from "@mui/material";
 import { projects } from "@/lib/constants/portfolio-data";
 import { ProjectCard } from "./project-card";
@@ -64,7 +64,7 @@ export function Projects() {
 
       {/* Call to action */}
       <Box
-        component={m.div}
+        component={motion.div}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

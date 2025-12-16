@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { Box, Typography, Divider } from "@mui/material";
 import {
   skills,
@@ -57,7 +57,7 @@ export function About() {
         {/* Bio section */}
         <Box sx={{ flex: 1 }}>
           <Box
-            component={m.div}
+            component={motion.div}
             variants={container}
             initial="hidden"
             whileInView="show"
@@ -67,19 +67,19 @@ export function About() {
               {t("subtitle")}
             </SectionSubtitle>
 
-            <Typography component={m.p} variants={item} variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
+            <Typography component={motion.p} variants={item} variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
               {t("bio.p1")}
             </Typography>
-            <Typography component={m.p} variants={item} variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
+            <Typography component={motion.p} variants={item} variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
               {t("bio.p2")}
             </Typography>
-            <Typography component={m.p} variants={item} variant="body1" color="text.secondary" sx={{ mb: 4, lineHeight: 1.8 }}>
+            <Typography component={motion.p} variants={item} variant="body1" color="text.secondary" sx={{ mb: 4, lineHeight: 1.8 }}>
               {t("bio.p3")}
             </Typography>
 
             {/* Quick stats */}
             <Box
-              component={m.div}
+              component={motion.div}
               variants={item}
               sx={{
                 mt: LAYOUT.spacing.container,
@@ -119,7 +119,7 @@ export function About() {
         {/* Skills section */}
         <Box sx={{ flex: 1 }}>
           <Box
-            component={m.div}
+            component={motion.div}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

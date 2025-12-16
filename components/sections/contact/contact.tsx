@@ -1,12 +1,12 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { Box, Typography } from "@mui/material";
 import { personalInfo } from "@/lib/constants/portfolio-data";
 import { ContactCard } from "./contact-card";
 import { SectionContainer } from "@/components/ui/section-container";
-import { SectionTitle, SectionSubtitle } from "@/components/ui/section-title";
+import { SectionTitle } from "@/components/ui/section-title";
 import { MailIcon, GithubIcon, LinkedinIcon, MapPinIcon } from "@/components/ui/icon";
 
 export function Contact() {
@@ -49,7 +49,7 @@ export function Contact() {
 
       {/* Contact info with timeline */}
       <Box
-        component={m.div}
+        component={motion.div}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -74,7 +74,7 @@ export function Contact() {
 
         {/* CTA */}
         <Typography
-          component={m.p}
+          component={motion.p}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

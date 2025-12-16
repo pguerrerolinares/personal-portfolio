@@ -19,24 +19,6 @@ export function Badge({
   const theme = useTheme();
   const muiSize = size === "sm" ? "small" : "medium";
 
-  // Map custom variants to MUI Chip colors/variants
-  const getColor = () => {
-    switch (variant) {
-      case "accent":
-        return "primary";
-      case "success":
-        return "success";
-      case "warning":
-        return "warning";
-      case "error":
-        return "error";
-      case "info":
-        return "info";
-      default:
-        return "default";
-    }
-  };
-
   // Resolve color token from theme based on variant
   const getThemeColor = () => {
     switch (variant) {

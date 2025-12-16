@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { Box, Container, Typography, Stack } from "@mui/material";
 import { Link } from "@/i18n/routing";
 import { personalInfo } from "@/lib/constants/portfolio-data";
@@ -52,7 +52,7 @@ export function Hero() {
 
       <Container maxWidth="xl">
         <Box
-          component={m.div}
+          component={motion.div}
           variants={container}
           initial="hidden"
           animate="show"
@@ -68,7 +68,7 @@ export function Hero() {
           }}
         >
           <Typography
-            component={m.p}
+            component={motion.p}
             variants={item}
             variant="body1"
             sx={{
@@ -83,7 +83,7 @@ export function Hero() {
           </Typography>
 
           <Typography
-            component={m.h1}
+            component={motion.h1}
             variants={item}
             variant="h1"
             sx={{
@@ -103,7 +103,7 @@ export function Hero() {
           </Typography>
 
           <Typography
-            component={m.h2}
+            component={motion.h2}
             variants={item}
             variant="h4"
             sx={{
@@ -117,7 +117,7 @@ export function Hero() {
           </Typography>
 
           <Typography
-            component={m.p}
+            component={motion.p}
             variants={item}
             variant="body1"
             sx={{
@@ -132,7 +132,7 @@ export function Hero() {
           </Typography>
 
           <Stack
-            component={m.div}
+            component={motion.div}
             variants={item}
             direction="row"
             spacing={2}
@@ -157,7 +157,7 @@ export function Hero() {
           </Stack>
 
           <Stack
-            component={m.div}
+            component={motion.div}
             variants={item}
             direction="row"
             spacing={2}
@@ -202,7 +202,7 @@ export function Hero() {
       </Container>
 
       <Box
-        component={m.div}
+        component={motion.div}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.5 }}
@@ -214,12 +214,12 @@ export function Hero() {
           color: 'text.secondary',
         }}
       >
-        <m.div
+        <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
           <ArrowDownIcon size={24} />
-        </m.div>
+        </motion.div>
       </Box>
     </Box>
   );
