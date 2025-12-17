@@ -7,7 +7,8 @@
     "about": "Sobre mí",
     "projects": "Proyectos",
     "experience": "Experiencia",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "playground": "Playground"
   },
   "hero": {
     "greeting": "Hola, soy",
@@ -115,6 +116,19 @@
       "location": "Ubicación"
     },
     "cta": "¡No dudes en contactarme a través de cualquiera de estos canales!"
+  },
+  "playground": {
+    "title": "Playground de Componentes",
+    "subtitle": "Componentes de visualización interactivos para aplicaciones de broker",
+    "description": "Explora la librería viz-components: un conjunto de Web Components agnósticos de framework construidos con Lit y Highcharts para visualización de datos financieros.",
+    "stockChart": {
+      "title": "Gráfico de Acciones en Tiempo Real",
+      "description": "Gráfico de velas interactivo con datos OHLC, barras de volumen y simulación en tiempo real. Incluye selector de rango, navegador y actualizaciones de precio en vivo."
+    },
+    "stockEvolution": {
+      "title": "Evolución Histórica de Acciones",
+      "description": "Gráfico de evolución de precios a largo plazo con marcadores de eventos de mercado importantes. Muestra datos de ejemplo del S&P 500 desde 2000-2024 con eventos históricos como crashes, rallies y cambios de política."
+    }
   },
   "common": {
     "loading": "Cargando...",

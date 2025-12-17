@@ -19,12 +19,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { LanguageSwitcher } from '@/components/ui/language-switcher';
+import { Link } from '@/i18n/routing';
 
 const navItems = [
-  { key: 'about', href: '#about' },
-  { key: 'projects', href: '#projects' },
-  { key: 'experience', href: '#experience' },
-  { key: 'contact', href: '#contact' },
+  { key: 'about', href: '/#about' },
+  { key: 'projects', href: '/#projects' },
+  { key: 'experience', href: '/#experience' },
+  { key: 'contact', href: '/#contact' },
 ] as const;
 
 export function Navbar() {
@@ -81,8 +82,8 @@ export function Navbar() {
           >
             {/* Logo */}
             <Box
-              component="a"
-              href="#"
+              component={Link}
+              href="/"
               aria-label="Go to homepage"
               sx={{
                 fontSize: '1.5rem',
@@ -109,7 +110,7 @@ export function Navbar() {
               {navItems.map((item) => (
                 <Box
                   key={item.key}
-                  component="a"
+                  component={Link}
                   href={item.href}
                   sx={{
                     px: 2,
@@ -128,6 +129,25 @@ export function Navbar() {
                   {t(item.key)}
                 </Box>
               ))}
+              <Box
+                component={Link}
+                href="/playground"
+                sx={{
+                  px: 2,
+                  py: 1,
+                  color: 'text.primary',
+                  textDecoration: 'none',
+                  fontWeight: 500,
+                  borderRadius: 1,
+                  transition: 'all 0.2s',
+                  '&:hover': {
+                    bgcolor: 'action.hover',
+                    color: 'primary.main',
+                  },
+                }}
+              >
+                {t('playground')}
+              </Box>
             </Box>
 
             {/* Controls */}
@@ -179,7 +199,7 @@ export function Navbar() {
           {navItems.map((item) => (
             <ListItem key={item.key} disablePadding>
               <ListItemButton
-                component="a"
+                component={Link}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
                 sx={{
@@ -198,6 +218,26 @@ export function Navbar() {
               </ListItemButton>
             </ListItem>
           ))}
+          <ListItem disablePadding>
+            <ListItemButton
+              component={Link}
+              href="/playground"
+              onClick={() => setIsOpen(false)}
+              sx={{
+                py: 2,
+                '&:hover': {
+                  bgcolor: 'action.hover',
+                },
+              }}
+            >
+              <ListItemText
+                primary={t('playground')}
+                primaryTypographyProps={{
+                  fontWeight: 500,
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
     </>

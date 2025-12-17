@@ -103,7 +103,10 @@ portfolio-personal/
 │   ├── [locale]/               # Rutas internacionalizadas
 │   │   ├── layout.tsx          # Layout con navbar/footer + MUI providers
 │   │   ├── page.tsx            # Home page
-│   │   └── not-found.tsx       # Página 404
+│   │   ├── not-found.tsx       # Página 404
+│   │   └── playground/         # Playground con demos de visualización
+│   │       ├── page.tsx
+│   │       └── playground-content.tsx
 │   ├── sitemap.ts              # SEO sitemap
 │   └── robots.ts               # SEO robots.txt
 │
@@ -170,6 +173,7 @@ portfolio-personal/
 - **Tema**: next-themes + MUI ThemeProvider
 - **Iconos**: Custom Icon System (Simple Icons SVG paths) + MUI Icons
 - **Notificaciones**: Sonner (toast notifications)
+- **Visualización**: @pguerrerolinares/viz-components (Lit web components)
 - **Runtime**: Bun
 
 ## ✨ Características Premium
@@ -308,6 +312,27 @@ Aplicado en:
 3. **Projects**: Proyectos con tarjetas gradient y categorías
 4. **Experience**: Timeline de experiencia profesional
 5. **Contact**: Información de contacto con timeline cards
+6. **Playground**: Demos interactivos de visualización de datos (stock charts)
+
+### 📊 Playground - Visualización de Datos
+
+El playground muestra componentes de visualización usando `@pguerrerolinares/viz-components`:
+
+- **Stock Chart**: Gráfico OHLC con datos de demostración, soporte para tiempo real
+- **Stock Evolution**: Visualización de evolución temporal con eventos
+
+**Nota técnica**: Los web components (Lit) requieren pasar arrays/objetos via `ref` property, no como atributos JSX:
+
+```tsx
+// Los web components reciben strings en atributos JSX
+// Para arrays/objetos, usar ref:
+const chartRef = useRef(null);
+useEffect(() => {
+  if (chartRef.current) {
+    chartRef.current.data = myDataArray;
+  }
+}, []);
+```
 
 ## 🔧 Personalización
 

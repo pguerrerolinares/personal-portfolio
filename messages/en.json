@@ -7,7 +7,8 @@
     "about": "About",
     "projects": "Projects",
     "experience": "Experience",
-    "contact": "Contact"
+    "contact": "Contact",
+    "playground": "Playground"
   },
   "hero": {
     "greeting": "Hi, I'm",
@@ -115,6 +116,19 @@
       "location": "Location"
     },
     "cta": "Feel free to reach out through any of these channels!"
+  },
+  "playground": {
+    "title": "Component Playground",
+    "subtitle": "Interactive visualization components for broker applications",
+    "description": "Explore the viz-components library: a set of framework-agnostic Web Components built with Lit and Highcharts for financial data visualization.",
+    "stockChart": {
+      "title": "Real-Time Stock Chart",
+      "description": "Interactive candlestick chart with OHLC data, volume bars, and real-time simulation. Features range selector, navigator, and live price updates."
+    },
+    "stockEvolution": {
+      "title": "Historical Stock Evolution",
+      "description": "Long-term price evolution chart with major market event markers. Shows S&P 500 sample data from 2000-2024 with historical events like crashes, rallies, and policy changes."
+    }
   },
   "common": {
     "loading": "Loading...",
