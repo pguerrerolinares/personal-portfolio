@@ -9,7 +9,7 @@
         "@emotion/styled": "^11.14.1",
         "@mui/icons-material": "^7.3.6",
         "@mui/material": "^7.3.6",
-        "@pguerrerolinares/viz-components": "^0.1.0",
+        "@pguerrerolinares/viz-components": "^0.2.0",
         "framer-motion": "^12.23.25",
         "highcharts": "^12.4.0",
         "next": "16.0.7",
@@ -271,7 +271,7 @@
 
     "@parcel/watcher-win32-x64": ["@parcel/watcher-win32-x64@2.5.1", "", { "os": "win32", "cpu": "x64" }, "sha512-9lHBdJITeNR++EvSQVUcaZoWupyHfXe1jZvGZ06O/5MflPcuPLtEphScIBL+AiCWBO46tDSHzWyD0uDmmZqsgA=="],
 
-    "@pguerrerolinares/viz-components": ["@pguerrerolinares/viz-components@0.1.0", "", { "dependencies": { "lit": "^3.2.0" }, "peerDependencies": { "highcharts": "^12.0.0" } }, "sha512-K6jbdRaOKVc2T03dqZZ7rfpAl4Gne/YQ5I0yO3hHy7H25e3iDbkydw0X6nsXFu5+Qqj+v9k7LxqDJ8XV/SziLg=="],
+    "@pguerrerolinares/viz-components": ["@pguerrerolinares/viz-components@0.2.0", "", { "dependencies": { "lit": "^3.2.0" }, "peerDependencies": { "highcharts": "^12.0.0" } }, "sha512-u1eaIZ+EYbXya92WZ27kikE5lm5+9EihUKAAnk+6lczRg+tEUzQLRa65SNNDyiq/Ny4o2GxcYOGBRAjSZ7ntUg=="],
 
     "@popperjs/core": ["@popperjs/core@2.11.8", "", {}, "sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A=="],
 
