@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Paul Guerrero Linares - Computer Engineer",
-    "description": "Professional portfolio of Paul Guerrero Linares - Computer Engineer specialized in enterprise applications, from IoT to investment platforms."
+    "title": "Paul Guerrero Linares - Software Engineer",
+    "description": "Professional portfolio of Paul Guerrero Linares - Software Engineer specialized in enterprise applications, from IoT to investment platforms."
   },
   "nav": {
     "about": "About",
@@ -13,7 +13,7 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Paul Guerrero",
-    "role": "Computer Engineer",
+    "role": "Software Engineer",
     "description": "Specialized in enterprise applications that make a difference, from IoT to investment platforms.",
     "cta": {
       "projects": "View Projects",
@@ -77,7 +77,7 @@
     "items": {
       "finnk": {
         "company": "Kutxabank Investment – Finnk",
-        "role": "Computer Engineer (Frontend & Backend)",
+        "role": "Software Engineer (Frontend & Backend)",
         "description": "Development of key functionalities within the Finnk ecosystem, combining frontend (Angular, Ionic/Capacitor, Angular Material, charting libraries) and backend Java in complex corporate environments.",
         "highlights": [
           "Evolution of critical digital onboarding flows: document upload, validations, OTP, promotions, and financial visualization components",
