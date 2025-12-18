@@ -174,11 +174,7 @@ export function PlaygroundContent() {
             }}
           >
             {/* @ts-expect-error - Web Component */}
-            <viz-stock-evolution
-              config={EVOLUTION_CONFIG}
-              theme="auto"
-              style={{ width: '100%', height: '100%', display: 'block' }}
-            />
+            <viz-stock-evolution demo></viz-stock-evolution>
           </Box>
         </FadeIn>
       </SectionContainer>
