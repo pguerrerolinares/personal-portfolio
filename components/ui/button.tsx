@@ -10,6 +10,9 @@ export interface ButtonProps extends Omit<MuiButtonProps, "variant" | "size" | "
   variant?: "primary" | "secondary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
   loading?: boolean;
+  // Anchor props for when component="a"
+  target?: string;
+  rel?: string;
 }
 
 
@@ -40,10 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         variant={muiVariant}
         size={muiSize}
-
         disabled={disabled || loading}
-        whileHover={{ scale: disabled || loading ? 1 : 1.02 }}
-        whileTap={{ scale: disabled || loading ? 1 : 0.98 }}
         sx={{
           textTransform: 'none',
           fontWeight: 500,

@@ -1,5 +1,5 @@
 import { createTheme, ThemeOptions } from '@mui/material/styles';
-import { lightPalette, darkPalette, accentColors, categoryColors } from './palette';
+import { lightPalette, darkPalette, accentColors, categoryColors, gradients } from './palette';
 import { typography } from './typography';
 import { shadows } from './shadows';
 
@@ -154,6 +154,7 @@ export const lightTheme = createTheme({
     accent: accentColors,
     category: categoryColors,
   },
+  gradients,
 });
 
 export const darkTheme = createTheme({
@@ -163,6 +164,7 @@ export const darkTheme = createTheme({
     accent: accentColors,
     category: categoryColors,
   },
+  gradients,
 });
 
-export { accentColors, categoryColors };
+export { accentColors, categoryColors, gradients };

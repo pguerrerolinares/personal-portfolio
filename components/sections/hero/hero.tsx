@@ -5,34 +5,67 @@ import { motion } from "framer-motion";
 import { Box, Container, Typography, Stack } from "@mui/material";
 import { Link } from "@/i18n/routing";
 import { personalInfo } from "@/lib/constants/portfolio-data";
-import { AnimatedBackground } from "@/components/ui/animated-background";
+import { GradientMesh } from "@/components/ui/gradient-mesh";
 import { Button } from "@/components/ui/button";
-import { GithubIcon, LinkedinIcon, ArrowDownIcon } from "@/components/ui/icon";
+import { GithubIcon, LinkedinIcon, ArrowDownIcon, ArrowRightIcon } from "@/components/ui/icon";
 import { LAYOUT } from "@/lib/theme/layout";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
-const container = {
+const MotionBox = motion.create(Box);
+
+// Staggered reveal for the hero content
+const containerVariants = {
   hidden: { opacity: 0 },
-  show: {
+  visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
       delayChildren: 0.3,
     },
   },
 };
 
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
+    transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] as const },
+  },
+};
+
+// Name reveal with mask animation
+const nameContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.5,
+    },
+  },
+};
+
+const nameLineVariants = {
+  hidden: {
+    clipPath: "inset(0 100% 0 0)",
+    opacity: 0,
+  },
+  visible: {
+    clipPath: "inset(0 0% 0 0)",
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.77, 0, 0.175, 1] as const,
+    },
   },
 };
 
 export function Hero() {
   const t = useTranslations("hero");
+  const prefersReducedMotion = useReducedMotion();
 
+  // Split name for multi-line display
+  const nameParts = t("name").split(" ");
 
   return (
     <Box
@@ -48,179 +81,228 @@ export function Hero() {
         overflow: 'hidden',
       }}
     >
-      <AnimatedBackground />
+      <GradientMesh variant="hero" />
 
       <Container maxWidth="xl">
-        <Box
-          component={motion.div}
-          variants={container}
+        <MotionBox
+          variants={containerVariants}
           initial="hidden"
-          animate="show"
+          animate="visible"
           sx={{
             position: 'relative',
             zIndex: 1,
             py: LAYOUT.spacing.section,
-            display: 'flex',
-            flexDirection: 'column',
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', lg: '1.2fr 0.8fr' },
+            gap: { xs: 4, lg: 8 },
             alignItems: 'center',
-            textAlign: 'center',
-            gap: LAYOUT.spacing.grid,
+            minHeight: { xs: 'auto', lg: '80vh' },
           }}
         >
-          <Typography
-            component={motion.p}
-            variants={item}
-            variant="body1"
-            sx={{
-              color: 'primary.main',
-              fontWeight: 600,
-              fontSize: { xs: '0.875rem', md: '1rem' },
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-            }}
-          >
-            {t("greeting")}
-          </Typography>
-
-          <Typography
-            component={motion.h1}
-            variants={item}
-            variant="h1"
-            sx={{
-              fontSize: { xs: '3rem', sm: '4rem', md: '5rem', lg: '6rem' },
-              fontWeight: 800,
-              lineHeight: 1.1,
-              mb: 2,
-              background: (theme) =>
-                `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.accent.cyan} 100%)`,
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              color: 'transparent',
-              textShadow: 'none',
-            }}
-          >
-            {t("name")}
-          </Typography>
-
-          <Typography
-            component={motion.h2}
-            variants={item}
-            variant="h4"
-            sx={{
-              fontSize: { xs: '1.25rem', sm: '1.75rem', md: '2rem' },
-              fontWeight: 600,
-              color: 'text.primary',
-              mb: 2,
-            }}
-          >
-            {t("role")}
-          </Typography>
-
-          <Typography
-            component={motion.p}
-            variants={item}
-            variant="body1"
-            sx={{
-              maxWidth: '42rem',
-              fontSize: { xs: '1rem', md: '1.125rem' },
-              color: 'text.secondary',
-              lineHeight: 1.8,
-              px: { xs: 2, sm: 0 },
-            }}
-          >
-            {t("description")}
-          </Typography>
-
-          <Stack
-            component={motion.div}
-            variants={item}
-            direction="row"
-            spacing={2}
-            sx={{ mt: 2 }}
-          >
-            <Button
-              component={Link}
-              href="#projects"
-              variant="primary"
-              size="md"
-            >
-              {t("cta.projects")}
-            </Button>
-            <Button
-              component={Link}
-              href="#contact"
-              variant="outline"
-              size="md"
-            >
-              {t("cta.contact")}
-            </Button>
-          </Stack>
-
-          <Stack
-            component={motion.div}
-            variants={item}
-            direction="row"
-            spacing={2}
-            sx={{ mt: 2 }}
-          >
-            <Box
-              component="a"
-              href={personalInfo.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              sx={{
-                color: 'text.primary',
-                transition: 'all 0.2s',
-                '&:hover': {
+          {/* Left side - Main content */}
+          <Box>
+            {/* Eyebrow */}
+            <MotionBox variants={itemVariants}>
+              <Typography
+                variant="eyebrow"
+                sx={{
                   color: 'primary.main',
-                  transform: 'translateY(-2px)',
-                },
-              }}
+                  mb: 3,
+                  display: 'block',
+                }}
+              >
+                {t("greeting")}
+              </Typography>
+            </MotionBox>
+
+            {/* Name - Large display typography with mask reveal */}
+            <MotionBox
+              variants={nameContainerVariants}
+              initial="hidden"
+              animate="visible"
+              sx={{ mb: 4 }}
             >
-              <GithubIcon size={24} />
-            </Box>
-            <Box
-              component="a"
-              href={personalInfo.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              sx={{
-                color: 'text.primary',
-                transition: 'all 0.2s',
-                '&:hover': {
-                  color: 'primary.main',
-                  transform: 'translateY(-2px)',
-                },
-              }}
-            >
-              <LinkedinIcon size={24} />
-            </Box>
-          </Stack>
-        </Box>
+              {nameParts.map((part, index) => (
+                <Box key={index} sx={{ overflow: 'hidden' }}>
+                  <MotionBox
+                    variants={nameLineVariants}
+                  >
+                    <Typography
+                      component={index === 0 ? "h1" : "span"}
+                      variant="display1"
+                      sx={{
+                        display: 'block',
+                        background: (theme) =>
+                          theme.palette.mode === 'dark'
+                            ? theme.gradients.heroTextDark
+                            : theme.gradients.heroText,
+                        backgroundClip: 'text',
+                        WebkitBackgroundClip: 'text',
+                        color: 'transparent',
+                        // Slight offset for visual interest (staggered indent)
+                        ml: index === 0 ? 0 : index === 1 ? { xs: 2, md: 4 } : { xs: 4, md: 8 },
+                      }}
+                    >
+                      {part}
+                    </Typography>
+                  </MotionBox>
+                </Box>
+              ))}
+            </MotionBox>
+
+            {/* Role */}
+            <MotionBox variants={itemVariants}>
+              <Typography
+                variant="h4"
+                component="h2"
+                sx={{
+                  fontWeight: 500,
+                  color: 'text.primary',
+                  mb: 3,
+                  maxWidth: '600px',
+                }}
+              >
+                {t("role")}
+              </Typography>
+            </MotionBox>
+
+            {/* Description */}
+            <MotionBox variants={itemVariants}>
+              <Typography
+                variant="body1"
+                sx={{
+                  maxWidth: '500px',
+                  fontSize: { xs: '1rem', md: '1.125rem' },
+                  color: 'text.secondary',
+                  lineHeight: 1.8,
+                  mb: 4,
+                }}
+              >
+                {t("description")}
+              </Typography>
+            </MotionBox>
+
+            {/* CTAs */}
+            <MotionBox variants={itemVariants}>
+              <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                spacing={2}
+                sx={{ mb: 4 }}
+              >
+                <Button
+                  component={Link}
+                  href="#projects"
+                  variant="primary"
+                  size="lg"
+                  sx={{
+                    px: 4,
+                    py: 1.5,
+                    fontSize: '1rem',
+                    gap: 1,
+                    '& svg': {
+                      transition: 'transform 0.2s ease',
+                    },
+                    '&:hover svg': {
+                      transform: 'translateX(4px)',
+                    },
+                  }}
+                >
+                  {t("cta.projects")}
+                  <ArrowRightIcon size={18} />
+                </Button>
+                <Button
+                  component={Link}
+                  href="#contact"
+                  variant="outline"
+                  size="lg"
+                  sx={{
+                    px: 4,
+                    py: 1.5,
+                    fontSize: '1rem',
+                  }}
+                >
+                  {t("cta.contact")}
+                </Button>
+              </Stack>
+            </MotionBox>
+
+            {/* Social links */}
+            <MotionBox variants={itemVariants}>
+              <Stack direction="row" spacing={3}>
+                <Box
+                  component="a"
+                  href={personalInfo.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  sx={{
+                    color: 'text.secondary',
+                    transition: 'all 0.2s ease',
+                    '&:hover': {
+                      color: 'primary.main',
+                      transform: 'translateY(-4px)',
+                    },
+                  }}
+                >
+                  <GithubIcon size={24} />
+                </Box>
+                <Box
+                  component="a"
+                  href={personalInfo.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  sx={{
+                    color: 'text.secondary',
+                    transition: 'all 0.2s ease',
+                    '&:hover': {
+                      color: 'primary.main',
+                      transform: 'translateY(-4px)',
+                    },
+                  }}
+                >
+                  <LinkedinIcon size={24} />
+                </Box>
+              </Stack>
+            </MotionBox>
+          </Box>
+        </MotionBox>
       </Container>
 
-      <Box
-        component={motion.div}
+      {/* Scroll indicator */}
+      <MotionBox
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.5 }}
+        transition={{ delay: 2, duration: 0.5 }}
         sx={{
           position: 'absolute',
           bottom: '2rem',
           left: '50%',
           transform: 'translateX(-50%)',
           color: 'text.secondary',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 1,
         }}
       >
+        <Typography
+          variant="caption"
+          sx={{
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            fontSize: '0.7rem',
+          }}
+        >
+          {t("scroll")}
+        </Typography>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={!prefersReducedMotion ? { y: [0, 8, 0] } : undefined}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ArrowDownIcon size={24} />
+          <ArrowDownIcon size={20} />
         </motion.div>
-      </Box>
+      </MotionBox>
     </Box>
   );
 }

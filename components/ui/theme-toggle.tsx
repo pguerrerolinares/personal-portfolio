@@ -2,6 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import { useSyncExternalStore } from 'react';
+import { useTranslations } from 'next-intl';
 import { IconButton } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -18,6 +19,7 @@ function useMounted() {
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const mounted = useMounted();
+  const t = useTranslations('common');
 
   if (!mounted) {
     return (
@@ -31,13 +33,13 @@ export function ThemeToggle() {
     <IconButton
       data-component="ThemeToggle"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      aria-label="Toggle theme"
+      aria-label={t('toggleTheme')}
       size="small"
       sx={{
         color: 'text.primary',
-        transition: 'transform 0.2s',
+        transition: 'color 0.2s ease',
         '&:hover': {
-          transform: 'rotate(15deg)',
+          color: 'primary.main',
         },
       }}
     >

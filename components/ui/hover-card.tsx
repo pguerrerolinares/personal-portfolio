@@ -5,25 +5,21 @@ import { ReactNode } from "react";
 
 interface HoverCardProps extends CardProps {
     children: ReactNode;
-    hoverScale?: boolean;
     hoverShadow?: boolean;
-    hoverTranslateY?: number;
 }
 
 export function HoverCard({
     children,
-    hoverScale = false,
     hoverShadow = true,
-    hoverTranslateY = -4,
     sx,
     ...props
 }: HoverCardProps) {
     return (
         <Card
             sx={{
-                transition: 'all 0.3s',
+                transition: 'all 0.2s ease',
                 '&:hover': {
-                    transform: `translateY(${hoverTranslateY}px)${hoverScale ? ' scale(1.02)' : ''}`,
+                    transform: 'translateY(-4px)',
                     boxShadow: hoverShadow ? 4 : 1,
                 },
                 ...sx,

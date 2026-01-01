@@ -2,7 +2,7 @@
 
 import { type ReactNode } from "react";
 import { Card as MuiCard } from "@mui/material";
-import { m, type HTMLMotionProps } from "framer-motion";
+import { motion, type HTMLMotionProps } from "framer-motion";
 
 interface CardProps extends Omit<HTMLMotionProps<"div">, "children"> {
     children: ReactNode;
@@ -11,7 +11,7 @@ interface CardProps extends Omit<HTMLMotionProps<"div">, "children"> {
     index?: number;
 }
 
-const MotionCard = m(MuiCard);
+const MotionCard = motion.create(MuiCard);
 
 export function Card({
     children,

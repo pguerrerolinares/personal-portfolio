@@ -112,8 +112,8 @@ portfolio-personal/
 │
 ├── components/
 │   ├── layout/                 # Componentes de layout
-│   │   ├── navbar.tsx          # AppBar + Drawer navigation
-│   │   └── footer.tsx          # Footer con links sociales
+│   │   ├── navbar.tsx          # AppBar + Drawer navigation (i18n)
+│   │   └── footer.tsx          # Footer con links sociales (i18n)
 │   ├── providers/              # Providers globales
 │   │   ├── lazy-motion-provider.tsx  # LazyMotion + MotionConfig
 │   │   └── theme-provider.tsx        # MUI + next-themes integration
@@ -121,28 +121,25 @@ portfolio-personal/
 │   │   ├── hero/
 │   │   │   └── hero.tsx        # Hero con gradient text
 │   │   ├── about/
-│   │   │   └── about.tsx       # About con skills
+│   │   │   ├── about.tsx       # About con skills (shared variants)
+│   │   │   └── skill-chip.tsx  # Chip para marquee de skills
 │   │   ├── projects/
-│   │   │   └── projects.tsx    # Projects grid
+│   │   │   ├── projects.tsx    # Projects grid (shared variants)
+│   │   │   └── project-card.tsx # Card de proyecto
 │   │   ├── experience/
-│   │   │   └── experience.tsx  # Timeline de experiencia
+│   │   │   └── experience.tsx  # Timeline de experiencia (shared variants, i18n)
 │   │   └── contact/
-│   │       └── contact.tsx     # Contact cards
-│   ├── widgets/                # Widgets reutilizables
-│   │   ├── project-card.tsx    # Card con gradientes
-│   │   ├── experience-card.tsx # Card con timeline
-│   │   ├── contact-card.tsx    # Card interactiva
-│   │   └── skill-badge.tsx     # Chip con hover effect
+│   │       └── contact.tsx     # Contact cards (shared variants, i18n)
 │   └── ui/                     # Componentes UI base
 │       ├── section-container.tsx     # Wrapper estandarizado
 │       ├── section-title.tsx         # Title + Subtitle estandarizados
-│       ├── standard-card.tsx         # Card con animaciones
 │       ├── animated-background.tsx   # Background con partículas
 │       ├── scroll-progress.tsx       # Barra de progreso
 │       ├── page-transition.tsx       # Transiciones de página
-│       ├── toast-provider.tsx        # Toast notifications (Sonner)
+│       ├── copy-button.tsx           # Botón copiar con toast (i18n)
 │       ├── icon.tsx                  # Sistema de iconos (Simple Icons)
-│       ├── theme-toggle.tsx          # Toggle dark/light
+│       ├── theme-toggle.tsx          # Toggle dark/light (i18n)
+│       ├── language-switcher.tsx     # Cambio de idioma (i18n)
 │       └── ...
 │
 ├── lib/
@@ -151,6 +148,8 @@ portfolio-personal/
 │   │   ├── typography.ts       # Sistema de tipografía
 │   │   ├── shadows.ts          # Sistema de sombras
 │   │   └── index.ts            # Theme principal
+│   ├── animations/             # Animaciones compartidas
+│   │   └── variants.ts         # Variantes Framer Motion reutilizables
 │   ├── constants/              # Datos del portfolio
 │   │   └── portfolio-data.ts   # Información personal, skills, proyectos, etc.
 │   └── hooks/                  # Custom React hooks
@@ -319,7 +318,7 @@ Aplicado en:
 El playground muestra componentes de visualización usando `@pguerrerolinares/viz-components`:
 
 - **Stock Chart**: Gráfico OHLC con datos de demostración, soporte para tiempo real
-- **Stock Evolution**: Visualización de evolución temporal con eventos
+- **Stock Evolution**: Visualización de evolución temporal con eventos de mercado
 
 **Nota técnica**: Los web components (Lit) requieren pasar arrays/objetos via `ref` property, no como atributos JSX:
 
@@ -327,10 +326,20 @@ El playground muestra componentes de visualización usando `@pguerrerolinares/vi
 // Los web components reciben strings en atributos JSX
 // Para arrays/objetos, usar ref:
 const chartRef = useRef(null);
+const evolutionRef = useRef(null);
+
 useEffect(() => {
-  if (chartRef.current) {
-    chartRef.current.data = myDataArray;
-  }
+  import('@pguerrerolinares/viz-components').then((module) => {
+    // Stock chart con datos OHLC
+    if (chartRef.current) {
+      chartRef.current.data = ohlcData;
+    }
+    // Stock evolution con precios históricos y eventos
+    if (evolutionRef.current) {
+      evolutionRef.current.prices = module.generateHistoricalPrices();
+      evolutionRef.current.events = module.getMarketEvents();
+    }
+  });
 }, []);
 ```
 
@@ -351,6 +360,15 @@ Los datos del portfolio se centralizan en [`lib/constants/portfolio-data.ts`](li
 Edita los archivos de traducción en [`messages/`](messages/):
 - `es.json` - Español
 - `en.json` - English
+
+**Estructura de claves:**
+- `metadata`: Título y descripción SEO
+- `nav`: Labels de navegación
+- `hero`, `about`, `projects`, `experience`, `contact`, `playground`: Contenido de secciones
+- `common`: Strings de UI compartidos (aria-labels, botones, toasts)
+- `footer`: Contenido del footer
+
+Las claves de `common` se usan para accesibilidad (aria-labels) y elementos UI reutilizables.
 
 ### Tema y Colores
 

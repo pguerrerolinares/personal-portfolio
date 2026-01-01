@@ -18,7 +18,8 @@
     "cta": {
       "projects": "View Projects",
       "contact": "Get in Touch"
-    }
+    },
+    "scroll": "Scroll"
   },
   "about": {
     "title": "About Me",
@@ -31,6 +32,7 @@
     "stats": {
       "years": "Years Experience",
       "technologies": "Technologies",
+      "projects": "Projects Delivered",
       "focus": "Specialization"
     },
     "skills": {
@@ -115,7 +117,16 @@
       "email": "Email",
       "location": "Location"
     },
-    "cta": "Feel free to reach out through any of these channels!"
+    "cta": "Feel free to reach out through any of these channels!",
+    "actions": {
+      "open": "Open",
+      "send": "Send",
+      "clickToCopy": "Click to copy"
+    },
+    "availability": {
+      "title": "Open to opportunities",
+      "subtitle": "Available for freelance & full-time roles"
+    }
   },
   "playground": {
     "title": "Component Playground",
@@ -141,6 +152,22 @@
       "fulltime": "Full-time",
       "freelance": "Freelance",
       "personal": "Personal"
-    }
+    },
+    "skipToMainContent": "Skip to main content",
+    "goToHomepage": "Go to homepage",
+    "toggleMenu": "Toggle menu",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "toggleTheme": "Toggle theme",
+    "switchLanguage": "Switch language",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "copiedToClipboard": "Copied to clipboard!",
+    "failedToCopy": "Failed to copy",
+    "current": "Current"
+  },
+  "footer": {
+    "tagline": "Building digital experiences that make a difference."
   }
 }
