@@ -145,3 +145,32 @@ export const categoryColors = {
   automation: '#0d9488', // Teal
   other: '#64748b',  // Slate
 };
+
+// Gradient definitions for bold visual design
+export const gradients = {
+  // Hero text gradient
+  heroText: 'linear-gradient(135deg, #0071e3 0%, #0d9488 100%)',
+  heroTextDark: 'linear-gradient(135deg, #0a84ff 0%, #14b8a6 100%)',
+  // Section background washes
+  sectionWash: 'radial-gradient(ellipse at top, rgba(0,113,227,0.03) 0%, transparent 70%)',
+  sectionWashDark: 'radial-gradient(ellipse at top, rgba(10,132,255,0.05) 0%, transparent 70%)',
+  // Card border glow
+  cardBorder: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%)',
+  cardBorderDark: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%)',
+  // Mesh gradient for backgrounds
+  meshLight: 'radial-gradient(at 40% 20%, rgba(99,102,241,0.08) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(14,165,233,0.08) 0px, transparent 50%), radial-gradient(at 0% 50%, rgba(13,148,136,0.08) 0px, transparent 50%)',
+  meshDark: 'radial-gradient(at 40% 20%, rgba(99,102,241,0.15) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(14,165,233,0.12) 0px, transparent 50%), radial-gradient(at 0% 50%, rgba(13,148,136,0.12) 0px, transparent 50%)',
+  // Interactive glow
+  glowPrimary: 'radial-gradient(circle, rgba(0,113,227,0.4) 0%, transparent 70%)',
+  glowAccent: 'radial-gradient(circle, rgba(99,102,241,0.3) 0%, transparent 70%)',
+};
+
+// Extend module for gradients
+declare module '@mui/material/styles' {
+  interface Theme {
+    gradients: typeof gradients;
+  }
+  interface ThemeOptions {
+    gradients?: typeof gradients;
+  }
+}

@@ -33,7 +33,7 @@ export function SectionContainer({
         bgcolor: bgcolor === 'paper' ? 'background.paper' : 'background.default',
       }}
     >
-      <Container {...props}>
+      <Container maxWidth="xl" {...props}>
         {children}
       </Container>
     </Box>

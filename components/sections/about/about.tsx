@@ -2,162 +2,225 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Box, Typography, Divider } from "@mui/material";
-import {
-  skills,
-  skillCategories,
-} from "@/lib/constants/portfolio-data";
-import type { SkillCategory } from "@/types";
-import { SkillBadge } from "./skill-badge";
+import { Box, Typography } from "@mui/material";
+import { skills } from "@/lib/constants/portfolio-data";
+import { SkillChip } from "./skill-chip";
 import { SectionContainer } from "@/components/ui/section-container";
-import { SectionTitle, SectionSubtitle } from "@/components/ui/section-title";
-import { LAYOUT } from "@/lib/theme/layout";
+import { CounterAnimation } from "@/components/ui/counter-animation";
+import { Marquee } from "@/components/ui/horizontal-scroll";
+import { containerVariants, itemVariants } from "@/lib/animations/variants";
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
+const MotionBox = motion.create(Box);
 
 export function About() {
   const t = useTranslations("about");
 
-  const skillsByCategory = skills.reduce(
-    (acc, skill) => {
-      if (!acc[skill.category]) {
-        acc[skill.category] = [];
-      }
-      acc[skill.category].push(skill);
-      return acc;
-    },
-    {} as Record<SkillCategory, typeof skills>
-  );
-
-  const displayCategories: SkillCategory[] = [
-    "frontend",
-    "backend",
-    "ai-ml",
-    "devops",
-  ];
+  // Get expert skills first, then others
+  const sortedSkills = [...skills].sort((a, b) => {
+    if (a.level === "expert" && b.level !== "expert") return -1;
+    if (a.level !== "expert" && b.level === "expert") return 1;
+    return 0;
+  });
 
   return (
     <SectionContainer id="about" data-component="About">
-      <SectionTitle id="about-heading">{t("title")}</SectionTitle>
-
-      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: LAYOUT.spacing.container }}>
-        {/* Bio section */}
-        <Box sx={{ flex: 1 }}>
-          <Box
-            component={motion.div}
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+      <MotionBox
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <MotionBox variants={itemVariants} sx={{ mb: 2 }}>
+          <Typography
+            variant="eyebrow"
+            sx={{ color: "primary.main" }}
           >
-            <SectionSubtitle sx={{ mb: 4, color: 'text.primary' }}>
-              {t("subtitle")}
-            </SectionSubtitle>
+            {t("title")}
+          </Typography>
+        </MotionBox>
 
-            <Typography component={motion.p} variants={item} variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
-              {t("bio.p1")}
-            </Typography>
-            <Typography component={motion.p} variants={item} variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
-              {t("bio.p2")}
-            </Typography>
-            <Typography component={motion.p} variants={item} variant="body1" color="text.secondary" sx={{ mb: 4, lineHeight: 1.8 }}>
-              {t("bio.p3")}
-            </Typography>
+        {/* Large section title */}
+        <MotionBox variants={itemVariants} sx={{ mb: 6 }}>
+          <Typography
+            variant="display2"
+            component="h2"
+            sx={{
+              color: "text.primary",
+              maxWidth: "800px",
+            }}
+          >
+            {t("subtitle")}
+          </Typography>
+        </MotionBox>
 
-            {/* Quick stats */}
-            <Box
-              component={motion.div}
-              variants={item}
+        {/* Bio - Full width, narrative style */}
+        <Box sx={{ mb: 8 }}>
+          <MotionBox
+            variants={itemVariants}
+            sx={{
+              maxWidth: "900px",
+            }}
+          >
+            <Typography
+              variant="body1"
               sx={{
-                mt: LAYOUT.spacing.container,
-                p: LAYOUT.spacing.grid,
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: LAYOUT.spacing.grid,
-                bgcolor: 'background.paper',
-                borderRadius: LAYOUT.borderRadius.lg,
-                border: 1,
-                borderColor: 'divider',
-                alignItems: 'center',
-                alignContent: 'center',
-                justifyContent: 'center',
+                fontSize: { xs: "1.125rem", md: "1.25rem" },
+                lineHeight: 1.9,
+                color: "text.secondary",
+                "& strong": {
+                  color: "text.primary",
+                  fontWeight: 600,
+                },
               }}
             >
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100px' }}>
-                <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main', mb: 1, lineHeight: 1.2 }}>
-                  4+
-                </Typography>
-                <Typography variant="body2" color="text.secondary" align="center">
-                  {t("stats.years")}
-                </Typography>
-              </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100px' }}>
-                <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main', mb: 1, lineHeight: 1.2 }}>
-                  {skills.length}+
-                </Typography>
-                <Typography variant="body2" color="text.secondary" align="center">
-                  {t("stats.technologies")}
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
+              {t("bio.p1")}
+            </Typography>
+          </MotionBox>
+
+          <MotionBox
+            variants={itemVariants}
+            sx={{ mt: 4, maxWidth: "900px" }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: "1.125rem", md: "1.25rem" },
+                lineHeight: 1.9,
+                color: "text.secondary",
+              }}
+            >
+              {t("bio.p2")}
+            </Typography>
+          </MotionBox>
+
+          <MotionBox
+            variants={itemVariants}
+            sx={{ mt: 4, maxWidth: "900px" }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: "1.125rem", md: "1.25rem" },
+                lineHeight: 1.9,
+                color: "text.secondary",
+              }}
+            >
+              {t("bio.p3")}
+            </Typography>
+          </MotionBox>
         </Box>
 
-        {/* Skills section */}
-        <Box sx={{ flex: 1 }}>
-          <Box
-            component={motion.div}
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <SectionSubtitle sx={{ mb: 4, color: 'text.primary' }}>
-              {t("skills.title")}
-            </SectionSubtitle>
-
-            {displayCategories.map((category, idx) => (
-              <Box key={category} sx={{ mb: 4 }}>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    fontWeight: 600,
-                    color: 'text.secondary',
-                    mb: 2,
-                  }}
-                >
-                  {skillCategories[category]}
-                </Typography>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
-                  {skillsByCategory[category]?.map((skill, index) => (
-                    <SkillBadge key={skill.name} skill={skill} index={index} />
-                  ))}
-                </Box>
-                {idx < displayCategories.length - 1 && (
-                  <Divider sx={{ mt: 3 }} />
-                )}
-              </Box>
-            ))}
-
-            <Typography variant="body2" color="text.secondary" sx={{ mt: 4, fontStyle: 'italic' }}>
-              {t("skills.more")}
+        {/* Stats - Large animated counters */}
+        <MotionBox
+          variants={itemVariants}
+          sx={{
+            display: "flex",
+            gap: { xs: 6, md: 12 },
+            mb: 10,
+            flexWrap: "wrap",
+          }}
+        >
+          <Box>
+            <CounterAnimation
+              value={4}
+              suffix="+"
+              variant="display2"
+              sx={{
+                fontWeight: 700,
+                color: "primary.main",
+                display: "block",
+                lineHeight: 1,
+              }}
+            />
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ mt: 1 }}
+            >
+              {t("stats.years")}
             </Typography>
           </Box>
-        </Box>
-      </Box>
-    </SectionContainer >
+
+          <Box>
+            <CounterAnimation
+              value={skills.length}
+              suffix="+"
+              variant="display2"
+              delay={0.2}
+              sx={{
+                fontWeight: 700,
+                color: "primary.main",
+                display: "block",
+                lineHeight: 1,
+              }}
+            />
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ mt: 1 }}
+            >
+              {t("stats.technologies")}
+            </Typography>
+          </Box>
+
+          <Box>
+            <CounterAnimation
+              value={10}
+              suffix="+"
+              variant="display2"
+              delay={0.4}
+              sx={{
+                fontWeight: 700,
+                color: "primary.main",
+                display: "block",
+                lineHeight: 1,
+              }}
+            />
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ mt: 1 }}
+            >
+              {t("stats.projects")}
+            </Typography>
+          </Box>
+        </MotionBox>
+
+        {/* Skills label */}
+        <MotionBox variants={itemVariants} sx={{ mb: 4 }}>
+          <Typography
+            variant="eyebrow"
+            sx={{ color: "text.secondary" }}
+          >
+            {t("skills.title")}
+          </Typography>
+        </MotionBox>
+
+        {/* Skills Marquee - Single direction for clean visual flow */}
+        <MotionBox
+          variants={itemVariants}
+          sx={{
+            mx: { xs: -3, md: -6 },
+          }}
+        >
+          <Marquee speed={30} gap={16} direction="left">
+            {sortedSkills.map((skill) => (
+              <SkillChip key={skill.name} skill={skill} />
+            ))}
+          </Marquee>
+        </MotionBox>
+
+        {/* Skills note */}
+        <MotionBox variants={itemVariants} sx={{ mt: 6 }}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ fontStyle: "italic" }}
+          >
+            {t("skills.more")}
+          </Typography>
+        </MotionBox>
+      </MotionBox>
+    </SectionContainer>
   );
 }

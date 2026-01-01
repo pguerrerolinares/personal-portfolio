@@ -36,7 +36,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <ScrollProgress />
           <Navbar />
           <PageTransition>
-            <Box sx={{ minHeight: '100vh', pt: '4rem' }}>{children}</Box>
+            <Box sx={{ minHeight: '100vh' }}>{children}</Box>
           </PageTransition>
           <Footer />
         </LazyMotionProvider>

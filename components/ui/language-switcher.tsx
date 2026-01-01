@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition, useEffect, useRef } from 'react';
 import { Button } from '@mui/material';
@@ -8,6 +8,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 
 export function LanguageSwitcher() {
   const locale = useLocale();
+  const t = useTranslations('common');
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -42,7 +43,7 @@ export function LanguageSwitcher() {
       disabled={isPending}
       size="small"
       startIcon={<LanguageIcon />}
-      aria-label="Switch language"
+      aria-label={t('switchLanguage')}
       sx={{
         color: 'text.primary',
         textTransform: 'uppercase',

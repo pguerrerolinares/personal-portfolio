@@ -59,13 +59,21 @@ const EVOLUTION_CONFIG = JSON.stringify({
 export function PlaygroundContent() {
   const t = useTranslations('playground');
   const stockChartRef = useRef<HTMLElement>(null);
+  const stockEvolutionRef = useRef<HTMLElement>(null);
 
   // Dynamic import of web components and set data via property (not attribute)
   useEffect(() => {
-    import('@pguerrerolinares/viz-components').then(() => {
+    import('@pguerrerolinares/viz-components').then((module) => {
       // Set data as JS array via property, not string attribute
       if (stockChartRef.current) {
         (stockChartRef.current as unknown as { data: typeof OHLC_SAMPLE_DATA }).data = OHLC_SAMPLE_DATA;
+      }
+      // Set stock evolution data
+      if (stockEvolutionRef.current) {
+        const prices = module.generateHistoricalPrices();
+        const events = module.getMarketEvents();
+        (stockEvolutionRef.current as unknown as { prices: typeof prices; events: typeof events }).prices = prices;
+        (stockEvolutionRef.current as unknown as { prices: typeof prices; events: typeof events }).events = events;
       }
     });
   }, []);
@@ -175,6 +183,7 @@ export function PlaygroundContent() {
           >
             {/* @ts-expect-error - Web Component */}
             <viz-stock-evolution
+              ref={stockEvolutionRef}
               config={EVOLUTION_CONFIG}
               theme="auto"
               style={{ width: '100%', height: '100%', display: 'block' }}

@@ -18,7 +18,8 @@
     "cta": {
       "projects": "Ver Proyectos",
       "contact": "Contactar"
-    }
+    },
+    "scroll": "Desliza"
   },
   "about": {
     "title": "Sobre Mí",
@@ -31,6 +32,7 @@
     "stats": {
       "years": "Años de Experiencia",
       "technologies": "Tecnologías",
+      "projects": "Proyectos Entregados",
       "focus": "Especialización"
     },
     "skills": {
@@ -115,7 +117,16 @@
       "email": "Email",
       "location": "Ubicación"
     },
-    "cta": "¡No dudes en contactarme a través de cualquiera de estos canales!"
+    "cta": "¡No dudes en contactarme a través de cualquiera de estos canales!",
+    "actions": {
+      "open": "Abrir",
+      "send": "Enviar",
+      "clickToCopy": "Clic para copiar"
+    },
+    "availability": {
+      "title": "Abierto a oportunidades",
+      "subtitle": "Disponible para freelance y tiempo completo"
+    }
   },
   "playground": {
     "title": "Playground de Componentes",
@@ -141,6 +152,22 @@
       "fulltime": "Tiempo Completo",
       "freelance": "Freelance",
       "personal": "Personal"
-    }
+    },
+    "skipToMainContent": "Saltar al contenido principal",
+    "goToHomepage": "Ir a la página principal",
+    "toggleMenu": "Abrir menú",
+    "menu": "Menú",
+    "closeMenu": "Cerrar menú",
+    "toggleTheme": "Cambiar tema",
+    "switchLanguage": "Cambiar idioma",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "copiedToClipboard": "¡Copiado al portapapeles!",
+    "failedToCopy": "Error al copiar",
+    "current": "Actual"
+  },
+  "footer": {
+    "tagline": "Construyendo experiencias digitales que marcan la diferencia."
   }
 }
